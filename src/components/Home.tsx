@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 type User = {
   id: number;
@@ -23,10 +24,8 @@ type User = {
 };
 
 export default function Home({ userDetails }: { userDetails: User[] }) {
-  const [userInformation, setUserInformation] = useState({});
-
   return (
-    <div className="p-4 h-screen w-full justify-between flex">
+    <div className="h-screen w-full justify-between flex">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, birthday, gender } = user;
@@ -40,48 +39,6 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
             </div>
           );
         })}
-
-      <div>
-        {userDetails &&
-          userDetails.map((user) => {
-            const { id, name, email, birthday, gender } = user;
-
-            return (
-              <div
-                className="flex items-center flex-col mt-[2rem] border-2 w-[20rem] h-[80%] p-2 rounded-md bg-white"
-                key={user.id}
-              >
-                <span className="self-end mb-10 cursor-pointer">
-                  Edit details
-                </span>
-                <Avatar className="w-[15rem] h-[15rem]">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <h1 className="text-3xl mt-2 font-bold">
-                  {name.charAt(0).toUpperCase() + name.slice(1)}
-                </h1>
-
-                <p>{moment().diff(birthday, 'years')}</p>
-
-                <p>{moment(birthday).format('LL')}</p>
-
-                <Card className="w-full mt-[5rem]">
-                  <CardHeader>
-                    <CardTitle>Card Title</CardTitle>
-                    <CardDescription>Card Description</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>Card Content</p>
-                  </CardContent>
-                  <CardFooter>
-                    <p>Card Footer</p>
-                  </CardFooter>
-                </Card>
-              </div>
-            );
-          })}
-      </div>
     </div>
   );
 }

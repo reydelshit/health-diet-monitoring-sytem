@@ -1,3 +1,3 @@
 export default function FoodDiary() {
-  return <h1>FoodDiary</h1>;
+  return <div className="w-full">FoodDiary</div>;
 }
