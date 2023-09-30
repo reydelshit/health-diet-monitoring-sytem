@@ -59,7 +59,6 @@ export default function FoodLogTable() {
           <TableRow>
             <TableHead>Meal</TableHead>
             <TableHead>Calorie Intake</TableHead>
-            <TableHead>Nutrients Information</TableHead>
             <TableHead>Meal Time</TableHead>
           </TableRow>
         </TableHeader>
@@ -70,7 +69,7 @@ export default function FoodLogTable() {
                 <TableRow key={index}>
                   <TableCell>{food.meal_name}</TableCell>
                   <TableCell>{food.calorie_intake}</TableCell>
-                  <TableCell>{food.nutri_information}</TableCell>
+
                   <TableCell>{food.meal_time}</TableCell>
                 </TableRow>
               );

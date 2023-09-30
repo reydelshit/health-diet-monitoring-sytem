@@ -10,6 +10,8 @@ import Home from './Home';
 import FoodDiary from './MealDiary';
 import MealDiary from './MealDiary';
 import Goal from './Goal';
+import Water from './Water';
+import Sleep from './Sleep';
 
 export default function Sidebar({
   handleLogout,
@@ -45,6 +47,20 @@ export default function Sidebar({
           >
             <BookmarkIcon className="w-5 h-[1.5rem] mr-2" /> Meal Diary
           </Link>
+
+          <Link
+            to="/water-log"
+            className="mb-2 w-full bg-inherit text-black flex hover:bg-green-50 p-2 rounded-sm "
+          >
+            <BookmarkIcon className="w-5 h-[1.5rem] mr-2" /> Water Log
+          </Link>
+
+          <Link
+            to="/sleep-log"
+            className="mb-2 w-full bg-inherit text-black flex hover:bg-green-50 p-2 rounded-sm "
+          >
+            <BookmarkIcon className="w-5 h-[1.5rem] mr-2" /> Sleep Log
+          </Link>
         </div>
 
         <footer className="mt-auto">
@@ -66,6 +82,8 @@ export default function Sidebar({
           />
           <Route path="/food-diary" element={<MealDiary />} />
           <Route path="/set-goal" element={<Goal />} />
+          <Route path="/water-log" element={<Water />} />
+          <Route path="/sleep-log" element={<Sleep />} />
         </Routes>
       </div>
     </>

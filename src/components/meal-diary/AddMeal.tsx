@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/select';
 import axios from 'axios';
 import { useState } from 'react';
+import { Label } from '@radix-ui/react-label';
 
 export default function AddMeal({
   // handleSubmit,
@@ -19,33 +20,7 @@ export default function AddMeal({
   // handleChange: any;
   setAddMealDecider: (value: boolean) => void;
 }) {
-  const [meal, setMeal] = useState([]);
-  const [mealTime, setMealTime] = useState('');
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   const name = e.target.name;
-
-  //   setMeal((values) => ({ ...values, [name]: value }));
-  // };
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   console.log(meal);
-  //   e.preventDefault();
-
-  //   // axios
-  //   //   .post('http://localhost/hd-monitoring/meal-diary.php', meal)
-  //   //   .then((res) => {
-  //   //     console.log(res.data);
-
-  //   //     // if (res.data.status === 'success') {
-  //   //     //   navigate('/login');
-  //   //     // }
-  //   //   });
-  // };
-
   const [formData, setFormData] = useState([]);
-  const [response, setResponse] = useState(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -65,10 +40,6 @@ export default function AddMeal({
       })
       .then((res) => {
         console.log(res.data);
-
-        // if (res.data.status === 'success') {
-        //   navigate('/login');
-        // }
       });
   };
 
@@ -111,6 +82,39 @@ export default function AddMeal({
           type="text"
           placeholder="Enter calorie"
           name="calorie"
+          className="mb-2"
+          onChange={handleChange}
+        />
+
+        <div className="w-full mb-2">
+          <Label
+            className="pb-2 text-sm text-gray-500 dark:text-[#9b7366] pl-2"
+            htmlFor="macro nutrient"
+          >
+            (Optional) Macronutrients:
+          </Label>
+        </div>
+
+        <Input
+          type="text"
+          placeholder="Enter Fats"
+          name="macro_fats"
+          className="mb-2"
+          onChange={handleChange}
+        />
+
+        <Input
+          type="text"
+          placeholder="Enter Protein"
+          name="macro_proteins"
+          className="mb-2"
+          onChange={handleChange}
+        />
+
+        <Input
+          type="text"
+          placeholder="Enter Carbs"
+          name="macro_carbs"
           className="mb-2"
           onChange={handleChange}
         />
