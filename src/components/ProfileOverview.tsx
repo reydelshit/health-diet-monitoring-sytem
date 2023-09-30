@@ -29,14 +29,14 @@ export default function ProfileOverview({
   userDetails: User[];
 }) {
   return (
-    <div className="w-[28rem] p-2 h-full bg-[#FAFBFD]">
+    <div className="w-[28rem] p-2 h-full bg-[#fafbfd]">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, birthday, gender } = user;
 
           return (
             <div
-              className="flex items-center flex-col mt-[2rem] w-full h-[50rem] p-2 border-orange-500 border-2 rounded-md bg-white"
+              className="flex items-center flex-col mt-[2rem] w-full h-[50rem] p-2 border-2 rounded-md bg-white"
               key={user.id}
             >
               <span className="self-end mb-10 cursor-pointer">

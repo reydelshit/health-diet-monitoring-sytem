@@ -10,11 +10,12 @@ export default function Main() {
     axios
       .get('http://localhost/hd-monitoring/get-user-data.php', {
         params: {
-          email: localStorage.getItem('token'),
+          id: localStorage.getItem('token'),
         },
       })
       .then((res) => {
         console.log(res.data);
+        console.log(res.status);
 
         if (res.status === 200) {
           setUserDetails(res.data);
@@ -32,7 +33,7 @@ export default function Main() {
   };
 
   return (
-    <div className="flex p-2">
+    <div className="flex">
       <Sidebar handleLogout={handleLogout} userDetails={userDetails} />
       <ProfileOverview userDetails={userDetails} />
     </div>

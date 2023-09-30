@@ -33,7 +33,7 @@ export default function Login({
       .then((res) => {
         if (res.status === 200) {
           console.log('success');
-          localStorage.setItem('token', res.data[0].email);
+          localStorage.setItem('token', res.data[0].id);
           setEmail(res.data[0].email);
           setIsLoggedIn(true);
         }

@@ -23,7 +23,7 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
 
           return (
             <div key={user.id}>
-              <h1 className="text-3xl font-bold">
+              <h1 className="text-3xl font-bold text-[#2b3e54]">
                 Welcome, {name.charAt(0).toUpperCase() + name.slice(1)}
               </h1>
               <p className="text-sm ml-1">Stay Healthy, Stay Happy.</p>

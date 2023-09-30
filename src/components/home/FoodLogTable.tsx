@@ -38,7 +38,7 @@ export default function FoodLogTable() {
   }, []);
 
   return (
-    <div className="mt-[4rem] flex flex-col bg-white p-4 rounded-sm border-2 border-green-600">
+    <div className="mt-[4rem] flex flex-col bg-white p-4 rounded-sm border-2">
       <h1 className="font-bold text-2xl py-2">Latest Food Log</h1>
       <div className="self-end mb-2">
         <Select>
@@ -65,9 +65,9 @@ export default function FoodLogTable() {
         </TableHeader>
         <TableBody>
           {foodLog &&
-            foodLog.map((food) => {
+            foodLog.map((food, index) => {
               return (
-                <TableRow>
+                <TableRow key={index}>
                   <TableCell>{food.meal_name}</TableCell>
                   <TableCell>{food.calorie_intake}</TableCell>
                   <TableCell>{food.nutri_information}</TableCell>
