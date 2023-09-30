@@ -2,7 +2,8 @@ import { Link, Routes, Route } from 'react-router-dom';
 import { Button } from './ui/button';
 import { ExitIcon, HomeIcon } from '@radix-ui/react-icons';
 import Home from './Home';
-import FoodDiary from './FoodDiary';
+import FoodDiary from './MealDiary';
+import MealDiary from './MealDiary';
 
 export default function Sidebar({
   handleLogout,
@@ -13,7 +14,7 @@ export default function Sidebar({
 }) {
   return (
     <>
-      <div className="w-[20rem] p-2 bg-white h-screen flex flex-col justify-around">
+      <div className="w-[25rem] p-2 bg-white h-screen flex flex-col justify-around">
         <header className="h-[8rem] flex items-center">
           <h1 className="font-bold text-3xl">Logo Diri</h1>
         </header>
@@ -27,7 +28,7 @@ export default function Sidebar({
 
           <Link to="/food-diary" className="mb-2">
             <Button className="w-full bg-inherit text-black border-none outline-none shadow-none">
-              Food Diary
+              Meal Diary
             </Button>
           </Link>
         </div>
@@ -49,7 +50,7 @@ export default function Sidebar({
             path="/edit-profile"
             element={<Home userDetails={userDetails} />}
           />
-          <Route path="/food-diary" element={<FoodDiary />} />
+          <Route path="/food-diary" element={<MealDiary />} />
         </Routes>
       </div>
     </>

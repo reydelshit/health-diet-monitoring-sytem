@@ -1,16 +1,7 @@
-import { set } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import moment from 'moment';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Link } from 'react-router-dom';
+
+import Meal from './home/Meal';
+import FoodLogTable from './home/FoodLogTable';
 
 type User = {
   id: number;
@@ -25,13 +16,13 @@ type User = {
 
 export default function Home({ userDetails }: { userDetails: User[] }) {
   return (
-    <div className="h-screen w-full justify-between flex">
+    <div className="h-screen w-full flex flex-col py-10 px-[6.5rem]">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, birthday, gender } = user;
 
           return (
-            <div className="mt-[5rem]" key={user.id}>
+            <div key={user.id}>
               <h1 className="text-3xl font-bold">
                 Welcome, {name.charAt(0).toUpperCase() + name.slice(1)}
               </h1>
@@ -39,6 +30,24 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
             </div>
           );
         })}
+
+      {/* <div className="w-full text-center">
+        <h1 className="font-bold text-4xl">{moment().format('LLLL')}</h1>
+      </div> */}
+
+      <div className="flex w-full justify-between items-center mt-[3rem]">
+        <div>
+          <h1 className="font-bold text-2xl py-2">Meals</h1>
+          <Meal />
+        </div>
+
+        <div>
+          <h1 className="font-bold text-2xl py-2">Meals</h1>
+          <Meal />
+        </div>
+      </div>
+
+      <FoodLogTable />
     </div>
   );
 }
