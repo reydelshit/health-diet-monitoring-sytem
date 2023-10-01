@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AddMeal from './meal-diary/AddMeal';
 import { Button } from './ui/button';
 

@@ -7,7 +7,6 @@ import {
   TargetIcon,
 } from '@radix-ui/react-icons';
 import Home from './Home';
-import FoodDiary from './MealDiary';
 import MealDiary from './MealDiary';
 import Goal from './Goal';
 import Water from './Water';

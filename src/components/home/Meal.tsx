@@ -23,12 +23,6 @@ export default function Meal() {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [foodLog, setFoodLog] = useState<FoodLog[]>([]);
 
-  const [breakFast, setBreakfast] = useState<FoodLog[]>([]);
-  const [lunch, setLunch] = useState<FoodLog[]>([]);
-  const [dinner, setDinner] = useState<FoodLog[]>([]);
-
-  const [totalGoal, setTotalGoal] = useState<number>(0);
-
   const getGoals = () => {
     axios
       .get('http://localhost/hd-monitoring/goal.php', {

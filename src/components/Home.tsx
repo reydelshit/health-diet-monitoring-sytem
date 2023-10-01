@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import Meal from './home/Meal';
 import FoodLogTable from './home/FoodLogTable';
 import DailyLogs from './home/DailyLogs';
@@ -31,10 +29,6 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
             </div>
           );
         })}
-
-      {/* <div className="w-full text-center">
-        <h1 className="font-bold text-4xl">{moment().format('LLLL')}</h1>
-      </div> */}
 
       <div className="flex w-full justify-between items-center mt-[3rem]">
         <div>

@@ -1,15 +1,6 @@
-import { set } from 'date-fns';
-import { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import moment from 'moment';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 
