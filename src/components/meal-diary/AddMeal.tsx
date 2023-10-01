@@ -71,7 +71,7 @@ export default function AddMeal({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Breakfast">Breakfast</SelectItem>
-              <SelectItem value="Lunch Break">Lunch Break</SelectItem>
+              <SelectItem value="Lunch">Lunch Break</SelectItem>
               <SelectItem value="Dinner">Dinner</SelectItem>
               <SelectItem value="Snacks">Snacks</SelectItem>
             </SelectContent>

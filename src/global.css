@@ -48,3 +48,8 @@
     --ring: 142.4 71.8% 29.2%;
   }
 }
+
+* {
+  box-sizing: border-box;
+  /* color: #2b3e54 !important; */
+}

@@ -26,11 +26,20 @@ type FoodLog = {
 
 export default function FoodLogTable() {
   const [foodLog, setFoodLog] = useState<FoodLog[]>([]);
+
+  const id = localStorage.getItem('token') as unknown as number;
+
   const fetchFoodLog = () => {
-    axios.get('http://localhost/hd-monitoring/meal-diary.php').then((res) => {
-      console.log(res.data);
-      setFoodLog(res.data);
-    });
+    axios
+      .get('http://localhost/hd-monitoring/meal-diary.php', {
+        params: {
+          id: id,
+        },
+      })
+      .then((res) => {
+        // console.log(res.data);
+        setFoodLog(res.data);
+      });
   };
 
   useEffect(() => {

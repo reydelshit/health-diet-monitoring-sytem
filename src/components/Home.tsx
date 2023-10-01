@@ -2,6 +2,7 @@ import moment from 'moment';
 
 import Meal from './home/Meal';
 import FoodLogTable from './home/FoodLogTable';
+import DailyLogs from './home/DailyLogs';
 
 type User = {
   id: number;
@@ -37,8 +38,8 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
 
       <div className="flex w-full justify-between items-center mt-[3rem]">
         <div>
-          <h1 className="font-bold text-2xl py-2">Meals</h1>
-          <Meal />
+          <h1 className="font-bold text-2xl py-2">Daily Logs</h1>
+          <DailyLogs />
         </div>
 
         <div>

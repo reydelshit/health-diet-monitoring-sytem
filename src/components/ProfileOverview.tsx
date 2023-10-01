@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { Separator } from '@/components/ui/separator';
 
 type User = {
   id: number;
@@ -21,6 +22,8 @@ type User = {
   birthday: string;
   isLogin: boolean;
   gender: string;
+  height: string;
+  weight: string;
 };
 
 export default function ProfileOverview({
@@ -32,7 +35,7 @@ export default function ProfileOverview({
     <div className="w-[28rem] p-2 h-full bg-[#fafbfd]">
       {userDetails &&
         userDetails.map((user) => {
-          const { id, name, email, birthday, gender } = user;
+          const { id, name, email, weight, height, birthday, gender } = user;
 
           return (
             <div
@@ -40,10 +43,10 @@ export default function ProfileOverview({
               key={user.id}
             >
               <span className="self-end mb-10 cursor-pointer">
-                <Link to="/edit-profile">Edit details</Link>
+                <Link to={`/${id}/edit-profile`}>Edit details</Link>
               </span>
               <Avatar className="w-[15rem] h-[15rem]">
-                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarImage src="https://avatars.githubusercontent.com/u/40355669?v=4" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
               <h1 className="text-3xl mt-2 font-bold">
@@ -54,18 +57,35 @@ export default function ProfileOverview({
 
               <p>{moment(birthday).format('LL')}</p>
 
-              <Card className="w-full mt-[5rem]">
-                <CardHeader>
-                  <CardTitle>Card Title</CardTitle>
-                  <CardDescription>Card Description</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>Card Content</p>
-                </CardContent>
-                <CardFooter>
-                  <p>Card Footer</p>
-                </CardFooter>
-              </Card>
+              <div className="space-y-1 text-center mt-10">
+                <h4 className="text-sm font-medium leading-none">About</h4>
+                <p className="text-sm text-muted-foreground">
+                  Some of your details .
+                </p>
+              </div>
+              <Separator className="my-4" />
+              <div className="flex h-5 items-center space-x-4 text-sm">
+                <div className="flex flex-col text-center">
+                  Weight
+                  <span className="font-bold">
+                    {weight.length === 0 ? 'N/A' : weight} kg
+                  </span>
+                </div>
+                <Separator orientation="vertical" />
+                <div className="flex flex-col text-center">
+                  Height
+                  <span className="font-bold">
+                    {height.length === 0 ? 'N/A' : height}
+                  </span>
+                </div>
+                <Separator orientation="vertical" />
+                <div className="flex flex-col text-center">
+                  Gender
+                  <span className="font-bold">
+                    {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                  </span>
+                </div>
+              </div>
             </div>
           );
         })}

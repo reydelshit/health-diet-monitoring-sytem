@@ -12,6 +12,7 @@ import MealDiary from './MealDiary';
 import Goal from './Goal';
 import Water from './Water';
 import Sleep from './Sleep';
+import EditProfile from './EditProfile';
 
 export default function Sidebar({
   handleLogout,
@@ -76,10 +77,7 @@ export default function Sidebar({
       <div className="w-full bg-[#fafbfd] p-2">
         <Routes>
           <Route index element={<Home userDetails={userDetails} />} />
-          <Route
-            path="/edit-profile"
-            element={<Home userDetails={userDetails} />}
-          />
+          <Route path="/:id/edit-profile" element={<EditProfile />} />
           <Route path="/food-diary" element={<MealDiary />} />
           <Route path="/set-goal" element={<Goal />} />
           <Route path="/water-log" element={<Water />} />
