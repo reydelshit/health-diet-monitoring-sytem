@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
+import WorkoutPlansComponent from './home/WorkoutPlansComponent';
 
 type User = {
   id: number;
@@ -23,20 +24,20 @@ export default function ProfileOverview({
   userDetails: User[];
 }) {
   return (
-    <div className="w-[28rem] p-2 h-full bg-[#fafbfd]">
+    <div className="w-[25rem] p-2 h-[45rem]">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, weight, height, birthday, gender } = user;
 
           return (
             <div
-              className="flex items-center flex-col mt-[2rem] w-full h-[50rem] p-2 border-2 rounded-md bg-white"
+              className="flex items-center flex-col mt-[2rem] w-full h-[90%] p-2 border-2 rounded-md bg-white"
               key={user.id}
             >
               <span className="self-end mb-10 cursor-pointer">
                 <Link to={`/${id}/edit-profile`}>Edit details</Link>
               </span>
-              <Avatar className="w-[15rem] h-[15rem]">
+              <Avatar className="w-[12rem] h-[12rem]">
                 <AvatarImage src="https://avatars.githubusercontent.com/u/40355669?v=4" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
@@ -80,6 +81,8 @@ export default function ProfileOverview({
             </div>
           );
         })}
+
+      <WorkoutPlansComponent />
     </div>
   );
 }

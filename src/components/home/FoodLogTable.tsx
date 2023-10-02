@@ -47,23 +47,25 @@ export default function FoodLogTable() {
   }, []);
 
   return (
-    <div className="mt-[4rem] flex flex-col bg-white p-4 rounded-sm border-2">
-      <h1 className="font-bold text-2xl py-2">Latest Food Log</h1>
-      <div className="self-end mb-2">
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Meal Time" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="breakfast">Breakfast</SelectItem>
-            <SelectItem value="lunch">Lunch</SelectItem>
-            <SelectItem value="dinner">Dinner</SelectItem>
-          </SelectContent>
-        </Select>
+    <div className="flex flex-col bg-white p-4 rounded-sm w-[100%]">
+      <div className="flex justify-between">
+        <h1 className="font-bold text-2xl py-2">Latest Food Log</h1>
+        <div className="self-end mb-2">
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Meal Time" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="breakfast">Breakfast</SelectItem>
+              <SelectItem value="lunch">Lunch</SelectItem>
+              <SelectItem value="dinner">Dinner</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>Latest food log.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Meal</TableHead>

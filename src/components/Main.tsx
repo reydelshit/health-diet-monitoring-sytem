@@ -33,7 +33,7 @@ export default function Main() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex bg-[#fafbfd]">
       <Sidebar handleLogout={handleLogout} userDetails={userDetails} />
       <ProfileOverview userDetails={userDetails} />
     </div>

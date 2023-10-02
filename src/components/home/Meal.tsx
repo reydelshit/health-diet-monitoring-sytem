@@ -87,13 +87,13 @@ export default function Meal() {
     );
   };
   return (
-    <div className="border-2 h-full w-[28rem] p-4 bg-white rounded-md">
+    <div className="h-[25rem] w-[35rem] p-4 bg-white rounded-md">
       <Tabs defaultValue="add-meal" className="w-full flex flex-col h-fit ">
         <TabsList className="w-full h-[3rem] mb-5 bg-[#fafbfd]">
           <TabsTrigger value="add-meal">Add Meal</TabsTrigger>
-          <TabsTrigger value="add-exercise">Add Exercise</TabsTrigger>
+          <TabsTrigger value="daily-log">Add Daily Log</TabsTrigger>
         </TabsList>
-        <TabsContent value="add-meal" className="w-full">
+        <TabsContent value="add-meal" className="w-full h-[17rem]">
           <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
             <div>
               <h1 className="font-bold">Breakfast</h1>
@@ -141,7 +141,41 @@ export default function Meal() {
             </Link>
           </div>
         </TabsContent>
-        <TabsContent value="add-exercise">excercise here.</TabsContent>
+        <TabsContent value="daily-log" className="w-full h-[17rem]">
+          <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
+            <div>
+              <h1 className="font-bold">Water Goal</h1>
+              {goals
+                .filter((goal) => goal.goal_type === 'Water')
+                .map((goal, index) => (
+                  <span className="flex" key={index}>
+                    <p className="mr-1 font-bold text-green-600">
+                      {goal.goal_target}{' '}
+                    </p>{' '}
+                    total glasses
+                  </span>
+                ))}
+            </div>
+            <Button>Log water</Button>
+          </div>
+
+          <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
+            <div>
+              <h1 className="font-bold">Sleep Goal</h1>
+              {goals
+                .filter((goal) => goal.goal_type === 'Sleep')
+                .map((goal, index) => (
+                  <span className="flex" key={index}>
+                    <p className="mr-1 font-bold text-green-600">
+                      {goal.goal_target}{' '}
+                    </p>
+                    total sleep
+                  </span>
+                ))}
+            </div>
+            <Button>Log sleep </Button>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );
