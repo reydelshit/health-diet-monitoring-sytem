@@ -26,7 +26,8 @@ import { GoGoal } from 'react-icons/go';
 import { GiMuscleUp } from 'react-icons/gi';
 import { CiDumbbell } from 'react-icons/ci';
 import WorkoutPlans from './WorkoutPlans';
-import ViewWorkout from './workout-plan/ViewWorkout';
+import ViewWorkout from './workout-plans/ViewWorkout';
+import NotFound from './NotFound';
 
 export default function Sidebar({
   handleLogout,
@@ -216,6 +217,10 @@ export default function Sidebar({
           <Route path="/workout-plans" element={<WorkoutPlans />} />
           <Route path="/workout-plans/:id" element={<ViewWorkout />} />
           <Route path="/medical-history" element={<MedicalHistory />} />
+
+          <Route path="*" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/*/*" element={<NotFound />} />
         </Routes>
       </div>
     </>

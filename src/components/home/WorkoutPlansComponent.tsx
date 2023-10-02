@@ -45,8 +45,9 @@ export default function WorkoutPlansComponent() {
         <div className="flex flex-col">
           {workoutPlans &&
             workoutPlans
-              .slice(0, 3)
+
               .filter((workout) => workout.workout_status === 'Ongoing')
+              .slice(0, 3)
               .map((workout, index) => {
                 return (
                   <div

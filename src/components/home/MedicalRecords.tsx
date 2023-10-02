@@ -4,6 +4,13 @@ import axios from 'axios';
 import { FaGreaterThan } from 'react-icons/fa';
 import { Label } from '../ui/label';
 import moment from 'moment';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 type MedicalRecords = {
   medical_id: number;

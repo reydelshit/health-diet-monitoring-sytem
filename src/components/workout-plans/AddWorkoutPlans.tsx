@@ -1,17 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import axios from 'axios';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
 import { Textarea } from '../ui/textarea';
+
+type ChangeEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
 
 export default function AddWorkoutPlans({
   setWorkoutPlansDecider,
@@ -20,9 +16,9 @@ export default function AddWorkoutPlans({
   // handleChange: any;
   setWorkoutPlansDecider: (value: boolean) => void;
 }) {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -40,6 +36,11 @@ export default function AddWorkoutPlans({
       })
       .then((res) => {
         console.log(res.data);
+
+        if (res.data.status === 'success') {
+          setWorkoutPlansDecider(false);
+          window.location.reload();
+        }
       });
   };
 
@@ -61,7 +62,12 @@ export default function AddWorkoutPlans({
           className="mb-2"
           onChange={handleChange}
         />
-        <Textarea className="h-[10rem]" placeholder="Description.."></Textarea>
+        <Textarea
+          name="workout_description"
+          className="h-[10rem]"
+          placeholder="Description.."
+          onChange={handleChange}
+        ></Textarea>
 
         <Label className="text-start ml-2 text-sm ">Schedule:</Label>
         <Input
@@ -73,8 +79,8 @@ export default function AddWorkoutPlans({
 
         <div className="w-full flex items-center justify-center gap-4">
           <Button
-            onClick={() => setWorkoutPlansDecider(false)}
-            className="w-[40%] self-center"
+            // onClick={() => setWorkoutPlansDecider(false)}
+            className="w-[50%] self-center"
             type="submit"
           >
             Add workout plan
@@ -82,8 +88,7 @@ export default function AddWorkoutPlans({
 
           <Button
             onClick={() => setWorkoutPlansDecider(false)}
-            className="w-[40%] self-center bg-red-600"
-            type="submit"
+            className="w-[50%] self-center bg-red-600"
           >
             Cancel
           </Button>

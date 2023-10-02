@@ -108,7 +108,7 @@ export default function WorkoutPlans() {
                               <h1 className="font-bold cursor-pointer text-3xl">
                                 {workout_plans_name.length &&
                                   workout_plans_name.slice(0, 1).toUpperCase() +
-                                    workout_plans_name.slice(1)}
+                                    workout_plans_name.slice(1).slice(0, 20)}
                               </h1>
                             </Link>
 
