@@ -91,7 +91,7 @@ export default function Meal() {
       <Tabs defaultValue="add-meal" className="w-full flex flex-col h-fit ">
         <TabsList className="w-full h-[3rem] mb-5 bg-[#fafbfd]">
           <TabsTrigger value="add-meal">Add Meal</TabsTrigger>
-          <TabsTrigger value="daily-log">Add Daily Log</TabsTrigger>
+          <TabsTrigger value="daily-log">Daily Log</TabsTrigger>
         </TabsList>
         <TabsContent value="add-meal" className="w-full h-[17rem]">
           <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">

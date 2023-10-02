@@ -7,7 +7,7 @@ export default function MedicalHistory() {
   const [medicalHistoryDecider, setMedicalHistoryDecider] = useState(false);
   return (
     <div>
-      <h1>Workout Plans</h1>
+      <h1>Medical history</h1>
 
       <Button onClick={() => setMedicalHistoryDecider(true)}>
         Add medical history

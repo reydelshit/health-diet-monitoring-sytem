@@ -35,7 +35,7 @@ export default function WorkoutPlansComponent() {
   }, []);
 
   return (
-    <div className="w-full border-2 h-[20rem] mt-[2rem] flex flex-col justify-between rounded-md p-4">
+    <div className="w-full border-2 h-[20rem] mt-[2rem] flex flex-col justify-between rounded-md p-4 bg-white">
       <div className="flex justify-between">
         <h1 className="font-bold">Workout plans</h1>
         <span className="cursor-pointer">see all</span>

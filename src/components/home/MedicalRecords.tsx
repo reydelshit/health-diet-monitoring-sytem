@@ -36,7 +36,7 @@ export default function MedicalRecords() {
   }, []);
 
   return (
-    <div className="w-full border-2 h-full flex flex-col justify-between rounded-md p-4">
+    <div className="w-full border-2 h-full flex flex-col justify-between rounded-md p-4 bg-white">
       <div className="flex justify-between">
         <span className="block">
           <h1 className="font-bold">Medical Records</h1>
