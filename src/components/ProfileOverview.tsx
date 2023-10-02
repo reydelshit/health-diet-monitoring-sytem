@@ -4,6 +4,9 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import WorkoutPlansComponent from './home/WorkoutPlansComponent';
+import { useState } from 'react';
+import { get } from 'http';
+import CalculateBmi from './profile-overview/CalculateBmi';
 
 type User = {
   id: number;
@@ -23,8 +26,10 @@ export default function ProfileOverview({
 }: {
   userDetails: User[];
 }) {
+  const [bmi, setBmi] = useState<number>(0);
+
   return (
-    <div className="w-[25rem] p-2 h-[45rem]">
+    <div className="w-[25rem] p-2 h-fit">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, weight, height, birthday, gender } = user;
@@ -34,10 +39,10 @@ export default function ProfileOverview({
               className="flex items-center flex-col mt-[2rem] w-full h-[90%] p-2 border-2 rounded-md bg-white"
               key={user.id}
             >
-              <span className="self-end mb-10 cursor-pointer">
+              <span className="self-end mb-5 cursor-pointer">
                 <Link to={`/${id}/edit-profile`}>Edit details</Link>
               </span>
-              <Avatar className="w-[12rem] h-[12rem]">
+              <Avatar className="w-[10rem] h-[10rem]">
                 <AvatarImage src="https://avatars.githubusercontent.com/u/40355669?v=4" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
@@ -60,7 +65,7 @@ export default function ProfileOverview({
                 <div className="flex flex-col text-center">
                   Weight
                   <span className="font-bold">
-                    {weight.length === 0 ? 'N/A' : weight} kg
+                    {weight.length === 0 ? 'N/A' : weight + 'kg'}
                   </span>
                 </div>
                 <Separator orientation="vertical" />
@@ -78,6 +83,18 @@ export default function ProfileOverview({
                   </span>
                 </div>
               </div>
+              <Separator className="my-4" />
+              {weight.length > 0 && height.length > 0 ? (
+                <CalculateBmi weight={parseInt(weight)} height={height} />
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center p-2">
+                  <h1 className="text-xl font-bold">BMI</h1>
+                  <p className="text-sm text-muted-foreground">
+                    If you cannot see your BMI here, please add your weight and
+                    height to calculate your BMI in the edit details section
+                  </p>
+                </div>
+              )}
             </div>
           );
         })}

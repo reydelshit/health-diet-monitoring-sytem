@@ -35,7 +35,7 @@ export default function Sidebar({
   userDetails: any;
 }) {
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
-  const [width, setWidth] = useState<number>(25);
+  const [width, setWidth] = useState<number>(5);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const handleMouseOver = () => {
@@ -57,9 +57,9 @@ export default function Sidebar({
         style={{ width: `${width}rem` }}
         className="w-[25rem] p-2 bg-white h-screen  items-center flex flex-col justify-center border-r-2"
       >
-        <header className="h-[8rem] flex items-center mt-5">
+        <header className="h-[8rem] flex items-center">
           {isMouseOver ? (
-            <Avatar className="w-[10rem] h-[10rem]">
+            <Avatar className="w-[10rem] h-[10rem] mt-10">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>

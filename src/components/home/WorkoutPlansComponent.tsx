@@ -60,7 +60,7 @@ export default function WorkoutPlansComponent() {
                       </Avatar>
 
                       <div>
-                        <h1 className="font-bold">
+                        <h1 className="font-bold cursor-pointer">
                           {workout.workout_plans_name.length > 12
                             ? workout.workout_plans_name.slice(0, 12) + '...'
                             : workout.workout_plans_name}
@@ -69,7 +69,7 @@ export default function WorkoutPlansComponent() {
                       </div>
                     </div>
 
-                    <FaGreaterThan />
+                    <FaGreaterThan className="cursor-pointer" />
                   </div>
                 );
               })}
