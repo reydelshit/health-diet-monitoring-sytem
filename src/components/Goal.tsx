@@ -7,6 +7,7 @@ import axios from 'axios';
 import { set } from 'date-fns';
 import { ChartMetric } from './goal/ChartMetric';
 import { CalorieGoal } from './goal/CalorieGoal';
+import { Separator } from '@/components/ui/separator';
 
 type Goal = {
   goal_id: number;
@@ -153,8 +154,14 @@ export default function Goal() {
 
   return (
     <div className="w-full flex flex-col justify-center p-2">
-      <h1 className="font-bold text-4xl">Set your goals</h1>
-
+      <span className="block py-8">
+        <h1 className="font-bold text-3xl">Set your goals</h1>
+        <p className="text-sm">
+          Your health journey begins here. Set calorie, water, and sleep goals
+          tailored just for you.{' '}
+        </p>
+      </span>
+      <Separator />
       <div className="flex flex-col gap-10 mt-[5rem] justify-center items-center">
         <div className="flex gap-10">
           {calories.map((goal: Goal, index) => {
@@ -289,11 +296,11 @@ export default function Goal() {
             );
           })}
         </div>
-
         <div className="flex gap-10 justify-around">
           <ChartMetric />
           <CalorieGoal />
         </div>
+        S
       </div>
     </div>
   );
