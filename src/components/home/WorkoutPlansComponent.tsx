@@ -25,7 +25,7 @@ export default function WorkoutPlansComponent() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setWorkoutPlans(res.data);
       });
   };
@@ -39,7 +39,7 @@ export default function WorkoutPlansComponent() {
   };
 
   return (
-    <div className="w-full border-2 h-[20rem] mt-[2rem] flex flex-col rounded-md p-4 bg-white">
+    <div className="w-full h-fit mt-[2rem] flex flex-col rounded-md p-4 bg-white">
       <div className="flex justify-between mb-4">
         <h1 className="font-bold">Workout plans</h1>
         <Link to="/workout-plans">

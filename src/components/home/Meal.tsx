@@ -43,7 +43,7 @@ export default function Meal() {
         },
       })
       .then((res) => {
-        console.log('foodLog', res.data);
+        // console.log('foodLog', res.data);
         setFoodLog(res.data);
       });
   };
@@ -79,7 +79,7 @@ export default function Meal() {
     }
 
     useEffect(() => {
-      console.log(remainingCalorie, 'remainingCalorie');
+      // console.log(remainingCalorie, 'remainingCalorie');
     }, [remainingCalorie]);
 
     return (
@@ -152,7 +152,7 @@ export default function Meal() {
                     <p className="mr-1 font-bold text-green-600">
                       {goal.goal_target}{' '}
                     </p>{' '}
-                    total glasses
+                    total glasses left
                   </span>
                 ))}
             </div>
@@ -169,7 +169,7 @@ export default function Meal() {
                     <p className="mr-1 font-bold text-green-600">
                       {goal.goal_target}{' '}
                     </p>
-                    total sleep
+                    hours sleep left
                   </span>
                 ))}
             </div>

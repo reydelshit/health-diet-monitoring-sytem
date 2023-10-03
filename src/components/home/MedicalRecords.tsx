@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Link, useNavigate } from 'react-router-dom';
 
 type MedicalRecords = {
   medical_id: number;
@@ -29,12 +30,14 @@ export default function MedicalRecords() {
     axios
       .get('http://localhost/hd-monitoring/medical.php', {
         params: {
+          medical_id: 0,
           user_id: user_id,
           indicator: 'get-medical-records-by-user-id',
         },
       })
       .then((res) => {
-        console.log(res.data, 'dasdbau');
+        // console.log(res.data);
+
         setMedicalRecords(res.data);
       });
   };
@@ -43,8 +46,12 @@ export default function MedicalRecords() {
     fetchMedicalRecords();
   }, []);
 
+  const handleNavigate = () => {
+    useNavigate();
+  };
+
   return (
-    <div className="w-full border-2 h-full flex flex-col rounded-md p-4 bg-white">
+    <div className="w-full h-full flex flex-col rounded-md p-4 bg-white">
       <div className="flex justify-between mb-5">
         <span className="block">
           <h1 className="font-bold">Medical Records</h1>
@@ -69,9 +76,15 @@ export default function MedicalRecords() {
                   </Avatar>
 
                   <div>
-                    <h1 className="font-bold cursor-pointer">
-                      {medical.medical_title}
-                    </h1>
+                    <Link
+                      onClick={handleNavigate}
+                      to={`/medical-history/${medical.medical_id}`}
+                    >
+                      <h1 className="font-bold cursor-pointer">
+                        {medical.medical_title}
+                      </h1>
+                    </Link>
+
                     <p>{moment(medical.medical_date).format('LL')}</p>
                   </div>
                 </div>

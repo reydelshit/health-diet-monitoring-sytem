@@ -36,7 +36,7 @@ export default function ProfileOverview({
 
           return (
             <div
-              className="flex items-center flex-col mt-[2rem] w-full h-[90%] p-2 border-2 rounded-md bg-white"
+              className="flex items-center flex-col mt-[2rem] w-full h-fit p-2 rounded-md bg-white"
               key={user.id}
             >
               <span className="self-end mb-5 cursor-pointer">

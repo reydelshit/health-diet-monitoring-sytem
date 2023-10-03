@@ -45,8 +45,15 @@ export default function MedicalHistory() {
 
   return (
     <div className="py-10 flex justify-center flex-col">
-      <h1 className="font-bold text-3xl">Medical history</h1>
-
+      <span className="block">
+        <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
+          Medical history
+        </h1>
+        <p className="text-sm">
+          Record of your past health issues, treatments, surgeries, and any
+          important health information!
+        </p>
+      </span>
       <Button
         className="w-[12rem] self-end my-4"
         onClick={() => setMedicalHistoryDecider(true)}

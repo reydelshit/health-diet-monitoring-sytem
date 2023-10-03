@@ -4,14 +4,22 @@ import { useEffect, useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 // import { getAllSurvey } from '../../action/getRankings';
 import moment from 'moment';
+import axios from 'axios';
+
+interface DataItem {
+  name: string;
+  total: number;
+}
 
 export default function Chart() {
-  const [totalDaySurvey, setTotalDaySurvey] = useState([
-    {
-      total: 0,
-      name: '',
-    },
-  ]);
+  // const [totalDayIntake, setTotalDayIntake] = useState([
+  //   {
+  //     total: 0,
+  //     name: '',
+  //   },
+  // ]);
+
+  const [monthlyCalories, setMonthlyCalorieIntake] = useState<DataItem[]>([]);
 
   //   const [loading, setLoading] = useState(false);
 
@@ -113,11 +121,56 @@ export default function Chart() {
     },
   ];
 
+  const fetchCalorieIntake = () => {
+    axios
+      .get('http://localhost/hd-monitoring/meal-diary.php', {
+        params: {
+          id: localStorage.getItem('token'),
+        },
+      })
+      .then((res) => {
+        console.log('calorie', res.data);
+
+        const entries = res.data;
+
+        const monthlyCalories: { [key: string]: number } = {};
+
+        entries.forEach(
+          (entry: { created_at: moment.MomentInput; calorie_intake: any }) => {
+            const createdAt = moment(entry.created_at).format('MMM');
+            const calorieIntake = parseInt(entry.calorie_intake);
+
+            // If the month is already in the accumulator, add to it; otherwise, create it
+            if (monthlyCalories[createdAt]) {
+              monthlyCalories[createdAt] += calorieIntake;
+            } else {
+              monthlyCalories[createdAt] = calorieIntake;
+            }
+          },
+        );
+
+        const monthlyData = Object.entries(monthlyCalories).map(
+          ([name, total]) => ({
+            name,
+            total,
+          }),
+        );
+
+        setMonthlyCalorieIntake(monthlyData);
+
+        console.log(monthlyData);
+      });
+  };
+
+  useEffect(() => {
+    fetchCalorieIntake();
+  }, []);
+
   return (
     <div className="md:w-[80%] md:p-5 bg-white rounded-lg">
       <h1 className="mb-5 font-bold uppercase">Calorie Intake</h1>
       <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={data}>
+        <BarChart data={monthlyCalories}>
           <XAxis
             dataKey="name"
             stroke="#888888"
@@ -125,13 +178,13 @@ export default function Chart() {
             tickLine={false}
             axisLine={false}
           />
-          {/* <YAxis
+          <YAxis
             stroke="#888888"
             fontSize={12}
             tickLine={false}
             axisLine={false}
             tickFormatter={(value) => `${value}`}
-          /> */}
+          />
           <Bar dataKey="total" fill="#16A34A" radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>

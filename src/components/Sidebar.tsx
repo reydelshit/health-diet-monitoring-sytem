@@ -29,6 +29,7 @@ import WorkoutPlans from './WorkoutPlans';
 import ViewWorkout from './workout-plans/ViewWorkout';
 import NotFound from './NotFound';
 import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
+import logo from '../assets/logo.png';
 
 export default function Sidebar({
   handleLogout,
@@ -62,13 +63,13 @@ export default function Sidebar({
       >
         <header className="h-[8rem] flex items-center">
           {isMouseOver ? (
-            <Avatar className="w-[10rem] h-[10rem] mt-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
+            <Avatar className="w-[20rem] h-[20rem] mt-[5rem] cursor-pointer">
+              <AvatarImage src={logo} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           ) : (
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
+            <Avatar className="w-[6rem] h-[6rem]">
+              <AvatarImage src={logo} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           )}

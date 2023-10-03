@@ -55,7 +55,7 @@ export default function EditProfile() {
         id: id,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status === 'success') {
           window.location.reload();
           navigate('/');

@@ -78,9 +78,6 @@ export default function ViewWorkout() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // console.log(formData);
     e.preventDefault();
-    const updatedData = {
-      workout_plans_name: formData.workout_plans_name, // Leave other fields unchanged
-    };
 
     axios
       .put(`http://localhost/hd-monitoring/workout.php/${id}`, {
@@ -91,7 +88,7 @@ export default function ViewWorkout() {
         indicator: 'update_workout',
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         fetchWorkoutPlans();
         if (res.status === 200) {
           navigate('/workout-plans');
@@ -114,7 +111,7 @@ export default function ViewWorkout() {
   };
 
   const markFinish = (id: number, status: string) => {
-    console.log(id);
+    // console.log(id);
     axios
       .put(`http://localhost/hd-monitoring/workout.php/finish/${id}`, {
         workout_status: status === 'Ongoing' ? 'Finished' : 'Ongoing',
