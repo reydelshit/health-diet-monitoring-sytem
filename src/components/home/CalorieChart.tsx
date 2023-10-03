@@ -11,7 +11,7 @@ interface DataItem {
   total: number;
 }
 
-export default function Chart() {
+export default function CalorieChart() {
   // const [totalDayIntake, setTotalDayIntake] = useState([
   //   {
   //     total: 0,
@@ -70,57 +70,6 @@ export default function Chart() {
   //     fetchTotalSurvey();
   //   }, []);
 
-  const data = [
-    {
-      name: 'Jan',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Feb',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Mar',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Apr',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'May',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Jun',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Jul',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Aug',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Sep',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Oct',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Nov',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-    {
-      name: 'Dec',
-      total: Math.floor(Math.random() * 5000) + 1000,
-    },
-  ];
-
   const fetchCalorieIntake = () => {
     axios
       .get('http://localhost/hd-monitoring/meal-diary.php', {
@@ -167,7 +116,7 @@ export default function Chart() {
   }, []);
 
   return (
-    <div className="md:w-[80%] md:p-5 bg-white rounded-lg">
+    <div className="md:w-[80%] md:p-5 bg-white rounded-lg border-2">
       <h1 className="mb-5 font-bold uppercase">Calorie Intake</h1>
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={monthlyCalories}>

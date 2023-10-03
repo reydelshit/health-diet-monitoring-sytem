@@ -47,7 +47,7 @@ export default function FoodLogTable() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white p-4 rounded-sm w-[100%]">
+    <div className="flex flex-col bg-white p-4 rounded-sm w-[100%] border-2">
       <div className="flex justify-between">
         <h1 className="font-bold text-2xl py-2">Latest Food Log</h1>
         <div className="self-end mb-2">

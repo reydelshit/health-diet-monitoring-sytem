@@ -51,7 +51,7 @@ export default function MedicalRecords() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col rounded-md p-4 bg-white">
+    <div className="w-full h-full flex flex-col rounded-md p-4 bg-white border-2">
       <div className="flex justify-between mb-5">
         <span className="block">
           <h1 className="font-bold">Medical Records</h1>

@@ -13,7 +13,7 @@ import MealDiary from './MealDiary';
 import Goal from './Goal';
 import Water from './Water';
 import Sleep from './Sleep';
-import EditProfile from './EditProfile';
+import EditProfile from './profile-overview/EditProfile';
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 

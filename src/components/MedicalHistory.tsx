@@ -12,6 +12,16 @@ import AddMedicalHistory from './medical-history/AddMedicalHistory';
 import axios from 'axios';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Separator } from '@/components/ui/separator';
 
 type MedicalHistory = {
   medical_id: number;
@@ -44,51 +54,69 @@ export default function MedicalHistory() {
   }, []);
 
   return (
-    <div className="py-10 flex justify-center flex-col">
-      <span className="block">
-        <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-          Medical history
-        </h1>
-        <p className="text-sm">
-          Record of your past health issues, treatments, surgeries, and any
-          important health information!
-        </p>
-      </span>
-      <Button
-        className="w-[12rem] self-end my-4"
-        onClick={() => setMedicalHistoryDecider(true)}
-      >
-        Add medical history
-      </Button>
+    <div className="flex justify-center flex-col">
+      <div className="pt-10 pb-5 flex justify-between items-center">
+        <span className="block">
+          <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
+            Medical history
+          </h1>
+          <p className="text-sm">
+            Record of your past health issues, treatments, surgeries, and any
+            important health information!
+          </p>
+        </span>
+        <Button
+          className="w-[12rem] self-end my-4"
+          onClick={() => setMedicalHistoryDecider(true)}
+        >
+          Add medical history
+        </Button>
+      </div>
+
+      <Separator />
 
       {medicalHistoryDecider ? (
         <AddMedicalHistory
           setMedicalHistoryDecider={setMedicalHistoryDecider}
         />
       ) : (
-        <div className="grid grid-cols-4 w-full p-2 gap-4">
-          {medicalHistory.map((medical, index) => {
-            return (
-              <Card className="w-[100%] mb-2 break-words" key={index}>
-                <CardHeader>
-                  <CardTitle className="cursor-pointer">
-                    <Link to={`/medical-history/${medical.medical_id}`}>
-                      {medical.medical_title}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription>
-                    {moment(medical.medical_date).format('LL')}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    {medical.medical_desc && medical.medical_desc.slice(0, 80)}
-                    ...
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
+        <div className="p-2 grid place-content-center mt-10">
+          <Table className="block w-fit border-2 rounded-md">
+            <TableCaption>A list of your medical history.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="font-bold text-black">Title</TableHead>
+                <TableHead className="font-bold text-black">
+                  Description
+                </TableHead>
+                <TableHead className="font-bold text-black">Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody className=" w-full">
+              {medicalHistory.map((medical, index) => {
+                return (
+                  <TableRow className="w-full" key={index}>
+                    <TableCell>
+                      <Link
+                        className="font-medium"
+                        to={`/medical-history/${medical.medical_id}`}
+                      >
+                        {medical.medical_title}
+                      </Link>
+                    </TableCell>
+                    <TableCell>
+                      {medical.medical_desc &&
+                        medical.medical_desc.slice(0, 60)}
+                      ...
+                    </TableCell>
+                    <TableCell className="font-medium">
+                      {moment(medical.medical_date).format('LL')}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
         </div>
       )}
     </div>

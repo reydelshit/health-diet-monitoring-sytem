@@ -2,8 +2,9 @@ import Meal from './home/Meal';
 import FoodLogTable from './home/FoodLogTable';
 import DailyLogs from './home/DailyLogs';
 import CalendarComponent from './home/Calendar';
-import Chart from './home/Chart';
+import CalorieChart from './home/CalorieChart';
 import MedicalRecords from './home/MedicalRecords';
+import { CalorieGoal } from './goal/CalorieGoal';
 
 type User = {
   id: number;
@@ -18,7 +19,7 @@ type User = {
 
 export default function Home({ userDetails }: { userDetails: User[] }) {
   return (
-    <div className="h-screen w-full flex flex-col py-10 px-[4rem]">
+    <div className="h-screen w-full flex flex-col py-10 px-[1rem]">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, birthday, gender } = user;
@@ -34,9 +35,10 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
         })}
 
       <div className="flex flex-col w-full justify-around items-center mt-[3rem] h-full">
-        <div className="w-full flex gap-10">
-          <Chart />
+        <div className="w-full flex gap-5">
+          <CalorieChart />
           <MedicalRecords />
+          <CalorieGoal />
         </div>
 
         <div className="flex justify-between w-full gap-10">

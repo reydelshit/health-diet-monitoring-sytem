@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 import { Label } from '@radix-ui/react-label';
 import axios from 'axios';
 import { useEffect, useState } from 'react';

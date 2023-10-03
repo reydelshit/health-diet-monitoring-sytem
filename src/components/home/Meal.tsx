@@ -87,7 +87,7 @@ export default function Meal() {
     );
   };
   return (
-    <div className="h-[25rem] w-[35rem] p-4 bg-white rounded-md">
+    <div className="h-[25rem] w-[35rem] p-4 bg-white rounded-md border-2">
       <Tabs defaultValue="add-meal" className="w-full flex flex-col h-fit ">
         <TabsList className="w-full h-[3rem] mb-5 bg-[#fafbfd]">
           <TabsTrigger value="add-meal">Add Meal</TabsTrigger>

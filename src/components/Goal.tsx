@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { set } from 'date-fns';
+import { ChartMetric } from './goal/ChartMetric';
+import { CalorieGoal } from './goal/CalorieGoal';
 
 type Goal = {
   goal_id: number;
@@ -153,138 +155,145 @@ export default function Goal() {
     <div className="w-full flex flex-col justify-center p-2">
       <h1 className="font-bold text-4xl">Set your goals</h1>
 
-      <div className="flex gap-10 mt-[5rem] justify-center items-center">
-        {calories.map((goal: Goal, index) => {
-          return (
-            <div
-              key={index}
-              className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm"
-            >
-              <div className="flex justify-between">
-                <h1 className="font-bold">Calories</h1>
-                <span
-                  onClick={() => handleEdit('Calorie', goal.goal_id)}
-                  className="text-green-600 cursor-pointer"
-                >
-                  Edit
-                </span>
-              </div>
-              <form
-                onSubmit={(e) => handleSubmit(e, 'Calorie')}
-                className="w-full"
+      <div className="flex flex-col gap-10 mt-[5rem] justify-center items-center">
+        <div className="flex gap-10">
+          {calories.map((goal: Goal, index) => {
+            return (
+              <div
+                key={index}
+                className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
               >
-                <Label className="text-lg">Monthly Calorie Intake Goal</Label>
-                <Label>
-                  We are going to divide it per day. <br />
-                  Eg. 3000 / 30 = 100
-                </Label>
-                <Input
-                  className="mt-2"
-                  type="number"
-                  name="goal_target"
-                  placeholder="0"
-                  onChange={(e) => setTarget(parseInt(e.target.value))}
-                  defaultValue={goal.goal_target}
-                  disabled={disabled.Calorie}
-                />
-                <Button
-                  disabled={disabled.Calorie}
-                  type="submit"
-                  className="w-full mt-2"
+                <div className="flex justify-between">
+                  <h1 className="font-bold">Calories</h1>
+                  <span
+                    onClick={() => handleEdit('Calorie', goal.goal_id)}
+                    className="text-green-600 cursor-pointer"
+                  >
+                    Edit
+                  </span>
+                </div>
+                <form
+                  onSubmit={(e) => handleSubmit(e, 'Calorie')}
+                  className="w-full"
                 >
-                  Save
-                </Button>
-              </form>
-            </div>
-          );
-        })}
-        {sleep.map((goal: Goal, index) => {
-          return (
-            <div
-              key={index}
-              className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm"
-            >
-              <div className="flex justify-between">
-                <h1 className="font-bold">Sleep</h1>
-                <span
-                  onClick={() => handleEdit('Sleep', goal.goal_id)}
-                  className="text-green-600 cursor-pointer"
-                >
-                  Edit
-                </span>
+                  <Label className="text-lg">Monthly Calorie Intake Goal</Label>
+                  <Label>
+                    We are going to divide it per day. <br />
+                    Eg. 3000 / 30 = 100
+                  </Label>
+                  <Input
+                    className="mt-2"
+                    type="number"
+                    name="goal_target"
+                    placeholder="0"
+                    onChange={(e) => setTarget(parseInt(e.target.value))}
+                    defaultValue={goal.goal_target}
+                    disabled={disabled.Calorie}
+                  />
+                  <Button
+                    disabled={disabled.Calorie}
+                    type="submit"
+                    className="w-full mt-2"
+                  >
+                    Save
+                  </Button>
+                </form>
               </div>
-
-              <form
-                onSubmit={(e) => handleSubmit(e, 'Sleep')}
-                className="w-full"
+            );
+          })}
+          {sleep.map((goal: Goal, index) => {
+            return (
+              <div
+                key={index}
+                className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
               >
-                <Label className="text-lg">Daily Sleep Duration Goal</Label>
-                <Label>Eg. 7 hours</Label>
-                <Input
-                  className="mt-2"
-                  type="number"
-                  name="goal_target"
-                  placeholder="0"
-                  onChange={(e) => setTarget(parseInt(e.target.value))}
-                  defaultValue={goal.goal_target}
-                  disabled={disabled.Sleep}
-                />
-                <Button
-                  disabled={disabled.Sleep}
-                  type="submit"
-                  className="w-full mt-2"
-                >
-                  Save
-                </Button>
-              </form>
-            </div>
-          );
-        })}
+                <div className="flex justify-between">
+                  <h1 className="font-bold">Sleep</h1>
+                  <span
+                    onClick={() => handleEdit('Sleep', goal.goal_id)}
+                    className="text-green-600 cursor-pointer"
+                  >
+                    Edit
+                  </span>
+                </div>
 
-        {water.map((goal: Goal, index) => {
-          return (
-            <div
-              key={index}
-              className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm"
-            >
-              <div className="flex justify-between">
-                <h1 className="font-bold">Water</h1>
-                <span
-                  onClick={() => handleEdit('Water', goal.goal_id)}
-                  className="text-green-600 cursor-pointer"
+                <form
+                  onSubmit={(e) => handleSubmit(e, 'Sleep')}
+                  className="w-full"
                 >
-                  Edit
-                </span>
+                  <Label className="text-lg">Daily Sleep Duration Goal</Label>
+                  <Label>Eg. 7 hours</Label>
+                  <Input
+                    className="mt-2"
+                    type="number"
+                    name="goal_target"
+                    placeholder="0"
+                    onChange={(e) => setTarget(parseInt(e.target.value))}
+                    defaultValue={goal.goal_target}
+                    disabled={disabled.Sleep}
+                  />
+                  <Button
+                    disabled={disabled.Sleep}
+                    type="submit"
+                    className="w-full mt-2"
+                  >
+                    Save
+                  </Button>
+                </form>
               </div>
+            );
+          })}
 
-              <form
-                onSubmit={(e) => handleSubmit(e, 'Water')}
-                className="w-full"
+          {water.map((goal: Goal, index) => {
+            return (
+              <div
+                key={index}
+                className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
               >
-                <Label className="text-lg">
-                  Daily Water Intake Goal (in ounces/liters)
-                </Label>
-                <Label>8 glasses of water a day</Label>
-                <Input
-                  className="mt-2"
-                  type="number"
-                  name="goal_target"
-                  placeholder="0"
-                  onChange={(e) => setTarget(parseInt(e.target.value))}
-                  defaultValue={goal.goal_target}
-                  disabled={disabled.Water}
-                />
-                <Button
-                  disabled={disabled.Water}
-                  type="submit"
-                  className="w-full mt-2"
+                <div className="flex justify-between">
+                  <h1 className="font-bold">Water</h1>
+                  <span
+                    onClick={() => handleEdit('Water', goal.goal_id)}
+                    className="text-green-600 cursor-pointer"
+                  >
+                    Edit
+                  </span>
+                </div>
+
+                <form
+                  onSubmit={(e) => handleSubmit(e, 'Water')}
+                  className="w-full"
                 >
-                  Save
-                </Button>
-              </form>
-            </div>
-          );
-        })}
+                  <Label className="text-lg">
+                    Daily Water Intake Goal (in ounces/liters)
+                  </Label>
+                  <Label>8 glasses of water a day</Label>
+                  <Input
+                    className="mt-2"
+                    type="number"
+                    name="goal_target"
+                    placeholder="0"
+                    onChange={(e) => setTarget(parseInt(e.target.value))}
+                    defaultValue={goal.goal_target}
+                    disabled={disabled.Water}
+                  />
+                  <Button
+                    disabled={disabled.Water}
+                    type="submit"
+                    className="w-full mt-2"
+                  >
+                    Save
+                  </Button>
+                </form>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="flex gap-10 justify-around">
+          <ChartMetric />
+          <CalorieGoal />
+        </div>
       </div>
     </div>
   );

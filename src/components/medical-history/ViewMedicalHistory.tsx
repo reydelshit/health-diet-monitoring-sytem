@@ -22,6 +22,7 @@ import {
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { Separator } from '@/components/ui/separator';
 
 type MedicalHistory = {
   medical_id: number;
@@ -105,79 +106,72 @@ export default function ViewMedicalHistory() {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center py-10 px-[4rem] ">
-      {medicalHistory && (
-        <div className="w-[60%] bg-white p-2 rounded-sm h-fit">
-          {medicalHistory.map((medical, index) => {
-            return (
-              <div key={index} className="p-5">
-                <div className="w-full justify-between flex mb-5">
-                  <div className="flex flex-col items-start gap-5">
-                    <h1 className="font-semibold text-3xl">
-                      {medical.medical_title}
-                    </h1>
-                    <p>{moment(medical.medical_date).format('LL')}</p>
-                  </div>
-
-                  <div className="flex gap-4 border-2 h-[2rem]">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <BsThreeDotsVertical />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent>
-                        <Dialog>
-                          <DialogTrigger className="px-2 text-sm">
-                            Update
-                          </DialogTrigger>
-                          <DialogContent className="h-[25rem]">
-                            <DialogHeader>
-                              <DialogTitle>Update</DialogTitle>
-                              <form
-                                onSubmit={handleSubmit}
-                                className="h-full flex flex-col justify-around"
-                              >
-                                <Input
-                                  defaultValue={title}
-                                  type="text"
-                                  name="medical_title"
-                                  onChange={(e) => setTitle(e.target.value)}
-                                />
-
-                                <Textarea
-                                  className="h-[8rem]"
-                                  defaultValue={description}
-                                  name="medical_desc"
-                                  onChange={(e) =>
-                                    setDescription(e.target.value)
-                                  }
-                                ></Textarea>
-                                <Button name="update" type="submit">
-                                  Save
-                                </Button>
-                              </form>
-                            </DialogHeader>
-                          </DialogContent>
-                        </Dialog>
-                        <DropdownMenuItem
-                          onClick={() => deleteWorkoutPlans(medical.medical_id)}
-                        >
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="break-words text-start">
-                    {medical.medical_desc}
-                  </p>
-                </div>
+    <div className="h-screen w-[100%] items-center flex flex-col py-10 ">
+      {medicalHistory.map((medical, index) => {
+        return (
+          <div className="bg-white w-[50%] break-words p-4 rounded-md">
+            <div className="flex justify-between mb-4">
+              <div className="flex gap-4">
+                <h1 className="font-semibold">{medical.medical_title}</h1>
+                <span className="block">
+                  {moment(medical.medical_date).format('LL')}
+                </span>
               </div>
-            );
-          })}
-        </div>
-      )}
+              <div className="flex gap-4 h-[2rem]">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <BsThreeDotsVertical />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <Dialog>
+                      <DialogTrigger className="px-2 text-sm">
+                        Update
+                      </DialogTrigger>
+                      <DialogContent className="h-[25rem]">
+                        <DialogHeader>
+                          <DialogTitle>Update</DialogTitle>
+                          <form
+                            onSubmit={handleSubmit}
+                            className="h-full flex flex-col justify-around"
+                          >
+                            <Input
+                              defaultValue={title}
+                              type="text"
+                              name="medical_title"
+                              onChange={(e) => setTitle(e.target.value)}
+                            />
+
+                            <Textarea
+                              className="h-[8rem]"
+                              defaultValue={description}
+                              name="medical_desc"
+                              onChange={(e) => setDescription(e.target.value)}
+                            ></Textarea>
+                            <Button name="update" type="submit">
+                              Save
+                            </Button>
+                          </form>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                    <DropdownMenuItem
+                      onClick={() => deleteWorkoutPlans(medical.medical_id)}
+                    >
+                      Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                S
+              </div>
+            </div>
+
+            <p>{medical.medical_desc}</p>
+          </div>
+        );
+      })}
     </div>
   );
+}
+
+{
 }
