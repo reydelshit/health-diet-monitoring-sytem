@@ -30,10 +30,11 @@ export default function MedicalRecords() {
       .get('http://localhost/hd-monitoring/medical.php', {
         params: {
           user_id: user_id,
+          indicator: 'get-medical-records-by-user-id',
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data, 'dasdbau');
         setMedicalRecords(res.data);
       });
   };
@@ -43,8 +44,8 @@ export default function MedicalRecords() {
   }, []);
 
   return (
-    <div className="w-full border-2 h-full flex flex-col justify-between rounded-md p-4 bg-white">
-      <div className="flex justify-between">
+    <div className="w-full border-2 h-full flex flex-col rounded-md p-4 bg-white">
+      <div className="flex justify-between mb-5">
         <span className="block">
           <h1 className="font-bold">Medical Records</h1>
           <Label>Only shows 3</Label>
@@ -55,31 +56,30 @@ export default function MedicalRecords() {
 
       <div>
         <div className="flex flex-col">
-          {medicalRecords &&
-            medicalRecords.slice(0, 3).map((medical, index) => {
-              return (
-                <div
-                  key={index}
-                  className="flex gap-4 items-center justify-between border-2 mb-2 p-2 rounded-md"
-                >
-                  <div className="flex gap-4">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+          {medicalRecords.slice(0, 3).map((medical, index) => {
+            return (
+              <div
+                key={index}
+                className="flex gap-4 items-center justify-between border-2 mb-2 p-2 rounded-md"
+              >
+                <div className="flex gap-4">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
 
-                    <div>
-                      <h1 className="font-bold cursor-pointer">
-                        {medical.medical_title}
-                      </h1>
-                      <p>{moment(medical.medical_date).format('LL')}</p>
-                    </div>
+                  <div>
+                    <h1 className="font-bold cursor-pointer">
+                      {medical.medical_title}
+                    </h1>
+                    <p>{moment(medical.medical_date).format('LL')}</p>
                   </div>
-
-                  <FaGreaterThan className="cursor-pointer" />
                 </div>
-              );
-            })}
+
+                <FaGreaterThan className="cursor-pointer" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

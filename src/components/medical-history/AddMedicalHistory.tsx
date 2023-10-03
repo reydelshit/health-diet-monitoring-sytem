@@ -1,17 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import axios from 'axios';
 import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
+import { Textarea } from '../ui/textarea';
 
+type ChangeEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
 export default function AddMedicalHistory({
   setMedicalHistoryDecider,
 }: {
@@ -21,7 +17,7 @@ export default function AddMedicalHistory({
 }) {
   const [formData, setFormData] = useState([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -36,21 +32,36 @@ export default function AddMedicalHistory({
       .post('http://localhost/hd-monitoring/medical.php', {
         ...formData,
         user_id: token,
+        indicator: 'post_medical_records_general',
       })
       .then((res) => {
         console.log(res.data);
+
+        if (res.data.status === 'success') {
+          setMedicalHistoryDecider(false);
+          window.location.reload();
+        }
       });
   };
 
   return (
-    <div className="border-2 w-[100%] p-5 flex justify-center h-[80vh]">
-      <form onSubmit={handleSubmit} className="flex flex-col justify-center">
+    <div className="w-[100%] p-5 flex justify-center h-fit">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-center w-[40%]"
+      >
         <Input
           placeholder="Medical title"
           name="medical_title"
           className="mb-2"
           onChange={handleChange}
         />
+        <Textarea
+          placeholder="Medical description"
+          name="medical_desc"
+          className="mb-2"
+          onChange={handleChange}
+        ></Textarea>
         <Label className="text-start ml-2 text-sm">Date:</Label>
         <Input
           type="date"

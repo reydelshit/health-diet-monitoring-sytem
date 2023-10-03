@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaGreaterThan } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 
 type WorkoutPlans = {
   workout_id: number;
@@ -14,7 +15,6 @@ type WorkoutPlans = {
 
 export default function WorkoutPlansComponent() {
   const [workoutPlans, setWorkoutPlans] = useState<WorkoutPlans[]>([]);
-
   const user_id = localStorage.getItem('token') as unknown as number;
 
   const fetchWorkoutPlans = () => {
@@ -34,11 +34,17 @@ export default function WorkoutPlansComponent() {
     fetchWorkoutPlans();
   }, []);
 
+  const refreshComponent = () => {
+    useNavigate();
+  };
+
   return (
-    <div className="w-full border-2 h-[20rem] mt-[2rem] flex flex-col justify-between rounded-md p-4 bg-white">
-      <div className="flex justify-between">
+    <div className="w-full border-2 h-[20rem] mt-[2rem] flex flex-col rounded-md p-4 bg-white">
+      <div className="flex justify-between mb-4">
         <h1 className="font-bold">Workout plans</h1>
-        <span className="cursor-pointer">see all</span>
+        <Link to="/workout-plans">
+          <span className="cursor-pointer">see all</span>
+        </Link>
       </div>
 
       <div>
@@ -61,12 +67,27 @@ export default function WorkoutPlansComponent() {
                       </Avatar>
 
                       <div>
-                        <h1 className="font-bold cursor-pointer">
+                        {/* <h1 className="font-bold cursor-pointer">
                           {workout.workout_plans_name.length > 12
                             ? workout.workout_plans_name.slice(0, 12) + '...'
                             : workout.workout_plans_name}
-                        </h1>
-                        <p>{workout.workout_mins} minutes</p>
+                        </h1> */}
+
+                        <Link
+                          onClick={refreshComponent}
+                          to={`/workout-plans/${workout.workout_id}`}
+                        >
+                          <h1 className="font-bold cursor-pointer text-1xl">
+                            {workout.workout_plans_name.length &&
+                              workout.workout_plans_name
+                                .slice(0, 1)
+                                .toUpperCase() +
+                                workout.workout_plans_name
+                                  .slice(1)
+                                  .slice(0, 20)}
+                          </h1>
+                        </Link>
+                        <p>{workout.workout_mins}</p>
                       </div>
                     </div>
 

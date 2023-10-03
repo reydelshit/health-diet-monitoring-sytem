@@ -23,25 +23,22 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 
-type WorkoutPlans = {
-  workout_id: number;
-  workout_plans_name: string;
-  workout_mins: string;
-  workout_description: string;
-  workout_when: string;
-  workout_status: string;
-  user_id: number;
+type MedicalHistory = {
+  medical_id: number;
+  medical_title: string;
+  medical_desc: string;
+  medical_date: string;
 };
 
 type ChangeEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLTextAreaElement>;
 
-export default function ViewWorkout() {
+export default function ViewMedicalHistory() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [workoutPlans, setWorkoutPlans] = useState<WorkoutPlans[]>([]);
+  const [medicalHistory, setMedicalHistory] = useState<MedicalHistory[]>([]);
   const [formData, setFormData] = useState({
     workout_plans_name: '',
     workout_mins: '',
@@ -49,19 +46,23 @@ export default function ViewWorkout() {
   });
 
   const [title, setTitle] = useState('');
-  const [mins, setMins] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState('');
 
-  const fetchWorkoutPlans = () => {
+  const fetchMedicalHistory = () => {
     axios
-      .get(`http://localhost/hd-monitoring/workout.php/${id}`)
+      .get(`http://localhost/hd-monitoring/medical.php/${id}`, {
+        params: {
+          user_id: localStorage.getItem('token') as unknown as number,
+          medical_id: id,
+          indicator: 'get-medical-history-by-id',
+        },
+      })
       .then((res) => {
-        setWorkoutPlans([res.data]);
-        setTitle(res.data.workout_plans_name);
-        setMins(res.data.workout_mins);
-        setDescription(res.data.workout_description);
-        setStatus(res.data.workout_status);
+        setTitle(res.data[0].medical_title);
+        setDescription(res.data[0].medical_desc);
+        setMedicalHistory(res.data);
+
+        console.log(res.data, 'nice');
       });
   };
 
@@ -72,102 +73,58 @@ export default function ViewWorkout() {
   };
 
   useEffect(() => {
-    fetchWorkoutPlans();
+    fetchMedicalHistory();
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // console.log(formData);
     e.preventDefault();
-    const updatedData = {
-      workout_plans_name: formData.workout_plans_name, // Leave other fields unchanged
-    };
-
     axios
-      .put(`http://localhost/hd-monitoring/workout.php/${id}`, {
-        workout_plans_name: title,
-        workout_mins: mins,
-        workout_description: description,
-        id: id,
-        indicator: 'update_workout',
+      .put(`http://localhost/hd-monitoring/medical.php/${id}`, {
+        medical_title: title,
+        medical_desc: description,
+        medical_id: id,
+        indicator: 'update_medical',
       })
       .then((res) => {
-        console.log(res.data);
-        fetchWorkoutPlans();
-        if (res.status === 200) {
-          navigate('/workout-plans');
-        }
+        location.reload();
       });
   };
 
   const deleteWorkoutPlans = (id: number) => {
     console.log(id);
     axios
-      .delete(`http://localhost/hd-monitoring/workout.php/${id}`)
+      .delete(`http://localhost/hd-monitoring/medical.php/${id}`)
       .then((res) => {
-        // console.log(res.data);
-        fetchWorkoutPlans();
+        fetchMedicalHistory();
 
         if (res.status === 200) {
-          navigate('/workout-plans');
+          navigate('/medical-history');
         }
       });
   };
 
-  const markFinish = (id: number, status: string) => {
-    console.log(id);
-    axios
-      .put(`http://localhost/hd-monitoring/workout.php/finish/${id}`, {
-        workout_status: status === 'Ongoing' ? 'Finished' : 'Ongoing',
-        workout_id: id,
-        indicator: 'update_workout_status',
-      })
-      .then((res) => {
-        location.reload();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
   return (
     <div className="h-screen w-full flex flex-col items-center py-10 px-[4rem] ">
-      {workoutPlans && (
+      {medicalHistory && (
         <div className="w-[60%] bg-white p-2 rounded-sm h-fit">
-          {workoutPlans.map((workout, index) => {
+          {medicalHistory.map((medical, index) => {
             return (
               <div key={index} className="p-5">
                 <div className="w-full justify-between flex mb-5">
-                  <div className="flex items-center gap-5">
+                  <div className="flex flex-col items-start gap-5">
                     <h1 className="font-semibold text-3xl">
-                      {workout.workout_plans_name}
+                      {medical.medical_title}
                     </h1>
-                    <p>{moment(workout.workout_when).format('LL')}</p>
+                    <p>{moment(medical.medical_date).format('LL')}</p>
                   </div>
 
-                  <div className="flex gap-4">
-                    <div
-                      className="p-2 w-[5rem] text-center rounded-md text-white cursor-pointer"
-                      style={{
-                        backgroundColor:
-                          workout.workout_status === 'Ongoing'
-                            ? 'green'
-                            : 'red',
-                      }}
-                    >
-                      <span>{workout.workout_status}</span>
-                    </div>
-
+                  <div className="flex gap-4 border-2 h-[2rem]">
                     <DropdownMenu>
                       <DropdownMenuTrigger>
                         <BsThreeDotsVertical />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
-                        <DropdownMenuItem
-                          onClick={() => markFinish(workout.workout_id, status)}
-                          className="cursor-pointer"
-                        >
-                          Mark as{' '}
-                          {status === 'Ongoing' ? 'Finished' : 'Ongoing'}
-                        </DropdownMenuItem>
                         <Dialog>
                           <DialogTrigger className="px-2 text-sm">
                             Update
@@ -182,19 +139,14 @@ export default function ViewWorkout() {
                                 <Input
                                   defaultValue={title}
                                   type="text"
-                                  name="workout_plans_name"
+                                  name="medical_title"
                                   onChange={(e) => setTitle(e.target.value)}
                                 />
-                                <Input
-                                  defaultValue={mins}
-                                  type="text"
-                                  name="workout_mins"
-                                  onChange={(e) => setMins(e.target.value)}
-                                />
+
                                 <Textarea
                                   className="h-[8rem]"
                                   defaultValue={description}
-                                  name="workout_description"
+                                  name="medical_desc"
                                   onChange={(e) =>
                                     setDescription(e.target.value)
                                   }
@@ -207,7 +159,7 @@ export default function ViewWorkout() {
                           </DialogContent>
                         </Dialog>
                         <DropdownMenuItem
-                          onClick={() => deleteWorkoutPlans(workout.workout_id)}
+                          onClick={() => deleteWorkoutPlans(medical.medical_id)}
                         >
                           Delete
                         </DropdownMenuItem>
@@ -217,9 +169,8 @@ export default function ViewWorkout() {
                 </div>
 
                 <div>
-                  <span className="mb-5">{workout.workout_mins}</span>
                   <p className="break-words text-start">
-                    {workout.workout_description}
+                    {medical.medical_desc}
                   </p>
                 </div>
               </div>

@@ -42,7 +42,7 @@ export default function WorkoutPlans() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setWorkoutPlans(res.data);
       });
   };
@@ -52,7 +52,7 @@ export default function WorkoutPlans() {
   }, []);
 
   return (
-    <div className="h-screen w-full flex flex-col items-center py-10 px-[4rem]">
+    <div className="h-screen w-full flex flex-col items-center py-10">
       <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
         Workout Plans
       </h1>
@@ -71,7 +71,7 @@ export default function WorkoutPlans() {
           setWorkoutPlansDecider={setWorkoutPlansDecider}
         />
       ) : (
-        <div className="w-[80%] h-fit mt-[2rem] flex flex-col justify-between rounded-md p-4 bg-white">
+        <div className="w-[80%] h-fit mt-[2rem] flex flex-col justify-between rounded-md p-4 ">
           <div className="self-end">
             <Select>
               <SelectTrigger className="w-[180px]">
@@ -86,7 +86,7 @@ export default function WorkoutPlans() {
           </div>
 
           <div>
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-5">
               {workoutPlans &&
                 workoutPlans.map((workout, index) => {
                   const {
@@ -99,24 +99,19 @@ export default function WorkoutPlans() {
                   return (
                     <div
                       key={index}
-                      className="flex gap-4 items-center justify-between mb-2 p-2 rounded-md"
+                      className="flex gap-4 items-center justify-between p-5 rounded-md bg-white border-2 mb-4"
                     >
-                      <div className="flex gap-4 items-center w-full">
-                        <div className="flex items-center justify-between w-full border-2 p-2 rounded-md">
-                          <div>
-                            <Link to={`/workout-plans/${workout.workout_id}`}>
-                              <h1 className="font-bold cursor-pointer text-3xl">
-                                {workout_plans_name.length &&
-                                  workout_plans_name.slice(0, 1).toUpperCase() +
-                                    workout_plans_name.slice(1).slice(0, 20)}
-                              </h1>
-                            </Link>
-
-                            <p>{moment(workout_when).format('LL')}</p>
-                          </div>
-
+                      <div className="flex flex-col gap-4 w-full">
+                        <div className="flex flex-row gap-8">
+                          <Link to={`/workout-plans/${workout.workout_id}`}>
+                            <h1 className="font-bold cursor-pointer text-3xl">
+                              {workout_plans_name.length &&
+                                workout_plans_name.slice(0, 1).toUpperCase() +
+                                  workout_plans_name.slice(1).slice(0, 20)}
+                            </h1>
+                          </Link>
                           <div
-                            className="p-2 w-[5rem] text-center rounded-md text-white cursor-pointer"
+                            className="block p-2 w-[5rem] text-center rounded-md text-white cursor-pointer"
                             style={{
                               backgroundColor:
                                 workout_status === 'Ongoing' ? 'green' : 'red',
@@ -125,6 +120,10 @@ export default function WorkoutPlans() {
                             <span>{workout_status}</span>
                           </div>
                         </div>
+
+                        <p className="break-words w-[70%]">
+                          {workout.workout_description.slice(0, 150)}
+                        </p>
                       </div>
                     </div>
                   );

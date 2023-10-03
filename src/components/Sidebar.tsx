@@ -28,6 +28,7 @@ import { CiDumbbell } from 'react-icons/ci';
 import WorkoutPlans from './WorkoutPlans';
 import ViewWorkout from './workout-plans/ViewWorkout';
 import NotFound from './NotFound';
+import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
 
 export default function Sidebar({
   handleLogout,
@@ -57,7 +58,7 @@ export default function Sidebar({
         onMouseOver={() => handleMouseOver()}
         onMouseLeave={() => handleMouseLeave()}
         style={{ width: `${width}rem` }}
-        className="w-[25rem] p-2 bg-white h-screen  items-center flex flex-col justify-center border-r-2"
+        className="w-[25rem] p-2 bg-white h-screen  items-center flex flex-col justify-center border-r-2 transition-all ease-in-out duration-350"
       >
         <header className="h-[8rem] flex items-center">
           {isMouseOver ? (
@@ -73,7 +74,7 @@ export default function Sidebar({
           )}
         </header>
 
-        <div className="flex flex-col items-start w-full p-2 h-full justify-center mt-[-5rem]">
+        <div className="flex flex-col items-start w-full p-2 h-full justify-center mt-[-5rem] transition-none">
           {isMouseOver ? (
             <Link
               to="/"
@@ -217,6 +218,7 @@ export default function Sidebar({
           <Route path="/workout-plans" element={<WorkoutPlans />} />
           <Route path="/workout-plans/:id" element={<ViewWorkout />} />
           <Route path="/medical-history" element={<MedicalHistory />} />
+          <Route path="/medical-history/:id" element={<ViewMedicalHistory />} />
 
           <Route path="*" element={<NotFound />} />
           <Route path="/*" element={<NotFound />} />
