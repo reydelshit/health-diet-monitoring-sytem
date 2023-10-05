@@ -19,9 +19,25 @@ type FoodLog = {
   meal_time: string;
 };
 
+type WaterLog = {
+  water_id: number;
+  water_glasses: number;
+  water_date: Date;
+  created_at: Date;
+  updated_at: Date;
+};
+
+type SleepLog = {
+  sleep_id: number;
+  sleep_hours: number;
+  sleep_time: string;
+};
+
 export default function Meal() {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [foodLog, setFoodLog] = useState<FoodLog[]>([]);
+  const [water, setWaterLog] = useState<WaterLog[]>([]);
+  const [sleep, setSleepLog] = useState<SleepLog[]>([]);
 
   const getGoals = () => {
     axios
@@ -48,9 +64,35 @@ export default function Meal() {
       });
   };
 
+  const fetchWaterLog = () => {
+    axios
+      .get('http://localhost/hd-monitoring/water.php', {
+        params: {
+          user_id: localStorage.getItem('token'),
+        },
+      })
+      .then((res) => {
+        setWaterLog(res.data);
+      });
+  };
+
+  const fetchSleepLog = () => {
+    axios
+      .get('http://localhost/hd-monitoring/sleep.php', {
+        params: {
+          user_id: localStorage.getItem('token'),
+        },
+      })
+      .then((res) => {
+        setSleepLog(res.data);
+      });
+  };
+
   useEffect(() => {
     getGoals();
     fetchFoodLog();
+    fetchWaterLog();
+    fetchSleepLog();
   }, []);
 
   const Calculation = (type: string) => {
@@ -81,6 +123,56 @@ export default function Meal() {
     useEffect(() => {}, [remainingCalorie]);
 
     return <div>{remainingCalorie <= 0 ? 0 : remainingCalorie}</div>;
+  };
+
+  const WaterCalculation = (type: string) => {
+    const mapWater = water.map((water) => water.water_glasses) as number[];
+    const goalTarget = goals
+      .filter((goal) => goal.goal_type === type)
+      .map((goal) => goal.goal_target) as number[];
+
+    const sum = mapWater.reduce(
+      (accumulator, currentValue) => accumulator + Number(currentValue),
+      0,
+    );
+
+    const sumGoal = goalTarget.reduce(
+      (accumulator, currentValue) => accumulator + Number(currentValue),
+      0,
+    );
+
+    const sumSubtractGoalAndWater = sumGoal - sum;
+
+    return (
+      <h1 className="text-green-600 font-semibold">
+        {sumSubtractGoalAndWater < 0 ? 0 : sumSubtractGoalAndWater}
+      </h1>
+    );
+  };
+
+  const SleepCalculation = (type: string) => {
+    const mapSleep = sleep.map((sleep) => sleep.sleep_hours) as number[];
+    const goalTarget = goals
+      .filter((goal) => goal.goal_type === type)
+      .map((goal) => goal.goal_target) as number[];
+
+    const sum = mapSleep.reduce(
+      (accumulator, currentValue) => accumulator + Number(currentValue),
+      0,
+    );
+
+    const sumGoal = goalTarget.reduce(
+      (accumulator, currentValue) => accumulator + Number(currentValue),
+      0,
+    );
+
+    const sumSubtractGoalAndWater = sumGoal - sum;
+
+    return (
+      <h1 className="text-green-600 font-semibold">
+        {sumSubtractGoalAndWater < 0 ? 0 : sumSubtractGoalAndWater}
+      </h1>
+    );
   };
 
   return (
@@ -142,16 +234,10 @@ export default function Meal() {
           <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
             <div>
               <h1 className="font-bold">Water Goal</h1>
-              {goals
-                .filter((goal) => goal.goal_type === 'Water')
-                .map((goal, index) => (
-                  <span className="flex" key={index}>
-                    <p className="mr-1 font-bold text-green-600">
-                      {goal.goal_target}{' '}
-                    </p>{' '}
-                    total glasses left
-                  </span>
-                ))}
+
+              <span className="flex gap-2">
+                {WaterCalculation('Water')} total glasses left
+              </span>
             </div>
             <Button>Log water</Button>
           </div>
@@ -159,16 +245,11 @@ export default function Meal() {
           <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
             <div>
               <h1 className="font-bold">Sleep Goal</h1>
-              {goals
-                .filter((goal) => goal.goal_type === 'Sleep')
-                .map((goal, index) => (
-                  <span className="flex" key={index}>
-                    <p className="mr-1 font-bold text-green-600">
-                      {goal.goal_target}{' '}
-                    </p>
-                    hours sleep left
-                  </span>
-                ))}
+
+              <span className="flex gap-2">
+                {SleepCalculation('Sleep')}
+                hours sleep left
+              </span>
             </div>
             <Button>Log sleep </Button>
           </div>

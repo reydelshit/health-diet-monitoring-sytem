@@ -55,29 +55,27 @@ const data = [
   },
 ];
 
-export function CalorieGoal() {
-  const [totalCalorie, setTotalCalorie] = useState(0);
+export function WaterGoal() {
+  const [totalGlasses, setTotalGlasses] = useState(0);
   const [dateSince, setDateSince] = useState('');
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd-monitoring/meal-diary.php', {
+      .get('http://localhost/hd-monitoring/water.php', {
         params: {
           user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {
-        console.log('calorie', res.data);
-
         const entries = res.data;
 
         const totalSumCalorie = entries.reduce(
           (accumulator: number, currentValue: any) =>
-            accumulator + parseInt(currentValue.calorie_intake),
+            accumulator + parseInt(currentValue.water_glasses),
           0,
         );
 
-        setTotalCalorie(totalSumCalorie);
+        setTotalGlasses(totalSumCalorie);
 
         const oldestEntry = entries.reduce((oldest: any, current: any) => {
           const currentCreatedAt = new Date(current.created_at);
@@ -101,16 +99,16 @@ export function CalorieGoal() {
   return (
     <Card className="w-[20rem]">
       <CardHeader className="pb-4">
-        <CardTitle>Total Calorie</CardTitle>
-        <CardDescription>Your total calorie intake.</CardDescription>
+        <CardTitle>Total Glasses</CardTitle>
+        <CardDescription>Your total glasses of water.</CardDescription>
       </CardHeader>
       <CardContent className="pb-2">
         <div className="flex items-center justify-center space-x-2">
           <div className="flex-1 text-center">
             <div className="text-5xl font-bold tracking-tighter">
-              {totalCalorie}{' '}
+              {totalGlasses}{' '}
               <span className="text-[1rem] uppercase text-muted-foreground">
-                Calories
+                Glasses
               </span>
             </div>
             <div className="text-[0.70rem] uppercase text-muted-foreground">

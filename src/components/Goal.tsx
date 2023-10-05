@@ -4,10 +4,10 @@ import { Input } from '@/components/ui/input';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { set } from 'date-fns';
-import { ChartMetric } from './goal/ChartMetric';
 import { CalorieGoal } from './goal/CalorieGoal';
 import { Separator } from '@/components/ui/separator';
+import { SleepGoal } from './goal/SleepGoal';
+import { WaterGoal } from './goal/WaterGoal';
 
 type Goal = {
   goal_id: number;
@@ -114,6 +114,7 @@ export default function Goal() {
         })
         .then((res) => {
           console.log(res.data);
+          window.location.reload();
         });
     } else {
       axios
@@ -124,6 +125,7 @@ export default function Goal() {
         })
         .then((res) => {
           console.log(res.data);
+          window.location.reload();
         });
     }
 
@@ -296,9 +298,11 @@ export default function Goal() {
             );
           })}
         </div>
-        <div className="flex gap-10 justify-around">
-          <ChartMetric />
+        <div className="flex gap-10 justify-around w-[80%]">
+          {/* <ChartMetric /> */}
           <CalorieGoal />
+          <SleepGoal />
+          <WaterGoal />
         </div>
         S
       </div>
