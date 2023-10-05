@@ -6,9 +6,9 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": ".",
-"paths": {
-  "@/*": ["./src/*"]
-},
+    "paths": {
+      "@/*": ["./src/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -24,6 +24,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "src/components/water-log/TotalWater/.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

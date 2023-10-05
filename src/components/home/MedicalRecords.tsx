@@ -28,17 +28,15 @@ export default function MedicalRecords() {
 
   const fetchMedicalRecords = () => {
     axios
-      .get('http://localhost/hd-monitoring/medical.php', {
+      .get(`http://localhost/hd-monitoring/medical.php`, {
         params: {
-          medical_id: 0,
           user_id: user_id,
-          indicator: 'get-medical-records-by-user-id',
         },
       })
       .then((res) => {
-        // console.log(res.data);
-
         setMedicalRecords(res.data);
+
+        console.log(res.data, 'nice');
       });
   };
 

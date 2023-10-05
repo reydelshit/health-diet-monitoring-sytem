@@ -25,7 +25,7 @@ export default function WorkoutPlansComponent() {
         },
       })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data, 'component');
         setWorkoutPlans(res.data);
       });
   };
@@ -51,7 +51,6 @@ export default function WorkoutPlansComponent() {
         <div className="flex flex-col">
           {workoutPlans &&
             workoutPlans
-
               .filter((workout) => workout.workout_status === 'Ongoing')
               .slice(0, 3)
               .map((workout, index) => {

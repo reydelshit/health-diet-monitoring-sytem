@@ -55,20 +55,19 @@ export default function ViewWorkout() {
 
   const fetchWorkoutPlans = () => {
     axios
-      .get(`http://localhost/hd-monitoring/workout.php/${id}`)
+      .get(`http://localhost/hd-monitoring/workout.php`, {
+        params: {
+          workout_id: id,
+        },
+      })
       .then((res) => {
-        setWorkoutPlans([res.data]);
-        setTitle(res.data.workout_plans_name);
-        setMins(res.data.workout_mins);
-        setDescription(res.data.workout_description);
-        setStatus(res.data.workout_status);
+        console.log(res.data);
+        setWorkoutPlans(res.data);
+        setTitle(res.data[0].workout_plans_name);
+        setMins(res.data[0].workout_mins);
+        setDescription(res.data[0].workout_description);
+        setStatus(res.data[0].workout_status);
       });
-  };
-
-  const handleChange = (e: ChangeEvent) => {
-    const { name, value } = e.target;
-    console.log(`Updating ${name} with value: ${value}`);
-    setFormData({ ...formData, [name]: value });
   };
 
   useEffect(() => {

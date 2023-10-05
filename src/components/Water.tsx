@@ -1,6 +1,12 @@
+import { useState } from 'react';
 import { Separator } from './ui/separator';
+import AddWaterLog from './water-log/addWater';
+import { Button } from './ui/button';
+import WaterLogChart from './water-log/WaterLogChart';
+import { TotalWater } from './water-log/TotalWater';
 
 export default function Water() {
+  const [waterDecider, setWaterDecider] = useState<boolean>(false);
   return (
     <div className="w-full">
       <div>
@@ -13,6 +19,24 @@ export default function Water() {
           </p>
         </span>
         <Separator />
+      </div>
+
+      <div className="mt-[4rem] flex flex-col">
+        <Button
+          className="w-[15rem] self-end"
+          onClick={() => setWaterDecider(!waterDecider)}
+        >
+          Log water!
+        </Button>
+
+        {waterDecider ? (
+          <AddWaterLog setWaterDecider={setWaterDecider} />
+        ) : (
+          <div className="w-[100%] mt-[5rem] flex gap-4 items-center">
+            <WaterLogChart />
+            <TotalWater />
+          </div>
+        )}
       </div>
     </div>
   );

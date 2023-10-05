@@ -116,7 +116,7 @@ export default function CalorieChart() {
   }, []);
 
   return (
-    <div className="md:w-[80%] md:p-5 bg-white rounded-lg border-2">
+    <div className="md:w-[100%] md:p-5 bg-white rounded-lg border-2">
       <h1 className="mb-5 font-bold uppercase">Calorie Intake</h1>
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={monthlyCalories}>

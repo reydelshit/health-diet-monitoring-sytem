@@ -44,7 +44,7 @@ export default function AddMeal({
   };
 
   return (
-    <div className="border-2 w-[100%] p-5 flex justify-center h-[80vh]">
+    <div className="w-[100%] p-5 flex justify-center">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center w-[30%]"

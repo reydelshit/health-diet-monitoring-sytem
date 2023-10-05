@@ -38,9 +38,7 @@ export default function MedicalHistory() {
     axios
       .get('http://localhost/hd-monitoring/medical.php', {
         params: {
-          medical_id: 0,
           user_id: localStorage.getItem('token') as unknown as number,
-          indicator: 'get-medical-history-by-user-id',
         },
       })
       .then((res) => {

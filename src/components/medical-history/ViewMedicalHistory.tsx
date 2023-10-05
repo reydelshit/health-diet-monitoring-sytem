@@ -22,7 +22,6 @@ import {
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
-import { Separator } from '@/components/ui/separator';
 
 type MedicalHistory = {
   medical_id: number;
@@ -51,11 +50,9 @@ export default function ViewMedicalHistory() {
 
   const fetchMedicalHistory = () => {
     axios
-      .get(`http://localhost/hd-monitoring/medical.php/${id}`, {
+      .get(`http://localhost/hd-monitoring/medical.php/`, {
         params: {
-          user_id: localStorage.getItem('token') as unknown as number,
           medical_id: id,
-          indicator: 'get-medical-history-by-id',
         },
       })
       .then((res) => {
@@ -109,7 +106,10 @@ export default function ViewMedicalHistory() {
     <div className="h-screen w-[100%] items-center flex flex-col py-10 ">
       {medicalHistory.map((medical, index) => {
         return (
-          <div className="bg-white w-[50%] break-words p-4 rounded-md">
+          <div
+            key={index}
+            className="bg-white w-[50%] break-words p-4 rounded-md"
+          >
             <div className="flex justify-between mb-4">
               <div className="flex gap-4">
                 <h1 className="font-semibold">{medical.medical_title}</h1>
@@ -161,7 +161,6 @@ export default function ViewMedicalHistory() {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                S
               </div>
             </div>
 
@@ -171,7 +170,4 @@ export default function ViewMedicalHistory() {
       })}
     </div>
   );
-}
-
-{
 }

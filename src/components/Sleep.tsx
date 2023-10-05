@@ -1,6 +1,12 @@
+import { useState } from 'react';
+import { Button } from './ui/button';
 import { Separator } from './ui/separator';
+import AddSleepLog from './sleep/addSleep';
+import { TotalSleep } from './sleep/TotalSleep';
+import SleepLogChart from './sleep/SleepLogChart';
 
 export default function Sleep() {
+  const [sleepDecider, setSleepDecider] = useState<boolean>(false);
   return (
     <div className="w-full">
       <div>
@@ -12,6 +18,24 @@ export default function Sleep() {
           </p>
         </span>
         <Separator />
+      </div>
+
+      <div className="mt-[4rem] flex flex-col">
+        <Button
+          className="w-[15rem] self-end"
+          onClick={() => setSleepDecider(!sleepDecider)}
+        >
+          Log sleep!
+        </Button>
+
+        {sleepDecider ? (
+          <AddSleepLog setSleepDecider={setSleepDecider} />
+        ) : (
+          <div className="w-[100%] mt-[5rem] flex gap-4 items-center">
+            <SleepLogChart />
+            <TotalSleep />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -55,25 +55,25 @@ const data = [
   },
 ];
 
-export function CalorieGoal() {
+export function TotalSleep() {
   const [totalCalorie, setTotalCalorie] = useState(0);
   const [dateSince, setDateSince] = useState('');
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd-monitoring/meal-diary.php', {
+      .get('http://localhost/hd-monitoring/sleep.php', {
         params: {
           id: localStorage.getItem('token'),
         },
       })
       .then((res) => {
-        console.log('calorie', res.data);
+        console.log('water', res.data);
 
         const entries = res.data;
 
         const totalSumCalorie = entries.reduce(
           (accumulator: number, currentValue: any) =>
-            accumulator + parseInt(currentValue.calorie_intake),
+            accumulator + parseInt(currentValue.sleep_hours),
           0,
         );
 
@@ -89,7 +89,6 @@ export function CalorieGoal() {
             return oldest;
           }
         }, entries[0]);
-
         setDateSince(oldestEntry.created_at);
       });
   };
@@ -99,10 +98,10 @@ export function CalorieGoal() {
   }, []);
 
   return (
-    <Card className="w-[60%]">
+    <Card className="w-[50%] h-fit">
       <CardHeader className="pb-4">
-        <CardTitle>Total Calorie</CardTitle>
-        <CardDescription>Your total calorie intake.</CardDescription>
+        <CardTitle>Total Water</CardTitle>
+        <CardDescription>Your total water intake.</CardDescription>
       </CardHeader>
       <CardContent className="pb-2">
         <div className="flex items-center justify-center space-x-2">
@@ -111,11 +110,7 @@ export function CalorieGoal() {
               {totalCalorie}
             </div>
             <div className="text-[0.70rem] uppercase text-muted-foreground">
-              {dateSince.length > 0 ? (
-                <p>since {moment(dateSince).format('MMM DD, YYYY')}</p>
-              ) : (
-                <p>add calorie first to show date</p>
-              )}
+              since {moment(dateSince).format('MMM DD, YYYY')}
             </div>
           </div>
         </div>
