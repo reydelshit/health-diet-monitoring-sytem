@@ -78,14 +78,11 @@ export default function Meal() {
       remainingCalorie = divideByMealtimes - sumMealCalorieIntake;
     }
 
-    useEffect(() => {
-      // console.log(remainingCalorie, 'remainingCalorie');
-    }, [remainingCalorie]);
+    useEffect(() => {}, [remainingCalorie]);
 
-    return (
-      <div>{remainingCalorie === 0 ? divideByMealtimes : remainingCalorie}</div>
-    );
+    return <div>{remainingCalorie <= 0 ? 0 : remainingCalorie}</div>;
   };
+
   return (
     <div className="h-[25rem] w-[35rem] p-4 bg-white rounded-md border-2">
       <Tabs defaultValue="add-meal" className="w-full flex flex-col h-fit ">
