@@ -39,7 +39,11 @@ export default function AddMeal({
         user_id: token,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+
+        if (res.status === 200) {
+          setAddMealDecider(false);
+        }
       });
   };
 

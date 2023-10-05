@@ -63,7 +63,7 @@ export function CalorieGoal() {
     axios
       .get('http://localhost/hd-monitoring/meal-diary.php', {
         params: {
-          id: localStorage.getItem('token'),
+          user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {

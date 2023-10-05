@@ -63,7 +63,7 @@ export function TotalSleep() {
     axios
       .get('http://localhost/hd-monitoring/sleep.php', {
         params: {
-          id: localStorage.getItem('token'),
+          user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {

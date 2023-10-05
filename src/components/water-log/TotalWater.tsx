@@ -63,7 +63,7 @@ export function TotalWater() {
     axios
       .get('http://localhost/hd-monitoring/water.php', {
         params: {
-          id: localStorage.getItem('token'),
+          user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {

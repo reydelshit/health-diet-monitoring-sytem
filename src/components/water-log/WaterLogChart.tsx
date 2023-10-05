@@ -18,7 +18,7 @@ export default function WaterLogChart() {
     axios
       .get('http://localhost/hd-monitoring/water.php', {
         params: {
-          id: localStorage.getItem('token'),
+          user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {
@@ -70,7 +70,7 @@ export default function WaterLogChart() {
         <p className="font-semibold">{moment().format('LLL')}</p>
       </div>
 
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="80%" height={350}>
         <BarChart data={dailyWaterLog}>
           <XAxis
             dataKey="name"

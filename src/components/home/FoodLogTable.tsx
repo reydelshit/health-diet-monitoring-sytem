@@ -33,11 +33,12 @@ export default function FoodLogTable() {
     axios
       .get('http://localhost/hd-monitoring/meal-diary.php', {
         params: {
-          id: id,
+          user_id: id,
         },
       })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res);
+        console.log(res.data, 'meal diary');
         setFoodLog(res.data);
       });
   };

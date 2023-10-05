@@ -18,7 +18,7 @@ export default function SleepLogChart() {
     axios
       .get('http://localhost/hd-monitoring/sleep.php', {
         params: {
-          id: localStorage.getItem('token'),
+          user_id: localStorage.getItem('token'),
         },
       })
       .then((res) => {
@@ -70,7 +70,7 @@ export default function SleepLogChart() {
         <p className="font-semibold">{moment().format('LLL')}</p>
       </div>
 
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="80%" height={350}>
         <BarChart data={dailyWaterLog}>
           <XAxis
             dataKey="name"

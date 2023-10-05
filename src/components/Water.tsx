@@ -32,7 +32,7 @@ export default function Water() {
         {waterDecider ? (
           <AddWaterLog setWaterDecider={setWaterDecider} />
         ) : (
-          <div className="w-[100%] mt-[5rem] flex gap-4 items-center">
+          <div className="w-[100%] mt-[5rem] flex gap-4 items-center border-2">
             <WaterLogChart />
             <TotalWater />
           </div>
