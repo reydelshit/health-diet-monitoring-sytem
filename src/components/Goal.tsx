@@ -300,11 +300,16 @@ export default function Goal() {
         </div>
         <div className="flex gap-10 justify-around w-[80%]">
           {/* <ChartMetric /> */}
-          <CalorieGoal />
-          <SleepGoal />
-          <WaterGoal />
+          <div className="w-[20rem]">
+            <CalorieGoal />
+          </div>
+          <div className="w-[20rem]">
+            <SleepGoal />
+          </div>
+          <div className="w-[20rem]">
+            <WaterGoal />
+          </div>
         </div>
-        S
       </div>
     </div>
   );

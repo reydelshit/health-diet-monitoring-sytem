@@ -99,7 +99,7 @@ export function CalorieGoal() {
   }, []);
 
   return (
-    <Card className="w-[20rem]">
+    <Card className="w-[100%]">
       <CardHeader className="pb-4">
         <CardTitle>Total Calorie</CardTitle>
         <CardDescription>Your total calorie intake.</CardDescription>

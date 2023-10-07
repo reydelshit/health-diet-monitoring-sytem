@@ -17,8 +17,6 @@ type ChangeEvent =
 export default function AddWaterLog({
   setWaterDecider,
 }: {
-  // handleSubmit: any;
-  // handleChange: any;
   setWaterDecider: (value: boolean) => void;
 }) {
   const [formData, setFormData] = useState({});

@@ -4,6 +4,7 @@ import { Separator } from './ui/separator';
 import AddSleepLog from './sleep/addSleep';
 import { TotalSleep } from './sleep/TotalSleep';
 import SleepLogChart from './sleep/SleepLogChart';
+import SleepTable from './sleep/SleepTable';
 
 export default function Sleep() {
   const [sleepDecider, setSleepDecider] = useState<boolean>(false);
@@ -31,9 +32,14 @@ export default function Sleep() {
         {sleepDecider ? (
           <AddSleepLog setSleepDecider={setSleepDecider} />
         ) : (
-          <div className="w-[100%] mt-[5rem] flex gap-4 items-center">
-            <SleepLogChart />
-            <TotalSleep />
+          <div>
+            <div className="w-[100%] mt-[5rem] flex gap-4 items-center">
+              <SleepLogChart />
+              <TotalSleep />
+            </div>
+            <div className="w-full flex justify-center items-center mt-5">
+              <SleepTable />
+            </div>
           </div>
         )}
       </div>

@@ -4,6 +4,7 @@ import AddWaterLog from './water-log/addWater';
 import { Button } from './ui/button';
 import WaterLogChart from './water-log/WaterLogChart';
 import { TotalWater } from './water-log/TotalWater';
+import WaterTable from './water-log/WaterTable';
 
 export default function Water() {
   const [waterDecider, setWaterDecider] = useState<boolean>(false);
@@ -32,9 +33,14 @@ export default function Water() {
         {waterDecider ? (
           <AddWaterLog setWaterDecider={setWaterDecider} />
         ) : (
-          <div className="w-[100%] mt-[5rem] flex gap-4 items-center border-2">
-            <WaterLogChart />
-            <TotalWater />
+          <div className="flex flex-col">
+            <div className="w-[100%] mt-[5rem] flex gap-4 items-center ">
+              <WaterLogChart />
+              <TotalWater />
+            </div>
+            <div className="w-[100%] flex justify-center items-center mt-5">
+              <WaterTable />
+            </div>
           </div>
         )}
       </div>

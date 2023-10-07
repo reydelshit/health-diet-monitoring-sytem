@@ -97,7 +97,7 @@ export function WaterGoal() {
   }, []);
 
   return (
-    <Card className="w-[20rem]">
+    <Card className="w-[100%]">
       <CardHeader className="pb-4">
         <CardTitle>Total Glasses</CardTitle>
         <CardDescription>Your total glasses of water.</CardDescription>

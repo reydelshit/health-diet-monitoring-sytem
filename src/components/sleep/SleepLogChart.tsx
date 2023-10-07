@@ -65,7 +65,7 @@ export default function SleepLogChart() {
     <div className="md:w-[100%] md:p-5 bg-white rounded-lg border-2">
       <div className="flex justify-between">
         <h1 className="mb-5 font-bold uppercase">
-          Water Intake (each day of the month )
+          Sleep hours (each day of the month )
         </h1>
         <p className="font-semibold">{moment().format('LLL')}</p>
       </div>

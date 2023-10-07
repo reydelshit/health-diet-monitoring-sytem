@@ -56,7 +56,7 @@ const data = [
 ];
 
 export function TotalSleep() {
-  const [totalCalorie, setTotalCalorie] = useState(0);
+  const [totalSleep, setTotalSleep] = useState(0);
   const [dateSince, setDateSince] = useState('');
 
   const fetchCalorieIntake = () => {
@@ -71,13 +71,13 @@ export function TotalSleep() {
 
         const entries = res.data;
 
-        const totalSumCalorie = entries.reduce(
+        const totalSumSleep = entries.reduce(
           (accumulator: number, currentValue: any) =>
             accumulator + parseInt(currentValue.sleep_hours),
           0,
         );
 
-        setTotalCalorie(totalSumCalorie);
+        setTotalSleep(totalSumSleep);
 
         const oldestEntry = entries.reduce((oldest: any, current: any) => {
           const currentCreatedAt = new Date(current.created_at);
@@ -100,14 +100,14 @@ export function TotalSleep() {
   return (
     <Card className="w-[50%] h-fit">
       <CardHeader className="pb-4">
-        <CardTitle>Total Water</CardTitle>
-        <CardDescription>Your total water intake.</CardDescription>
+        <CardTitle>Total Sleep</CardTitle>
+        <CardDescription>Your total sleep hours.</CardDescription>
       </CardHeader>
       <CardContent className="pb-2">
         <div className="flex items-center justify-center space-x-2">
           <div className="flex-1 text-center">
             <div className="text-5xl font-bold tracking-tighter">
-              {totalCalorie}
+              {totalSleep}
             </div>
             <div className="text-[0.70rem] uppercase text-muted-foreground">
               since {moment(dateSince).format('MMM DD, YYYY')}

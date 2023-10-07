@@ -25,8 +25,6 @@ type WorkoutPlans = {
   user_id: number;
 };
 
-type Properties<T, U> = U extends keyof T ? T[U] : never;
-
 export default function WorkoutPlans() {
   const [workoutPlansDecider, setWorkoutPlansDecider] = useState(false);
 

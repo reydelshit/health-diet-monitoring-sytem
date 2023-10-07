@@ -97,7 +97,7 @@ export function SleepGoal() {
   }, []);
 
   return (
-    <Card className="w-[20rem]">
+    <Card className="w-[100%]">
       <CardHeader className="pb-4">
         <CardTitle>Total Sleep</CardTitle>
         <CardDescription>Your total hours of sleep.</CardDescription>
