@@ -26,6 +26,7 @@ type FoodLog = {
 
 export default function FoodLogTable() {
   const [foodLog, setFoodLog] = useState<FoodLog[]>([]);
+  const [filterFood, setFilterFood] = useState<string>('All');
 
   const id = localStorage.getItem('token') as unknown as number;
 
@@ -47,16 +48,22 @@ export default function FoodLogTable() {
     fetchFoodLog();
   }, []);
 
+  const handleSort = (event: string) => {
+    const selectedValue = event;
+    setFilterFood(selectedValue);
+  };
+
   return (
-    <div className="flex flex-col bg-white p-4 rounded-sm w-[100%] border-2">
+    <div className="flex flex-col bg-white p-4 rounded-sm w-[100%] border-2 h-[25rem]">
       <div className="flex justify-between">
         <h1 className="font-bold text-2xl py-2">Latest Food Log</h1>
         <div className="self-end mb-2">
-          <Select>
+          <Select onValueChange={handleSort}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Meal Time" />
+              <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="All">All</SelectItem>
               <SelectItem value="breakfast">Breakfast</SelectItem>
               <SelectItem value="lunch">Lunch</SelectItem>
               <SelectItem value="dinner">Dinner</SelectItem>
@@ -76,16 +83,24 @@ export default function FoodLogTable() {
         </TableHeader>
         <TableBody>
           {foodLog &&
-            foodLog.map((food, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>{food.meal_name}</TableCell>
-                  <TableCell>{food.calorie_intake}</TableCell>
+            foodLog
+              .filter((food) => {
+                const filtered =
+                  filterFood === 'All'
+                    ? true
+                    : food.meal_time.toLowerCase().includes(filterFood);
+                return filtered;
+              })
+              .map((food, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell>{food.meal_name}</TableCell>
+                    <TableCell>{food.calorie_intake}</TableCell>
 
-                  <TableCell>{food.meal_time}</TableCell>
-                </TableRow>
-              );
-            })}
+                    <TableCell>{food.meal_time}</TableCell>
+                  </TableRow>
+                );
+              })}
         </TableBody>
       </Table>
     </div>

@@ -39,7 +39,7 @@ export default function WorkoutPlansComponent() {
   };
 
   return (
-    <div className="w-full h-fit mt-[2rem] flex flex-col rounded-md p-4 bg-white">
+    <div className="w-full h-fit mt-[2rem] flex flex-col rounded-md p-4 bg-white border-2">
       <div className="flex justify-between mb-4">
         <h1 className="font-bold">Workout plans</h1>
         <Link to="/workout-plans">
@@ -66,12 +66,6 @@ export default function WorkoutPlansComponent() {
                       </Avatar>
 
                       <div>
-                        {/* <h1 className="font-bold cursor-pointer">
-                          {workout.workout_plans_name.length > 12
-                            ? workout.workout_plans_name.slice(0, 12) + '...'
-                            : workout.workout_plans_name}
-                        </h1> */}
-
                         <Link
                           onClick={refreshComponent}
                           to={`/workout-plans/${workout.workout_id}`}
