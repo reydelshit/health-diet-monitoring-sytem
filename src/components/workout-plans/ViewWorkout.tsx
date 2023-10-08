@@ -22,6 +22,7 @@ import {
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { Separator } from '../ui/separator';
 
 type WorkoutPlans = {
   workout_id: number;
@@ -125,9 +126,20 @@ export default function ViewWorkout() {
       });
   };
   return (
-    <div className="h-screen w-full flex flex-col items-center py-10 px-[4rem] ">
+    <div className="h-screen w-full flex flex-col items-center py-10 ">
+      <div className="py-5 flex items-start justify-start w-full">
+        <span className="block">
+          <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
+            Workout Plans
+          </h1>
+          <p className="text-sm">
+            Plan a schedule that tells you which exercises to do!
+          </p>
+        </span>
+      </div>
+      <Separator />
       {workoutPlans && (
-        <div className="w-[60%] bg-white p-2 rounded-sm h-fit">
+        <div className="w-[60%] bg-white p-2 rounded-sm h-fit mt-10">
           {workoutPlans.map((workout, index) => {
             return (
               <div key={index} className="p-5">

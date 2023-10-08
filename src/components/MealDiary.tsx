@@ -23,7 +23,7 @@ export default function MealDiary() {
         <Separator />
       </div>
 
-      <div className="mt-[4rem] flex flex-col p-4">
+      <div className="mt-[2rem] flex flex-col p-4">
         <Button
           className="self-end mb-4"
           onClick={() => setAddMealDecider(true)}
@@ -39,7 +39,7 @@ export default function MealDiary() {
               <FoodLogTable />
               <Calendar className="bg-white h-fit rounded-md" />
             </div>
-            <div className="mt-[5rem] w-full">
+            <div className="mt-[2rem] w-full">
               <CalorieChart />
             </div>
           </>
