@@ -74,7 +74,7 @@ export default function CalculateBmi({
   getBmiCategory(toFixed);
 
   return (
-    <div className="p-2 text-center">
+    <div>
       <h1>BMI</h1>
       <p className="text-2xl font-bold">{toFixed}</p>
       {getBmiCategory(toFixed)}

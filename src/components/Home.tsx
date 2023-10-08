@@ -19,7 +19,7 @@ type User = {
 
 export default function Home({ userDetails }: { userDetails: User[] }) {
   return (
-    <div className="h-screen w-full flex flex-col py-10 px-[1rem]">
+    <div className="h-screen w-full flex flex-col py-10 pl-[5rem]">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, email, birthday, gender } = user;

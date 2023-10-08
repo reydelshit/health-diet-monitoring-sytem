@@ -9,7 +9,7 @@ import SleepTable from './sleep/SleepTable';
 export default function Sleep() {
   const [sleepDecider, setSleepDecider] = useState<boolean>(false);
   return (
-    <div className="w-full">
+    <div className="w-full pl-[5rem]">
       <div>
         <span className="block py-8">
           <h1 className="font-bold text-3xl">Record your sleep now!</h1>

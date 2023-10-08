@@ -22,6 +22,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
+import BarChartWeight from './profile-overview/WeightHeightChanges';
 
 type MedicalHistory = {
   medical_id: number;
@@ -52,7 +53,7 @@ export default function MedicalHistory() {
   }, []);
 
   return (
-    <div className="flex justify-center flex-col">
+    <div className="flex justify-center flex-col pl-[5rem]">
       <div className="pt-10 pb-5 flex justify-between items-center">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
@@ -78,7 +79,7 @@ export default function MedicalHistory() {
           setMedicalHistoryDecider={setMedicalHistoryDecider}
         />
       ) : (
-        <div className="p-2 grid place-content-center mt-10">
+        <div className="p-2 grid place-content-center mt-10 ">
           <Table className="block w-fit border-2 rounded-md">
             <TableCaption>A list of your medical history.</TableCaption>
             <TableHeader>

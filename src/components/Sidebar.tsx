@@ -30,6 +30,9 @@ import ViewWorkout from './workout-plans/ViewWorkout';
 import NotFound from './NotFound';
 import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
 import logo from '../assets/logo.png';
+import BarChartWeight from './profile-overview/WeightHeightChanges';
+import WeightHeightChanges from './profile-overview/WeightHeightChanges';
+import { MdOutlinePublishedWithChanges } from 'react-icons/md';
 
 export default function Sidebar({
   handleLogout,
@@ -59,7 +62,7 @@ export default function Sidebar({
         onMouseOver={() => handleMouseOver()}
         onMouseLeave={() => handleMouseLeave()}
         style={{ width: `${width}rem` }}
-        className="w-[25rem] p-2 bg-white h-screen  items-center flex flex-col justify-center border-r-2 transition-all ease-in-out duration-350"
+        className="w-[25rem] p-2 bg-white h-screen fixed z-10 top-0 left-0 items-center flex flex-col justify-center border-r-2 transition-all ease-in-out duration-350"
       >
         <header className="h-[8rem] flex items-center">
           {isMouseOver ? (
@@ -187,6 +190,23 @@ export default function Sidebar({
               <ReaderIcon className="w-5 h-[1.5rem] mr-2" />
             </Link>
           )}
+
+          {isMouseOver ? (
+            <Link
+              to="/height-weight-changes"
+              className="mb-2 w-full bg-inherit text-black flex hover:bg-green-50 p-2 rounded-sm "
+            >
+              <MdOutlinePublishedWithChanges className="w-5 h-[1.5rem] mr-2" />{' '}
+              H & W Timeline
+            </Link>
+          ) : (
+            <Link
+              to="/height-weight-changes"
+              className="mb-2 w-full bg-inherit text-black flex hover:bg-green-50 p-2 rounded-sm "
+            >
+              <MdOutlinePublishedWithChanges className="w-5 h-[1.5rem] mr-2" />
+            </Link>
+          )}
         </div>
 
         <footer className="mt-auto">
@@ -220,6 +240,10 @@ export default function Sidebar({
           <Route path="/workout-plans/:id" element={<ViewWorkout />} />
           <Route path="/medical-history" element={<MedicalHistory />} />
           <Route path="/medical-history/:id" element={<ViewMedicalHistory />} />
+          <Route
+            path="/height-weight-changes"
+            element={<WeightHeightChanges />}
+          />
 
           <Route path="*" element={<NotFound />} />
           <Route path="/*" element={<NotFound />} />

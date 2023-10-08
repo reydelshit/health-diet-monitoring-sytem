@@ -4,9 +4,12 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import WorkoutPlansComponent from './home/WorkoutPlansComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { get } from 'http';
 import CalculateBmi from './profile-overview/CalculateBmi';
+import axios from 'axios';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
 
 type User = {
   id: number;
@@ -17,8 +20,6 @@ type User = {
   birthday: string;
   isLogin: boolean;
   gender: string;
-  height: string;
-  weight: string;
 };
 
 export default function ProfileOverview({
@@ -27,12 +28,47 @@ export default function ProfileOverview({
   userDetails: User[];
 }) {
   const [bmi, setBmi] = useState<number>(0);
+  const [weight, setWeight] = useState<string>('');
+  const [height, setHeight] = useState<string>('');
+  const [addPhysicalDecider, setAddPhysicalDecider] = useState<boolean>(false);
+
+  const fetchWater = () => {
+    axios
+      .get('http://localhost/hd-monitoring/physical-measurements.php', {
+        params: {
+          user_id_latest: localStorage.getItem('token'),
+        },
+      })
+      .then((res) => {
+        console.log(res.data, 'provile overview');
+        setWeight(res.data[0].weight_kg);
+        setHeight(res.data[0].height_ft);
+      });
+  };
+
+  useEffect(() => {
+    fetchWater();
+  }, []);
+
+  const handleSubmitPhysicalMeasurements = (e: React.FormEvent) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost/hd-monitoring/physical-measurements.php', {
+        user_id: localStorage.getItem('token'),
+        weight_kg: weight,
+        height_ft: height,
+      })
+      .then((res) => {
+        console.log(res.data, 'res');
+        setAddPhysicalDecider(false);
+      });
+  };
 
   return (
-    <div className="w-[25rem] p-2 h-fit">
+    <div className="w-[20rem] p-2 h-fit">
       {userDetails &&
         userDetails.map((user) => {
-          const { id, name, email, weight, height, birthday, gender } = user;
+          const { id, name, birthday, gender } = user;
 
           return (
             <div
@@ -84,15 +120,80 @@ export default function ProfileOverview({
                 </div>
               </div>
               <Separator className="my-4" />
-              {weight.length > 0 && height.length > 0 ? (
-                <CalculateBmi weight={parseInt(weight)} height={height} />
+              {weight.length !== 0 && height.length !== 0 ? (
+                <div className="text-center">
+                  <CalculateBmi weight={parseInt(weight)} height={height} />
+
+                  <Button
+                    onClick={() => setAddPhysicalDecider(!addPhysicalDecider)}
+                    className="mt-5"
+                  >
+                    Change measurements
+                  </Button>
+                  <span className="px-2 text-center w-full block text-sm mt-5">
+                    {addPhysicalDecider && (
+                      <div className="h-[8rem] mt-5">
+                        <form onSubmit={handleSubmitPhysicalMeasurements}>
+                          <Input
+                            type="number"
+                            defaultValue={weight}
+                            placeholder="Weight"
+                            className="mt-2"
+                            onChange={(e) => setWeight(e.target.value)}
+                          />
+                          <Input
+                            type="text"
+                            defaultValue={height}
+                            placeholder="Height"
+                            className="mt-2"
+                            onChange={(e) => setHeight(e.target.value)}
+                          />
+                          <Button type="submit" className="mt-2">
+                            Submit
+                          </Button>
+                        </form>
+                      </div>
+                    )}
+                  </span>
+                </div>
               ) : (
                 <div className="flex flex-col items-center justify-center text-center p-2">
-                  <h1 className="text-xl font-bold">BMI</h1>
-                  <p className="text-sm text-muted-foreground">
-                    If you cannot see your BMI here, please add your weight and
-                    height to calculate your BMI in the edit details section
-                  </p>
+                  <div className=" h-[5rem]">
+                    <h1 className="text-xl font-bold">BMI</h1>
+                    <p className="text-sm text-muted-foreground">
+                      If you cannot see your BMI here, please add your weight
+                      and height to calculate your BMI
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => setAddPhysicalDecider(!addPhysicalDecider)}
+                    className="mt-5"
+                  >
+                    Add height and weight
+                  </Button>
+
+                  {addPhysicalDecider && (
+                    <div className="w-full">
+                      <form>
+                        <Input
+                          type="number"
+                          placeholder="Weight"
+                          className="mt-2"
+                          onChange={(e) => setWeight(e.target.value)}
+                        />
+                        <Input
+                          type="text"
+                          placeholder="Height"
+                          className="mt-2"
+                          onChange={(e) => setHeight(e.target.value)}
+                        />
+                        <Button type="submit" className="mt-2">
+                          Submit
+                        </Button>
+                      </form>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

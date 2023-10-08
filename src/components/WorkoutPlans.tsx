@@ -51,7 +51,7 @@ export default function WorkoutPlans() {
 
   return (
     <>
-      <div className="flex items-center justify-between py-8">
+      <div className="flex items-center justify-between py-8 pl-[5rem]">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
             Workout Plans

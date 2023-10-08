@@ -155,7 +155,7 @@ export default function Goal() {
   };
 
   return (
-    <div className="w-full flex flex-col justify-center p-2">
+    <div className="w-full flex flex-col justify-center p-2 pl-[5rem]">
       <span className="block py-8">
         <h1 className="font-bold text-3xl">Set your goals</h1>
         <p className="text-sm">

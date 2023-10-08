@@ -10,7 +10,7 @@ export default function MealDiary() {
   const [addMealDecider, setAddMealDecider] = useState(false);
 
   return (
-    <div className="w-full">
+    <div className="w-full pl-[5rem]">
       <div>
         <span className="block py-8">
           <h1 className="font-bold text-3xl">Meal Diary</h1>
