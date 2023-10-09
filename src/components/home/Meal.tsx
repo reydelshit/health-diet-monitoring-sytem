@@ -239,7 +239,9 @@ export default function Meal() {
                 {WaterCalculation('Water')} total glasses left
               </span>
             </div>
-            <Button>Log water</Button>
+            <Link to="/water-log">
+              <Button className="!text-white">Log water</Button>
+            </Link>
           </div>
 
           <div className="w-full flex justify-between items-center p-4 mb-2 rounded-sm bg-[#fafbfd]">
@@ -251,7 +253,9 @@ export default function Meal() {
                 hours sleep left
               </span>
             </div>
-            <Button>Log sleep </Button>
+            <Link to="/sleep-log">
+              <Button className="!text-white">Log sleep</Button>
+            </Link>
           </div>
         </TabsContent>
       </Tabs>

@@ -25,7 +25,7 @@ export default function Register() {
         console.log(res.data);
 
         if (res.data.status === 'success') {
-          navigate('/login');
+          navigate('/');
         }
       });
   };

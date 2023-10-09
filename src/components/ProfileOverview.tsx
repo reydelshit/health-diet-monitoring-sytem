@@ -132,7 +132,7 @@ export default function ProfileOverview({
                     onClick={() => setAddPhysicalDecider(!addPhysicalDecider)}
                     className="mt-5"
                   >
-                    Change measurements
+                    {addPhysicalDecider ? 'Close' : 'Add height and weight'}
                   </Button>
                   <span className="px-2 text-center w-full block text-sm mt-5">
                     {addPhysicalDecider && (
