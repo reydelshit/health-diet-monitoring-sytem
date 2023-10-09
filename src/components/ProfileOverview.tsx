@@ -80,11 +80,10 @@ export default function ProfileOverview({
               <img
                 className="w-[12rem] h-[12rem] object-cover rounded-full"
                 src={
-                  image
+                  image.length > 0
                     ? image
                     : 'https://avatars.githubusercontent.com/u/40355669?v=4'
                 }
-                alt=""
               />
 
               <h1 className="text-3xl mt-2 font-bold">

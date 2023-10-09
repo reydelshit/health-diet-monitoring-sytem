@@ -16,7 +16,6 @@ export default function EditProfile() {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
 
-  const [imageURL, setImageURL] = useState('');
   const [image, setImage] = useState<string | null>(null);
 
   const { id } = useParams();
@@ -34,7 +33,13 @@ export default function EditProfile() {
         setBirthday(res.data.birthday);
         setGender(res.data.gender);
 
-        console.log(res.data.image, 'image');
+        // console.log(res.data.image, 'image');
+        // const base64 = res.data.image;
+        // if (base64) {
+        //   setImage(base64.toString());
+        // }
+
+        // console.log(res.data.image);
         setImage(res.data.image);
       });
   };
@@ -74,9 +79,19 @@ export default function EditProfile() {
   };
 
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
-    }
+    const data = new FileReader();
+    data.readAsDataURL(e.target.files![0]);
+
+    data.onloadend = (e) => {
+      const base64 = data.result;
+      if (base64) {
+        setImage(base64.toString());
+      }
+    };
+
+    // if (e.target.files && e.target.files[0]) {
+    //   setImage(URL.createObjectURL(e.target.files[0]));
+    // }
   };
 
   return (
@@ -108,22 +123,6 @@ export default function EditProfile() {
             className="mb-2"
             onChange={handleChange}
             defaultValue={email}
-          />
-
-          <Input
-            placeholder="Height in ft eg 5'9"
-            name="height"
-            className="mb-2"
-            onChange={handleChange}
-            defaultValue={height}
-          />
-
-          <Input
-            placeholder="Weight in kg eg. 60"
-            name="weight"
-            className="mb-2"
-            onChange={handleChange}
-            defaultValue={weight}
           />
 
           <Label className="text-start ml-2 text-sm">Birthday:</Label>

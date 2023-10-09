@@ -79,17 +79,20 @@ export function TotalWater() {
 
         setTotalCalorie(totalSumCalorie);
 
-        const oldestEntry = entries.reduce((oldest: any, current: any) => {
-          const currentCreatedAt = new Date(current.created_at);
-          const oldestCreatedAt = new Date(oldest.created_at);
+        if (entries && entries.length > 0) {
+          const oldestEntry = entries.reduce((oldest: any, current: any) => {
+            const currentCreatedAt = new Date(current.created_at);
+            const oldestCreatedAt = new Date(oldest.created_at);
 
-          if (currentCreatedAt < oldestCreatedAt) {
-            return current;
-          } else {
-            return oldest;
-          }
-        }, entries[0]);
-        setDateSince(oldestEntry.created_at);
+            if (currentCreatedAt < oldestCreatedAt) {
+              return current;
+            } else {
+              return oldest;
+            }
+          }, entries[0]);
+
+          setDateSince(oldestEntry.created_at);
+        }
       });
   };
 
