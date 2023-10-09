@@ -1,4 +1,11 @@
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
+import axios from 'axios';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+// components
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -7,12 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import axios from 'axios';
 
-import { useEffect, useState } from 'react';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
 const data = [
   {
     goal: 400,

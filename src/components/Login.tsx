@@ -1,10 +1,9 @@
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import Register from './Register';
 
 export default function Login({
   setIsLoggedIn,
@@ -21,8 +20,6 @@ export default function Login({
     setLoginDetails((values) => ({ ...values, [name]: value }));
   };
 
-  //   const token = localStorage.getItem('token');
-  //   localStorage.removeItem('token');
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

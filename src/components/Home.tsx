@@ -1,7 +1,5 @@
 import Meal from './home/Meal';
 import FoodLogTable from './home/FoodLogTable';
-import DailyLogs from './home/DailyLogs';
-import CalendarComponent from './home/Calendar';
 import CalorieChart from './home/CalorieChart';
 import MedicalRecords from './home/MedicalRecords';
 import { CalorieGoal } from './goal/CalorieGoal';
@@ -22,7 +20,7 @@ export default function Home({ userDetails }: { userDetails: User[] }) {
     <div className="h-screen w-full flex flex-col py-10 pl-[5rem]">
       {userDetails &&
         userDetails.map((user) => {
-          const { id, name, email, birthday, gender } = user;
+          const { name } = user;
 
           return (
             <div key={user.id}>

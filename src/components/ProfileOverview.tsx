@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import WorkoutPlansComponent from './home/WorkoutPlansComponent';
 import { useEffect, useState } from 'react';
-import { get } from 'http';
 import CalculateBmi from './profile-overview/CalculateBmi';
 import axios from 'axios';
 import { Button } from './ui/button';
@@ -27,7 +26,6 @@ export default function ProfileOverview({
 }: {
   userDetails: User[];
 }) {
-  const [bmi, setBmi] = useState<number>(0);
   const [weight, setWeight] = useState<string>('');
   const [height, setHeight] = useState<string>('');
   const [addPhysicalDecider, setAddPhysicalDecider] = useState<boolean>(false);

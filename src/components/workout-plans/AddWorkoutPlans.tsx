@@ -12,8 +12,6 @@ type ChangeEvent =
 export default function AddWorkoutPlans({
   setWorkoutPlansDecider,
 }: {
-  // handleSubmit: any;
-  // handleChange: any;
   setWorkoutPlansDecider: (value: boolean) => void;
 }) {
   const [formData, setFormData] = useState({});

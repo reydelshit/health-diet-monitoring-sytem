@@ -14,9 +14,6 @@ export default function Main() {
         },
       })
       .then((res) => {
-        // console.log(res.data);
-        // console.log(res.status);
-
         if (res.status === 200) {
           setUserDetails(res.data);
         }

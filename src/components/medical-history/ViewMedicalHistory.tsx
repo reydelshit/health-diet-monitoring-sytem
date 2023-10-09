@@ -1,20 +1,17 @@
 import axios from 'axios';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { useNavigate, useNavigation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -31,20 +28,11 @@ type MedicalHistory = {
   medical_date: string;
 };
 
-type ChangeEvent =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
-
 export default function ViewMedicalHistory() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [medicalHistory, setMedicalHistory] = useState<MedicalHistory[]>([]);
-  const [formData, setFormData] = useState({
-    workout_plans_name: '',
-    workout_mins: '',
-    workout_description: '',
-  });
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -63,12 +51,6 @@ export default function ViewMedicalHistory() {
 
         console.log(res.data, 'nice');
       });
-  };
-
-  const handleChange = (e: ChangeEvent) => {
-    const { name, value } = e.target;
-    console.log(`Updating ${name} with value: ${value}`);
-    setFormData({ ...formData, [name]: value });
   };
 
   useEffect(() => {

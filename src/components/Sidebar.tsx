@@ -1,13 +1,6 @@
 import { Link, Routes, Route } from 'react-router-dom';
 import { Button } from './ui/button';
-import {
-  BookmarkIcon,
-  ExitIcon,
-  HomeIcon,
-  MoonIcon,
-  ReaderIcon,
-  TargetIcon,
-} from '@radix-ui/react-icons';
+import { ExitIcon, HomeIcon, ReaderIcon } from '@radix-ui/react-icons';
 import Home from './Home';
 import MealDiary from './MealDiary';
 import Goal from './Goal';
@@ -16,21 +9,17 @@ import Sleep from './Sleep';
 import EditProfile from './profile-overview/EditProfile';
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
 import MedicalHistory from './MedicalHistory';
 import { IoWaterOutline } from 'react-icons/io5';
-import { GiMeal } from 'react-icons/gi';
 import { GiNightSleep } from 'react-icons/gi';
 import { MdOutlineFastfood } from 'react-icons/md';
 import { GoGoal } from 'react-icons/go';
 import { GiMuscleUp } from 'react-icons/gi';
-import { CiDumbbell } from 'react-icons/ci';
 import WorkoutPlans from './WorkoutPlans';
 import ViewWorkout from './workout-plans/ViewWorkout';
 import NotFound from './NotFound';
 import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
 import logo from '../assets/logo.png';
-import BarChartWeight from './WeightHeightChanges';
 import WeightHeightChanges from './WeightHeightChanges';
 import { MdOutlinePublishedWithChanges } from 'react-icons/md';
 
@@ -41,7 +30,6 @@ export default function Sidebar({
   handleLogout: () => void;
   userDetails: any;
 }) {
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [width, setWidth] = useState<number>(5);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
@@ -57,7 +45,6 @@ export default function Sidebar({
 
   return (
     <>
-      {/* {showSidebar && } */}
       <div
         onMouseOver={() => handleMouseOver()}
         onMouseLeave={() => handleMouseLeave()}

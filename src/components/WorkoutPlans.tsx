@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import AddWorkoutPlans from './workout-plans/AddWorkoutPlans';
 import { Button } from './ui/button';
 import axios from 'axios';
-import { FaGreaterThan } from 'react-icons/fa';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import {
   Select,
@@ -12,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 type WorkoutPlans = {
@@ -134,86 +131,4 @@ export default function WorkoutPlans() {
       </div>
     </>
   );
-}
-
-{
-  /* <div className="py-10 flex justify-center flex-col">
-      <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-        Workout Plans
-      </h1>
-
-      <Button
-        className="w-[15rem] self-end"
-        onClick={() => setWorkoutPlansDecider(true)}
-      >
-        Add workout plans
-      </Button>
-
-      {workoutPlansDecider ? (
-        <AddWorkoutPlans
-          // handleSubmit={handleSubmit}
-          // handleChange={handleChange}
-          setWorkoutPlansDecider={setWorkoutPlansDecider}
-        />
-      ) : (
-        <div className="w-[50%] h-fit mt-[2rem] flex flex-col justify-between rounded-md p-4 ">
-          <div className="self-end">
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Sort" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Ongoing">Ongoing</SelectItem>
-                <SelectItem value="Finished">Finished</SelectItem>
-                <SelectItem value="All">All</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex flex-col mt-5 border-2">
-            {workoutPlans &&
-              workoutPlans.map((workout, index) => {
-                const {
-                  workout_plans_name,
-                  workout_description,
-                  workout_status,
-                  workout_when,
-                  workout_mins,
-                } = workout;
-                return (
-                  <div
-                    key={index}
-                    className="flex gap-4 items-center justify-between p-5 rounded-md bg-white border-2 mb-4"
-                  >
-                    <div className="flex flex-col gap-4">
-                      <div className="flex flex-row gap-8">
-                        <Link to={`/workout-plans/${workout.workout_id}`}>
-                          <h1 className="font-bold cursor-pointer text-3xl">
-                            {workout_plans_name.length &&
-                              workout_plans_name.slice(0, 1).toUpperCase() +
-                                workout_plans_name.slice(1).slice(0, 20)}
-                          </h1>
-                        </Link>
-                        <div
-                          className="block p-2 w-[5rem] text-center rounded-md text-white cursor-pointer"
-                          style={{
-                            backgroundColor:
-                              workout_status === 'Ongoing' ? 'green' : 'red',
-                          }}
-                        >
-                          <span>{workout_status}</span>
-                        </div>
-                      </div>
-
-                      <p className="break-words w-[70%]">
-                        {workout.workout_description.slice(0, 150)}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        </div>
-      )}
-    </div> */
 }

@@ -11,8 +11,6 @@ type ChangeEvent =
 export default function AddMedicalHistory({
   setMedicalHistoryDecider,
 }: {
-  // handleSubmit: any;
-  // handleChange: any;
   setMedicalHistoryDecider: (value: boolean) => void;
 }) {
   const [formData, setFormData] = useState([]);

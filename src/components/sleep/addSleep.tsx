@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import { useState } from 'react';
 import {
@@ -17,8 +16,6 @@ type ChangeEvent =
 export default function AddSleepLog({
   setSleepDecider,
 }: {
-  // handleSubmit: any;
-  // handleChange: any;
   setSleepDecider: (value: boolean) => void;
 }) {
   const [formData, setFormData] = useState({});

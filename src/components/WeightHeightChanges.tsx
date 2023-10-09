@@ -1,13 +1,4 @@
 import { useEffect, useState } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-// import { getAllSurvey } from '../../action/getRankings';
 import moment from 'moment';
 import axios from 'axios';
 import CalculateBmi from './profile-overview/CalculateBmi';

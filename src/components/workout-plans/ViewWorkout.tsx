@@ -34,20 +34,11 @@ type WorkoutPlans = {
   user_id: number;
 };
 
-type ChangeEvent =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
-
 export default function ViewWorkout() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [workoutPlans, setWorkoutPlans] = useState<WorkoutPlans[]>([]);
-  const [formData, setFormData] = useState({
-    workout_plans_name: '',
-    workout_mins: '',
-    workout_description: '',
-  });
 
   const [title, setTitle] = useState('');
   const [mins, setMins] = useState('');

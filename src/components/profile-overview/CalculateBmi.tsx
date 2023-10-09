@@ -65,7 +65,7 @@ export default function CalculateBmi({
   const [feet, inches] = height.split("'");
 
   const feetToMeters = parseInt(feet) * 0.3048;
-  const inchesToMeters = parseInt(inches) * 0.0254; // Convert inches to meters separately
+  const inchesToMeters = parseInt(inches) * 0.0254;
   const totalHeightInMeters = feetToMeters + inchesToMeters;
   const bmi = weight / (totalHeightInMeters * totalHeightInMeters);
 

@@ -12,12 +12,8 @@ import { useState } from 'react';
 import { Label } from '@radix-ui/react-label';
 
 export default function AddMeal({
-  // handleSubmit,
-  // handleChange,
   setAddMealDecider,
 }: {
-  // handleSubmit: any;
-  // handleChange: any;
   setAddMealDecider: (value: boolean) => void;
 }) {
   const [formData, setFormData] = useState([]);

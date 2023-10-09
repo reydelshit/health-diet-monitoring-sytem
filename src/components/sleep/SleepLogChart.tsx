@@ -1,8 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
-// import { getAllSurvey } from '../../action/getRankings';
 import moment from 'moment';
 import axios from 'axios';
 

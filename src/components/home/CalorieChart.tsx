@@ -1,8 +1,5 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
-// import { getAllSurvey } from '../../action/getRankings';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -12,63 +9,7 @@ interface DataItem {
 }
 
 export default function CalorieChart() {
-  // const [totalDayIntake, setTotalDayIntake] = useState([
-  //   {
-  //     total: 0,
-  //     name: '',
-  //   },
-  // ]);
-
   const [monthlyCalories, setMonthlyCalorieIntake] = useState<DataItem[]>([]);
-
-  //   const [loading, setLoading] = useState(false);
-
-  //   async function fetchTotalSurvey() {
-  //     try {
-  //       const totalSurvey = await getAllSurvey();
-  //       if (totalSurvey) {
-  //         const countByMonth = totalSurvey.reduce((acc, survey) => {
-  //           const suveyDate = new Date(survey.createdAt);
-
-  //           const month = suveyDate.getMonth() + 1;
-  //           const year = suveyDate.getFullYear();
-
-  //           // Create a key in the format "YYYY-MM"
-  //           const key = `${year}-${String(month).padStart(2, '0')}`;
-
-  //           // Increment the count for the month in the accumulator object
-  //           acc[key] = (acc[key] || 0) + 1;
-
-  //           return acc;
-  //         }, {} as Record<string, number>);
-
-  //         const totalDaySurvey = Object.keys(countByMonth).map((month) => {
-  //           return {
-  //             totalSurvey: countByMonth[month],
-  //             month: moment(month, 'YYYY-MM').format('MMMM'),
-  //           };
-  //         });
-
-  //         // console.log(totalDaySurvey[0].month);
-
-  //         const totalDayEachMonth = totalDaySurvey.map((month) => {
-  //           return {
-  //             total: month.totalSurvey,
-  //             name: month.month,
-  //           };
-  //         });
-  //         setTotalDaySurvey([...totalDayEachMonth]);
-
-  //         // console.log(totalDaySurvey.length);
-  //       }
-  //     } catch (error) {
-  //       console.log('today', error);
-  //     }
-  //   }
-
-  //   useEffect(() => {
-  //     fetchTotalSurvey();
-  //   }, []);
 
   const fetchCalorieIntake = () => {
     axios
@@ -89,7 +30,6 @@ export default function CalorieChart() {
             const createdAt = moment(entry.created_at).format('MMM');
             const calorieIntake = parseInt(entry.calorie_intake);
 
-            // If the month is already in the accumulator, add to it; otherwise, create it
             if (monthlyCalories[createdAt]) {
               monthlyCalories[createdAt] += calorieIntake;
             } else {
