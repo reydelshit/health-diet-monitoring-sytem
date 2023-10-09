@@ -22,13 +22,19 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
-import BarChartWeight from './profile-overview/WeightHeightChanges';
+import BarChartWeight from './WeightHeightChanges';
 
 type MedicalHistory = {
   medical_id: number;
   medical_title: string;
   medical_desc: string;
   medical_date: string;
+};
+
+export const metadata = {
+  title: 'Medical History',
+  description:
+    'Record of your past health issues, treatments, surgeries, and any important health information!',
 };
 
 export default function MedicalHistory() {
@@ -57,12 +63,9 @@ export default function MedicalHistory() {
       <div className="pt-10 pb-5 flex justify-between items-center">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-            Medical history
+            {metadata.title}
           </h1>
-          <p className="text-sm">
-            Record of your past health issues, treatments, surgeries, and any
-            important health information!
-          </p>
+          <p className="text-sm">{metadata.description}</p>
         </span>
         <Button
           className="w-[12rem] self-end my-4"

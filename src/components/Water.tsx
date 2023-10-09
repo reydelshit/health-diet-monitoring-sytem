@@ -6,18 +6,20 @@ import WaterLogChart from './water-log/WaterLogChart';
 import { TotalWater } from './water-log/TotalWater';
 import WaterTable from './water-log/WaterTable';
 
+export const metadata = {
+  title: 'Record Water!',
+  description:
+    'Start your hydration journey right here. Track your daily waterintake and stay on top of your hydration goals with our easy-to-use water logging form.',
+};
+
 export default function Water() {
   const [waterDecider, setWaterDecider] = useState<boolean>(false);
   return (
     <div className="w-full pl-[5rem]">
       <div>
         <span className="block py-8">
-          <h1 className="font-bold text-3xl">Record Water!</h1>
-          <p className="text-sm">
-            Start your hydration journey right here. Track your daily water
-            intake and stay on top of your hydration goals with our easy-to-use
-            water logging form.
-          </p>
+          <h1 className="font-bold text-3xl">{metadata.title}</h1>
+          <p className="text-sm">{metadata.description}</p>
         </span>
         <Separator />
       </div>

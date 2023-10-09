@@ -30,8 +30,8 @@ import ViewWorkout from './workout-plans/ViewWorkout';
 import NotFound from './NotFound';
 import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
 import logo from '../assets/logo.png';
-import BarChartWeight from './profile-overview/WeightHeightChanges';
-import WeightHeightChanges from './profile-overview/WeightHeightChanges';
+import BarChartWeight from './WeightHeightChanges';
+import WeightHeightChanges from './WeightHeightChanges';
 import { MdOutlinePublishedWithChanges } from 'react-icons/md';
 
 export default function Sidebar({

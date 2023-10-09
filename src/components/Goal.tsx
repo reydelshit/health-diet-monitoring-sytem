@@ -17,6 +17,17 @@ type Goal = {
   goal_month: Date;
 };
 
+export const metadata = {
+  title: 'Set up your goals',
+  component: Goal,
+  description:
+    'Your health journey begins here. Set calorie, water, and sleep goals tailored just for you',
+  parameters: {
+    layout: 'fullscreen',
+  },
+  argTypes: {},
+};
+
 export default function Goal() {
   const [target, setTarget] = useState(0);
   const [calories, setCalories] = useState<Goal[]>([]);
@@ -157,11 +168,8 @@ export default function Goal() {
   return (
     <div className="w-full flex flex-col justify-center p-2 px-[5rem]">
       <span className="block py-8">
-        <h1 className="font-bold text-3xl">Set your goals</h1>
-        <p className="text-sm">
-          Your health journey begins here. Set calorie, water, and sleep goals
-          tailored just for you.{' '}
-        </p>
+        <h1 className="font-bold text-3xl">{metadata.title}</h1>
+        <p className="text-sm">{metadata.description} </p>
       </span>
       <Separator />
       <div className="flex flex-col gap-10 mt-[5rem] justify-center items-center">
@@ -175,8 +183,10 @@ export default function Goal() {
                 onSubmit={(e) => handleSubmit(e, 'Calorie')}
                 className="w-full"
               >
-                <Label className="text-lg">Monthly Calorie Intake Goal</Label>
-                <Label>
+                <Label className="text-lg block">
+                  Monthly Calorie Intake Goal
+                </Label>
+                <Label className="block">
                   We are going to divide it per day. <br />
                   Eg. 3000 / 30 = 100
                 </Label>

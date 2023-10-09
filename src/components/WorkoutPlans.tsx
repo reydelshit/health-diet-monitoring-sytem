@@ -25,6 +25,11 @@ type WorkoutPlans = {
   user_id: number;
 };
 
+export const metadata = {
+  title: 'Workout Plans',
+  description: 'Plan a schedule that tells you which exercises to do!',
+};
+
 export default function WorkoutPlans() {
   const [workoutPlansDecider, setWorkoutPlansDecider] = useState(false);
 
@@ -54,11 +59,9 @@ export default function WorkoutPlans() {
       <div className="flex items-center justify-between py-8 pl-[5rem]">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-            Workout Plans
+            {metadata.title}
           </h1>
-          <p className="text-sm">
-            Plan a schedule that tells you which exercises to do!
-          </p>
+          <p className="text-sm">{metadata.description}</p>
         </span>
 
         <Button

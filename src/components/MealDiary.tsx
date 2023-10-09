@@ -6,6 +6,11 @@ import FoodLogTable from './home/FoodLogTable';
 import { Calendar } from './ui/calendar';
 import CalorieChart from './home/CalorieChart';
 
+export const metadata = {
+  title: 'Meal Diary',
+  description:
+    ' Commence your meal diary journey with us. Keep a record of you daily meals, monitor your nutrition, and make healthier choices effortlessly',
+};
 export default function MealDiary() {
   const [addMealDecider, setAddMealDecider] = useState(false);
 
@@ -13,12 +18,8 @@ export default function MealDiary() {
     <div className="w-full pl-[5rem]">
       <div>
         <span className="block py-8">
-          <h1 className="font-bold text-3xl">Meal Diary</h1>
-          <p className="text-sm">
-            Commence your meal diary journey with us. Keep a record of your
-            daily meals, monitor your nutrition, and make healthier choices
-            effortlessly.
-          </p>
+          <h1 className="font-bold text-3xl">{metadata.title}</h1>
+          <p className="text-sm">{metadata.description}</p>
         </span>
         <Separator />
       </div>
