@@ -34,6 +34,11 @@ type WorkoutPlans = {
   user_id: number;
 };
 
+export const metadata = {
+  title: 'Workout Plans',
+  description: ' Plan a schedule that tells you which exercises to do!',
+};
+
 export default function ViewWorkout() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -116,16 +121,15 @@ export default function ViewWorkout() {
         console.error('Error:', error);
       });
   };
+
   return (
-    <div className="h-screen w-full flex flex-col items-center py-10 ">
+    <div className="h-screen w-full flex flex-col items-center py-10 pl-[5rem]">
       <div className="py-5 flex items-start justify-start w-full">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-            Workout Plans
+            {metadata.title}
           </h1>
-          <p className="text-sm">
-            Plan a schedule that tells you which exercises to do!
-          </p>
+          <p className="text-sm">{metadata.description}</p>
         </span>
       </div>
       <Separator />

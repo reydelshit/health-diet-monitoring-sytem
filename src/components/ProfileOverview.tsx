@@ -19,6 +19,7 @@ type User = {
   birthday: string;
   isLogin: boolean;
   gender: string;
+  image: string;
 };
 
 export default function ProfileOverview({
@@ -66,20 +67,26 @@ export default function ProfileOverview({
     <div className="w-[20rem] p-2 h-fit">
       {userDetails &&
         userDetails.map((user) => {
-          const { id, name, birthday, gender } = user;
+          const { id, name, birthday, gender, image } = user;
 
           return (
             <div
               className="flex items-center flex-col mt-[2rem] w-full border-2 h-fit p-2 rounded-md bg-white"
               key={user.id}
             >
-              <span className="self-end mb-5 cursor-pointer">
+              <span className="self-end mb-5 cursor-pointer text-sm">
                 <Link to={`/${id}/edit-profile`}>Edit details</Link>
               </span>
-              <Avatar className="w-[10rem] h-[10rem]">
-                <AvatarImage src="https://avatars.githubusercontent.com/u/40355669?v=4" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <img
+                className="w-[12rem] h-[12rem] object-cover rounded-full"
+                src={
+                  image
+                    ? image
+                    : 'https://avatars.githubusercontent.com/u/40355669?v=4'
+                }
+                alt=""
+              />
+
               <h1 className="text-3xl mt-2 font-bold">
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </h1>

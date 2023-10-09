@@ -74,11 +74,11 @@ export default function MedicalHistory() {
           setMedicalHistoryDecider={setMedicalHistoryDecider}
         />
       ) : (
-        <div className="p-2 grid place-content-center mt-10 ">
-          <Table className="block w-fit border-2 rounded-md">
+        <div className="p-2 grid place-content-center mt-10 w-[100%">
+          <Table className="border-2 rounded-md w-[70rem]">
             <TableCaption>A list of your medical history.</TableCaption>
             <TableHeader>
-              <TableRow>
+              <TableRow className="w-full">
                 <TableHead className="font-bold text-black">Title</TableHead>
                 <TableHead className="font-bold text-black">
                   Description
@@ -86,7 +86,7 @@ export default function MedicalHistory() {
                 <TableHead className="font-bold text-black">Date</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className=" w-full">
+            <TableBody className="w-full">
               {medicalHistory.map((medical, index) => {
                 return (
                   <TableRow className="w-full" key={index}>

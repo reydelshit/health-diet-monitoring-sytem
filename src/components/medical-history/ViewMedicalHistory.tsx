@@ -28,6 +28,12 @@ type MedicalHistory = {
   medical_date: string;
 };
 
+export const metadata = {
+  title: 'Medical History',
+  description:
+    'Record of your past health issues, treatments, surgeries, and any important health information!',
+};
+
 export default function ViewMedicalHistory() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -86,16 +92,13 @@ export default function ViewMedicalHistory() {
   };
 
   return (
-    <div className="h-screen w-[100%] items-center flex flex-col py-10 ">
+    <div className="h-screen w-[100%] items-center flex flex-col py-10 pl-[5rem]">
       <div className="pt-5 pb-5 flex justify-start items-center w-full">
         <span className="block">
           <h1 className="text-3xl font-bold text-[#2b3e54] self-start">
-            Medical history
+            {metadata.title}
           </h1>
-          <p className="text-sm">
-            Record of your past health issues, treatments, surgeries, and any
-            important health information!
-          </p>
+          <p className="text-sm">{metadata.description}</p>
         </span>
       </div>
 

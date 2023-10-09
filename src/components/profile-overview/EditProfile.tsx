@@ -5,6 +5,7 @@ import { Label } from '@radix-ui/react-label';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { URL } from 'url';
 
 export default function EditProfile() {
   const [user, setUser] = useState([]);
@@ -14,6 +15,9 @@ export default function EditProfile() {
   const [weight, setWeight] = useState('');
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
+
+  const [imageURL, setImageURL] = useState('');
+  const [image, setImage] = useState<string | null>(null);
 
   const { id } = useParams();
 
@@ -29,6 +33,9 @@ export default function EditProfile() {
         setWeight(res.data.weight);
         setBirthday(res.data.birthday);
         setGender(res.data.gender);
+
+        console.log(res.data.image, 'image');
+        setImage(res.data.image);
       });
   };
 
@@ -41,7 +48,6 @@ export default function EditProfile() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const name = e.target.name;
-
     setUser((values) => ({ ...values, [name]: value }));
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,8 +57,12 @@ export default function EditProfile() {
 
     axios
       .put('http://localhost/hd-monitoring/register.php', {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         ...user,
         id: id,
+        image: image,
       })
       .then((res) => {
         console.log(res.data);
@@ -63,10 +73,26 @@ export default function EditProfile() {
       });
   };
 
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
   return (
     <div className="w-full h-screen flex justify-center items-center flex-col text-center">
       <div className="w-[40%]">
         <h1 className="text-2xl font-bold mb-2">Update Details</h1>
+        <div className="mb-2 w-full flex flex-col justify-center items-center border-2">
+          {image && (
+            <img
+              className="w-[15rem] h-[15rem] object-cover rounded-full mb-4"
+              src={image!}
+            />
+          )}
+
+          <Input type="file" accept="image/*" onChange={handleChangeImage} />
+        </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col justify-center">
           <Input
