@@ -5,6 +5,8 @@ import { Label } from '@radix-ui/react-label';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import defaultProfile from '@/assets/default.jpg';
+
 // import { URL } from 'url';
 
 export default function EditProfile() {
@@ -33,13 +35,6 @@ export default function EditProfile() {
         setBirthday(res.data.birthday);
         setGender(res.data.gender);
 
-        // console.log(res.data.image, 'image');
-        // const base64 = res.data.image;
-        // if (base64) {
-        //   setImage(base64.toString());
-        // }
-
-        // console.log(res.data.image);
         setImage(res.data.image);
       });
   };
@@ -98,15 +93,18 @@ export default function EditProfile() {
     <div className="w-full h-screen flex justify-center items-center flex-col text-center">
       <div className="w-[40%]">
         <h1 className="text-2xl font-bold mb-2">Update Details</h1>
-        <div className="mb-2 w-full flex flex-col justify-center items-center border-2">
-          {image && (
-            <img
-              className="w-[15rem] h-[15rem] object-cover rounded-full mb-4"
-              src={image!}
-            />
-          )}
+        <div className="mb-2 w-full flex flex-col justify-center items-center">
+          <img
+            className="w-[15rem] h-[15rem] object-cover rounded-full mb-4"
+            src={image! ? image! : defaultProfile}
+          />
 
-          <Input type="file" accept="image/*" onChange={handleChangeImage} />
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleChangeImage}
+            className="cursor-pointer"
+          />
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col justify-center">

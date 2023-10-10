@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import moment from 'moment';
 
 import { Link } from 'react-router-dom';
@@ -9,7 +8,7 @@ import CalculateBmi from './profile-overview/CalculateBmi';
 import axios from 'axios';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-
+import defaultProfile from '@/assets/default.jpg';
 type User = {
   id: number;
   name: string;
@@ -79,11 +78,7 @@ export default function ProfileOverview({
               </span>
               <img
                 className="w-[12rem] h-[12rem] object-cover rounded-full"
-                src={
-                  image.length > 0
-                    ? image
-                    : 'https://avatars.githubusercontent.com/u/40355669?v=4'
-                }
+                src={image.length > 0 ? image : defaultProfile}
               />
 
               <h1 className="text-3xl mt-2 font-bold">

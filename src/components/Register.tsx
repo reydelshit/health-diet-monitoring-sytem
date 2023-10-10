@@ -4,7 +4,7 @@ import { Label } from '@radix-ui/react-label';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Logo from '/src/assets/logo.png';
 export default function Register() {
   const [user, setUser] = useState([]);
 
@@ -32,10 +32,13 @@ export default function Register() {
 
   return (
     <div className="w-full h-screen border-2 flex justify-center items-center flex-col text-center">
-      <div className="w-[40%]">
-        <h1 className="text-2xl font-bold mb-2">Register</h1>
+      <div className="w-[30%] flex flex-col justify-center items-center p-4">
+        <img src={Logo} alt="logo" className="w-[20rem]" />
 
-        <form onSubmit={handleSubmit} className="flex flex-col justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col justify-center w-full"
+        >
           <Input
             placeholder="Name"
             name="name"
@@ -88,7 +91,7 @@ export default function Register() {
             </div>
           </div>
 
-          <Button className="w-[80%] self-center" type="submit">
+          <Button className="w-[80%] self-center mt-[3rem]" type="submit">
             Register
           </Button>
         </form>

@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 
 import { useState } from 'react';
 import axios from 'axios';
+import Logo from '@/assets/logo.png';
 
 export default function Login({
   setIsLoggedIn,
@@ -40,9 +41,7 @@ export default function Login({
   return (
     <div className="w-full h-screen border-2 flex justify-center items-center flex-col text-center">
       <div>
-        <h1 className="text-2xl font-bold mb-2">
-          Health and Diet Monitoring System
-        </h1>
+        <img src={Logo} alt="logo" className="w-[20rem]" />
 
         <form
           onSubmit={handleLogin}
@@ -69,7 +68,7 @@ export default function Login({
 
         <span className="mt-5 block">
           Don't have an account?
-          <Link to="/register" className="text-green-500">
+          <Link to="/register" className="text-green-500 ml-2">
             click me
           </Link>
         </span>
