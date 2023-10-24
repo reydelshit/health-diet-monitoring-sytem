@@ -33,7 +33,7 @@ export default function AddWaterLog({
     const token = localStorage.getItem('token') as unknown as number;
 
     axios
-      .post('http://localhost/hd-monitoring/water.php', {
+      .post('http://localhost/hd_monitoring/water.php', {
         ...formData,
         user_id: token,
       })

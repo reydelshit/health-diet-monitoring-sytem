@@ -61,7 +61,7 @@ export function WaterGoal() {
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd-monitoring/water.php', {
+      .get('http://localhost/hd_monitoring/water.php', {
         params: {
           user_id: localStorage.getItem('token'),
         },

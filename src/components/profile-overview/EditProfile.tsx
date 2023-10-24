@@ -24,7 +24,7 @@ export default function EditProfile() {
 
   const fetchUser = async () => {
     axios
-      .get(`http://localhost/hd-monitoring/register.php/${id}`)
+      .get(`http://localhost/hd_monitoring/register.php/${id}`)
       .then((res) => {
         console.log(res.data, 'reyudel');
         setUser(res.data);
@@ -56,7 +56,7 @@ export default function EditProfile() {
     // console.log(user);
 
     axios
-      .put('http://localhost/hd-monitoring/register.php', {
+      .put('http://localhost/hd_monitoring/register.php', {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

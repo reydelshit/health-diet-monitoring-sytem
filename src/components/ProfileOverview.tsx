@@ -32,13 +32,15 @@ export default function ProfileOverview({
 
   const fetchWater = () => {
     axios
-      .get('http://localhost/hd-monitoring/physical-measurements.php', {
+      .get('http://localhost/hd_monitoring/physical-measurements.php', {
         params: {
           user_id_latest: localStorage.getItem('token'),
         },
       })
       .then((res) => {
         console.log(res.data, 'provile overview');
+
+        if (res.data.length === 0) return;
         setWeight(res.data[0].weight_kg);
         setHeight(res.data[0].height_ft);
       });
@@ -51,7 +53,7 @@ export default function ProfileOverview({
   const handleSubmitPhysicalMeasurements = (e: React.FormEvent) => {
     e.preventDefault();
     axios
-      .post('http://localhost/hd-monitoring/physical-measurements.php', {
+      .post('http://localhost/hd_monitoring/physical-measurements.php', {
         user_id: localStorage.getItem('token'),
         weight_kg: weight,
         height_ft: height,

@@ -8,7 +8,7 @@ export default function Main() {
 
   const handleFetchUserData = () => {
     axios
-      .get('http://localhost/hd-monitoring/get-user-data.php', {
+      .get('http://localhost/hd_monitoring/get-user-data.php', {
         params: {
           id: localStorage.getItem('token'),
         },

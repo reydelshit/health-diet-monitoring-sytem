@@ -22,7 +22,7 @@ export default function WeightHeightChanges() {
 
   const fetchHeightWeight = () => {
     axios
-      .get('http://localhost/hd-monitoring/physical-measurements.php', {
+      .get('http://localhost/hd_monitoring/physical-measurements.php', {
         params: {
           user_id: localStorage.getItem('token'),
         },

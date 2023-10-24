@@ -28,7 +28,7 @@ export default function AddWorkoutPlans({
     const token = localStorage.getItem('token') as unknown as number;
 
     axios
-      .post('http://localhost/hd-monitoring/workout.php', {
+      .post('http://localhost/hd_monitoring/workout.php', {
         ...formData,
         user_id: token,
       })

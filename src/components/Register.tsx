@@ -20,7 +20,7 @@ export default function Register() {
     e.preventDefault();
 
     axios
-      .post('http://localhost/hd-monitoring/register.php', user)
+      .post('http://localhost/hd_monitoring/register.php', user)
       .then((res) => {
         console.log(res.data);
 

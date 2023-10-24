@@ -30,7 +30,7 @@ export default function AddMeal({
     const token = localStorage.getItem('token') as unknown as number;
 
     axios
-      .post('http://localhost/hd-monitoring/meal-diary.php', {
+      .post('http://localhost/hd_monitoring/meal-diary.php', {
         ...formData,
         user_id: token,
       })

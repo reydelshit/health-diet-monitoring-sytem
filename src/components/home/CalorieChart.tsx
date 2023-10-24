@@ -13,7 +13,7 @@ export default function CalorieChart() {
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd-monitoring/meal-diary.php', {
+      .get('http://localhost/hd_monitoring/meal-diary.php', {
         params: {
           user_id: localStorage.getItem('token'),
         },

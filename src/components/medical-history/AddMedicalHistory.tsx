@@ -27,7 +27,7 @@ export default function AddMedicalHistory({
     const token = localStorage.getItem('token') as unknown as number;
 
     axios
-      .post('http://localhost/hd-monitoring/medical.php', {
+      .post('http://localhost/hd_monitoring/medical.php', {
         ...formData,
         user_id: token,
         indicator: 'post_medical_records_general',

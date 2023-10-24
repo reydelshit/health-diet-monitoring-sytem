@@ -19,7 +19,7 @@ export default function WorkoutPlansComponent() {
 
   const fetchWorkoutPlans = () => {
     axios
-      .get('http://localhost/hd-monitoring/workout.php', {
+      .get('http://localhost/hd_monitoring/workout.php', {
         params: {
           user_id: user_id,
         },

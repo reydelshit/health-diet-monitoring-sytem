@@ -25,11 +25,13 @@ export default function Login({
     e.preventDefault();
 
     axios
-      .get('http://localhost/hd-monitoring/login.php', {
+      .get('http://localhost/hd_monitoring/login.php', {
         params: loginDetails,
       })
       .then((res) => {
         if (res.status === 200) {
+          // console.log(res.data, 'login');
+          // console.log(res.data[0].id, 'login');
           console.log('success');
           localStorage.setItem('token', res.data[0].id);
           setEmail(res.data[0].email);

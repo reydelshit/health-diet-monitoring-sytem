@@ -67,7 +67,7 @@ export default function ViewMedicalHistory() {
     // console.log(formData);
     e.preventDefault();
     axios
-      .put(`http://localhost/hd-monitoring/medical.php/${id}`, {
+      .put(`http://localhost/hd_monitoring/medical.php/${id}`, {
         medical_title: title,
         medical_desc: description,
         medical_id: id,
@@ -81,7 +81,7 @@ export default function ViewMedicalHistory() {
   const deleteWorkoutPlans = (id: number) => {
     console.log(id);
     axios
-      .delete(`http://localhost/hd-monitoring/medical.php/${id}`)
+      .delete(`http://localhost/hd_monitoring/medical.php/${id}`)
       .then((res) => {
         fetchMedicalHistory();
 
