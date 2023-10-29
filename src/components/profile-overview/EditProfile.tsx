@@ -18,6 +18,11 @@ export default function EditProfile() {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
 
+  // const [forGender, setForGender] = useState({
+  //   gender: '',
+  //   ifQual: false,
+  // });
+
   const [image, setImage] = useState<string | null>(null);
 
   const { id } = useParams();
@@ -36,6 +41,19 @@ export default function EditProfile() {
         setGender(res.data.gender);
 
         setImage(res.data.image);
+
+        // if (res.data.gender === 'female') {
+        //   setForGender({
+        //     gender: 'female',
+        //     ifQual: true,
+        //   });
+        // } else {
+        //   setForGender({
+        //     gender: 'male',
+        //     ifQual: true,
+        //   });
+        // }
+        console.log(res.data.gender);
       });
   };
 
@@ -140,7 +158,7 @@ export default function EditProfile() {
                 value="male"
                 className="w-[2rem] h-[1.2rem] cursor-pointer"
                 onChange={handleChange}
-                checked={gender === 'male'}
+                defaultChecked={gender.toLowerCase() === 'male' ? true : false}
               />
               <Label className="text-start mr-2 text-sm">Male</Label>
             </div>
@@ -151,7 +169,9 @@ export default function EditProfile() {
                 value="female"
                 className="w-[2rem] h-[1.2rem] cursor-pointer"
                 onChange={handleChange}
-                checked={gender === 'female'}
+                defaultChecked={
+                  gender.toLowerCase() === 'female' ? true : false
+                }
               />
               <Label className="text-start mr-2 text-sm">Female</Label>
             </div>

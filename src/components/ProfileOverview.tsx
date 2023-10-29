@@ -65,7 +65,7 @@ export default function ProfileOverview({
   };
 
   return (
-    <div className="w-[20rem] p-2 h-fit">
+    <div className="w-[25rem] p-2 h-fit">
       {userDetails &&
         userDetails.map((user) => {
           const { id, name, birthday, gender, image } = user;
@@ -123,7 +123,11 @@ export default function ProfileOverview({
               <Separator className="my-4" />
               {weight.length !== 0 && height.length !== 0 ? (
                 <div className="text-center">
-                  <CalculateBmi weight={parseInt(weight)} height={height} />
+                  <CalculateBmi
+                    gender={gender}
+                    weight={parseInt(weight)}
+                    height={height}
+                  />
 
                   <Button
                     onClick={() => setAddPhysicalDecider(!addPhysicalDecider)}
