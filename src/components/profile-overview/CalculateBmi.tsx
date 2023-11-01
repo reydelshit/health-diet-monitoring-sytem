@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { Button } from '../ui/button';
+
 export default function CalculateBmi({
   weight,
   height,
@@ -18,7 +21,7 @@ export default function CalculateBmi({
     {
       category: 'Normal Weight',
       suggestion:
-        'Your weight is within a healthy range. Maintain a balanced diet and regular exercise.',
+        'Your weight is within a healthy range. Maintain a balanced diet and regular exercise. Pay attention to protein intake to support muscle maintenance.',
       minBMI: 18.5,
       maxBMI: 24.9,
     },
@@ -63,7 +66,7 @@ export default function CalculateBmi({
     {
       category: 'Normal Weight',
       suggestion:
-        'Your weight is within a healthy range. Maintain a balanced diet and regular exercise.',
+        'Your weight is within a healthy range. Maintain a balanced diet and regular exercise. Pay attention to calcium and iron intake for overall health.',
       minBMI: 18.5,
       maxBMI: 24.9,
     },
@@ -98,7 +101,7 @@ export default function CalculateBmi({
   ];
 
   const getBmiCategory = (bmi: number) => {
-    if (gender.toLocaleLowerCase() === 'female') {
+    if (gender === 'female' || gender === 'Female') {
       const bmiCategory = maleBMICategories.find(
         (category) => category.minBMI <= bmi && category.maxBMI >= bmi,
       );
@@ -139,6 +142,13 @@ export default function CalculateBmi({
       <h1>BMI</h1>
       <p className="text-2xl font-bold">{toFixed}</p>
       {getBmiCategory(toFixed)}
+
+      <div className="mt-[1rem]">
+        {/* <h1 className="font-bold mb-[1rem]">Health Suggestion</h1> */}
+        <Link to={`/suggestions/${toFixed}`}>
+          <Button className="mb-1 w-[15rem]  mr-2">Health Suggestion</Button>
+        </Link>
+      </div>
     </div>
   );
 }

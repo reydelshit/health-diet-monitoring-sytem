@@ -22,6 +22,7 @@ import ViewMedicalHistory from './medical-history/ViewMedicalHistory';
 import logo from '../assets/logo.png';
 import WeightHeightChanges from './WeightHeightChanges';
 import { MdOutlinePublishedWithChanges } from 'react-icons/md';
+import Suggestion from './Suggestion';
 
 export default function Sidebar({
   handleLogout,
@@ -231,6 +232,8 @@ export default function Sidebar({
             path="/height-weight-changes"
             element={<WeightHeightChanges />}
           />
+
+          <Route path="/suggestions/:bmi" element={<Suggestion />} />
 
           <Route path="*" element={<NotFound />} />
           <Route path="/*" element={<NotFound />} />

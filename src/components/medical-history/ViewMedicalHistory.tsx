@@ -45,7 +45,7 @@ export default function ViewMedicalHistory() {
 
   const fetchMedicalHistory = () => {
     axios
-      .get(`http://localhost/hd-monitoring/medical.php/`, {
+      .get(`http://localhost/hd_monitoring/medical.php/`, {
         params: {
           medical_id: id,
         },
