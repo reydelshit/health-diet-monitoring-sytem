@@ -7,7 +7,7 @@ export const metadata = {
     'Your health suggestion, based on your BMI, will be displayed here.',
 };
 
-const dietPlanBasedOnBMIAndGender = [
+const healthPlans = [
   {
     category: 'Underweight',
     BMIRange: {
@@ -30,6 +30,17 @@ const dietPlanBasedOnBMIAndGender = [
       'Example Lunch: Quinoa salad with chickpeas, vegetables, and olive oil dressing.',
       'Example Dinner: Grilled chicken breast with brown rice and steamed broccoli.',
       'Snacks: Greek yogurt with honey and mixed berries, or a handful of nuts.',
+    ],
+    workoutPlan: [
+      'Focus on building lean muscle mass and strength.',
+      'Include strength training exercises with light to moderate weights.',
+      'Incorporate resistance bands or bodyweight exercises.',
+      'Include flexibility exercises to improve mobility.',
+    ],
+    exampleWorkout: [
+      'Bodyweight squats: 3 sets of 12 reps.',
+      'Push-ups: 3 sets of 10 reps.',
+      'Light dumbbell curls: 3 sets of 12 reps.',
     ],
   },
   {
@@ -55,6 +66,16 @@ const dietPlanBasedOnBMIAndGender = [
       'Example Dinner: Stir-fried tofu with mixed vegetables and brown rice.',
       'Snacks: Sliced apples with almond butter, or carrot sticks with hummus.',
     ],
+    workoutPlan: [
+      'Maintain overall fitness and health.',
+      'Engage in a balanced workout routine.',
+      'Include both cardiovascular and strength training exercises.',
+      'Incorporate stretching for flexibility.',
+    ],
+    exampleWorkout: [
+      '30 minutes of brisk walking or jogging.',
+      'Strength training: Dumbbell lunges, planks, and bicep curls.',
+    ],
   },
   {
     category: 'Overweight',
@@ -79,6 +100,17 @@ const dietPlanBasedOnBMIAndGender = [
       'Example Dinner: Baked cod with quinoa and steamed asparagus.',
       'Snacks: Sliced cucumber with a light dip, or a small handful of mixed nuts.',
     ],
+    workoutPlan: [
+      'Focus on weight loss and cardiovascular health.',
+      'Incorporate regular cardiovascular exercise to burn calories.',
+      'Include strength training to build muscle and boost metabolism.',
+
+      'Include flexibility exercises for mobility and injury prevention.',
+    ],
+    exampleWorkout: [
+      '45 minutes of brisk walking, cycling, or swimming.',
+      'Strength training: Bodyweight squats, push-ups, and resistance band exercises.',
+    ],
   },
   {
     category: 'Obese',
@@ -102,6 +134,16 @@ const dietPlanBasedOnBMIAndGender = [
       'Example Dinner: Lentil soup with a mixed greens salad and a vinaigrette dressing.',
       'Snacks: Sliced pear with cottage cheese, or air-popped popcorn.',
     ],
+    workoutPlan: [
+      'Prioritize weight loss and overall health improvement.',
+      'Emphasize cardiovascular workouts for calorie burning.',
+      'Include strength training to build muscle and enhance metabolism.',
+      'Regularly engage in flexibility and mobility exercises.',
+    ],
+    exampleWorkout: [
+      '60 minutes of aerobic exercise like brisk walking, cycling, or elliptical training.',
+      'Strength training: Full-body exercises, including squats, deadlifts, and push-ups.',
+    ],
   },
 ];
 
@@ -124,45 +166,40 @@ export default function Suggestion() {
         <h1 className="font-bold text-2xl">
           Diet Recommendation and Suggestions
         </h1>
-        <div className="flex flex-col p-2">
-          <div>
-            <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-              {
-                dietPlanBasedOnBMIAndGender.find(
-                  (diet) =>
-                    diet.BMIRange.minBMI <= replaceBmi &&
-                    diet.BMIRange.maxBMI >= replaceBmi,
-                )?.category
-              }
-            </h1>
-
-            <p>{replaceBmi}</p>
-          </div>
-
-          <div>
-            <h1 className="font-bold bg-green-300 p-2 mb-2 rounded-md">
-              Recommendations
-            </h1>
-            {dietPlanBasedOnBMIAndGender
-              .find(
+        <div>
+          <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+            {
+              healthPlans.find(
                 (diet) =>
                   diet.BMIRange.minBMI <= replaceBmi &&
                   diet.BMIRange.maxBMI >= replaceBmi,
-              )
-              ?.recommendations.map((recommendation, index) => (
-                <div key={index} className="w-fit">
-                  <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-                    {recommendation}
-                  </h1>
-                </div>
-              ))}
-          </div>
+              )?.category
+            }
+          </h1>
 
-          <div>
-            <h1 className="font-bold bg-green-300 p-2 mb-2 rounded-md">
-              Diet Suggestions
-            </h1>
-            {dietPlanBasedOnBMIAndGender
+          <p>{replaceBmi}</p>
+        </div>
+
+        <div className="bg-violet-100 p-2 rounded-md h-fit my-4">
+          <h1 className="font-bold p-2 mb-2 rounded-md">Recommendations</h1>
+          {healthPlans
+            .find(
+              (diet) =>
+                diet.BMIRange.minBMI <= replaceBmi &&
+                diet.BMIRange.maxBMI >= replaceBmi,
+            )
+            ?.recommendations.map((recommendation, index) => (
+              <div key={index} className="w-fit">
+                <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+                  {recommendation}
+                </h1>
+              </div>
+            ))}
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-yellow-100 p-2 rounded-md h-fit">
+            <h1 className="font-boldp-2 mb-2 rounded-md">Diet Suggestions</h1>
+            {healthPlans
               .find(
                 (diet) =>
                   diet.BMIRange.minBMI <= replaceBmi &&
@@ -175,25 +212,59 @@ export default function Suggestion() {
                   </h1>
                 </div>
               ))}
+
+            <div className="bg-green-100 p-2 rounded-md">
+              <h1 className="font-boldp-2 mb-2 rounded-md">
+                Examples of what to eat
+              </h1>
+              {healthPlans
+                .find(
+                  (diet) =>
+                    diet.BMIRange.minBMI <= replaceBmi &&
+                    diet.BMIRange.maxBMI >= replaceBmi,
+                )
+                ?.dietPlan.map((recommendation, index) => (
+                  <div key={index} className="w-fit">
+                    <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+                      {recommendation}
+                    </h1>
+                  </div>
+                ))}
+            </div>
           </div>
 
-          <div>
-            <h1 className="font-bold bg-green-300 p-2 mb-2 rounded-md">
-              Examples of what to eat
-            </h1>
-            {dietPlanBasedOnBMIAndGender
+          <div className="bg-green-100 p-2 rounded-md h-fit">
+            <h1 className="font-boldp-2 mb-2 rounded-md">Workout</h1>
+            {healthPlans
               .find(
                 (diet) =>
                   diet.BMIRange.minBMI <= replaceBmi &&
                   diet.BMIRange.maxBMI >= replaceBmi,
               )
-              ?.dietPlan.map((recommendation, index) => (
+              ?.workoutPlan.map((recommendation, index) => (
                 <div key={index} className="w-fit">
                   <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
                     {recommendation}
                   </h1>
                 </div>
               ))}
+
+            <div>
+              <h1>Workout Examples:</h1>
+              {healthPlans
+                .find(
+                  (diet) =>
+                    diet.BMIRange.minBMI <= replaceBmi &&
+                    diet.BMIRange.maxBMI >= replaceBmi,
+                )
+                ?.exampleWorkout.map((recommendation, index) => (
+                  <div key={index} className="w-fit">
+                    <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+                      {recommendation}
+                    </h1>
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </div>
