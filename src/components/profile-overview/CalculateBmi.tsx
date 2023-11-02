@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 
 export default function CalculateBmi({
@@ -137,6 +137,13 @@ export default function CalculateBmi({
   // setBmi(toFixed);
   getBmiCategory(toFixed);
 
+  const navigate = useNavigate();
+
+  const navigateToSuggestion = () => {
+    const ifThereIsDecimal = toFixed.toString().replace(/\./g, '*');
+    navigate(`/suggestions/${ifThereIsDecimal}`);
+  };
+
   return (
     <div>
       <h1>BMI</h1>
@@ -145,9 +152,10 @@ export default function CalculateBmi({
 
       <div className="mt-[1rem]">
         {/* <h1 className="font-bold mb-[1rem]">Health Suggestion</h1> */}
-        <Link to={`/suggestions/${toFixed}`}>
-          <Button className="mb-1 w-[15rem]  mr-2">Health Suggestion</Button>
-        </Link>
+
+        <Button onClick={navigateToSuggestion} className="mb-1 w-[15rem]  mr-2">
+          Health Suggestion
+        </Button>
       </div>
     </div>
   );
