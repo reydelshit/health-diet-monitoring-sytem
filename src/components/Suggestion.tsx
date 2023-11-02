@@ -26,9 +26,9 @@ const healthPlans = [
       'Consider smoothies and shakes with fruits, vegetables, and healthy fats for extra calories.',
     ],
     dietPlan: [
-      'Example Breakfast: Scrambled eggs with spinach and whole-grain toast.',
-      'Example Lunch: Quinoa salad with chickpeas, vegetables, and olive oil dressing.',
-      'Example Dinner: Grilled chicken breast with brown rice and steamed broccoli.',
+      'Breakfast: Scrambled eggs with spinach and whole-grain toast.',
+      'Lunch: Quinoa salad with chickpeas, vegetables, and olive oil dressing.',
+      'Dinner: Grilled chicken breast with brown rice and steamed broccoli.',
       'Snacks: Greek yogurt with honey and mixed berries, or a handful of nuts.',
     ],
     workoutPlan: [
@@ -61,9 +61,9 @@ const healthPlans = [
       'Consume a mix of raw and cooked vegetables for different textures and flavors.',
     ],
     dietPlan: [
-      'Example Breakfast: Oatmeal topped with sliced bananas and a sprinkle of chia seeds.',
-      'Example Lunch: Grilled salmon with a side of quinoa and roasted vegetables.',
-      'Example Dinner: Stir-fried tofu with mixed vegetables and brown rice.',
+      'Breakfast: Oatmeal topped with sliced bananas and a sprinkle of chia seeds.',
+      'Lunch: Grilled salmon with a side of quinoa and roasted vegetables.',
+      'Dinner: Stir-fried tofu with mixed vegetables and brown rice.',
       'Snacks: Sliced apples with almond butter, or carrot sticks with hummus.',
     ],
     workoutPlan: [
@@ -95,9 +95,9 @@ const healthPlans = [
       'Use fruits and vegetables as healthy snacks to replace processed snacks.',
     ],
     dietPlan: [
-      'Example Breakfast: Greek yogurt with granola and fresh berries.',
-      'Example Lunch: Turkey and avocado sandwich on whole-grain bread with a side salad.',
-      'Example Dinner: Baked cod with quinoa and steamed asparagus.',
+      'Breakfast: Greek yogurt with granola and fresh berries.',
+      'Lunch: Turkey and avocado sandwich on whole-grain bread with a side salad.',
+      'Dinner: Baked cod with quinoa and steamed asparagus.',
       'Snacks: Sliced cucumber with a light dip, or a small handful of mixed nuts.',
     ],
     workoutPlan: [
@@ -162,12 +162,9 @@ export default function Suggestion() {
         <Separator />
       </div>
 
-      <div>
-        <h1 className="font-bold text-2xl">
-          Diet Recommendation and Suggestions
-        </h1>
-        <div>
-          <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+      <div className="m-4">
+        <div className="flex items-center font-bold text-2xl py-2">
+          <h1 className="font-bold bg-white p-2 rounded-md">
             {
               healthPlans.find(
                 (diet) =>
@@ -177,11 +174,11 @@ export default function Suggestion() {
             }
           </h1>
 
-          <p>{replaceBmi}</p>
+          <p className="bg-green-400 p-2 rounded-md">{replaceBmi}</p>
         </div>
 
-        <div className="bg-violet-100 p-2 rounded-md h-fit my-4">
-          <h1 className="font-bold p-2 mb-2 rounded-md">Recommendations</h1>
+        <div className="bg-white rounded-md h-fit my-4 border-2 px-8 py-2">
+          {/* <h1 className="font-bold p-2 mb-2 rounded-md">Advice</h1> */}
           {healthPlans
             .find(
               (diet) =>
@@ -189,16 +186,17 @@ export default function Suggestion() {
                 diet.BMIRange.maxBMI >= replaceBmi,
             )
             ?.recommendations.map((recommendation, index) => (
-              <div key={index} className="w-fit">
-                <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-                  {recommendation}
-                </h1>
+              <div key={index} className="w-fit flex items-center gap-2">
+                <span className="font-bold">{index + 1}.</span>
+                <h1 className="p-2 mb-2 rounded-md">{recommendation}</h1>
               </div>
             ))}
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-yellow-100 p-2 rounded-md h-fit">
-            <h1 className="font-boldp-2 mb-2 rounded-md">Diet Suggestions</h1>
+          <div className="bg-white border-2 p-2 rounded-md h-fit px-8 py-4">
+            <h1 className="font-boldp-2 mb-2 rounded-md font-bold text-2xl">
+              Diet Suggestions
+            </h1>
             {healthPlans
               .find(
                 (diet) =>
@@ -206,15 +204,14 @@ export default function Suggestion() {
                   diet.BMIRange.maxBMI >= replaceBmi,
               )
               ?.foodRecommendations.map((recommendation, index) => (
-                <div key={index} className="w-fit">
-                  <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-                    {recommendation}
-                  </h1>
+                <div key={index} className="w-fit flex items-center gap-2">
+                  <span className="font-bold">{index + 1}.</span>
+                  <h1 className="p-2 mb-2 rounded-md">{recommendation}</h1>
                 </div>
               ))}
 
-            <div className="bg-green-100 p-2 rounded-md">
-              <h1 className="font-boldp-2 mb-2 rounded-md">
+            <div className="p-2 rounded-md ml-2">
+              <h1 className="font-boldp-2 mb-2 rounded-md font-bold">
                 Examples of what to eat
               </h1>
               {healthPlans
@@ -225,7 +222,7 @@ export default function Suggestion() {
                 )
                 ?.dietPlan.map((recommendation, index) => (
                   <div key={index} className="w-fit">
-                    <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
+                    <h1 className="bg-white p-2 mb-2 rounded-md">
                       {recommendation}
                     </h1>
                   </div>
@@ -233,8 +230,8 @@ export default function Suggestion() {
             </div>
           </div>
 
-          <div className="bg-green-100 p-2 rounded-md h-fit">
-            <h1 className="font-boldp-2 mb-2 rounded-md">Workout</h1>
+          <div className="bg-white p-2 rounded-md h-fit px-8 py-4">
+            <h1 className="p-2 mb-2 rounded-md font-bold text-2xl">Workout</h1>
             {healthPlans
               .find(
                 (diet) =>
@@ -242,15 +239,14 @@ export default function Suggestion() {
                   diet.BMIRange.maxBMI >= replaceBmi,
               )
               ?.workoutPlan.map((recommendation, index) => (
-                <div key={index} className="w-fit">
-                  <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-                    {recommendation}
-                  </h1>
+                <div key={index} className="w-fit flex items-center gap-2">
+                  <span className="font-bold">{index + 1}.</span>
+                  <h1 className="p-2 mb-2 rounded-md">{recommendation}</h1>
                 </div>
               ))}
 
-            <div>
-              <h1>Workout Examples:</h1>
+            <div className="p-2 ml-2">
+              <h1 className="font-bold">Workout Examples:</h1>
               {healthPlans
                 .find(
                   (diet) =>
@@ -259,9 +255,7 @@ export default function Suggestion() {
                 )
                 ?.exampleWorkout.map((recommendation, index) => (
                   <div key={index} className="w-fit">
-                    <h1 className="font-bold bg-white p-2 mb-2 rounded-md">
-                      {recommendation}
-                    </h1>
+                    <h1 className="p-2 mb-2 rounded-md">{recommendation}</h1>
                   </div>
                 ))}
             </div>
