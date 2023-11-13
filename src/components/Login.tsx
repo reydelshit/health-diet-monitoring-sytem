@@ -12,7 +12,7 @@ export default function Login({
   setIsLoggedIn: (value: boolean) => void;
 }) {
   const [loginDetails, setLoginDetails] = useState([]);
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -34,7 +34,7 @@ export default function Login({
           // console.log(res.data[0].id, 'login');
           console.log('success');
           localStorage.setItem('token', res.data[0].id);
-          setEmail(res.data[0].email);
+          // setEmail(res.data[0].email);
           setIsLoggedIn(true);
         }
       });

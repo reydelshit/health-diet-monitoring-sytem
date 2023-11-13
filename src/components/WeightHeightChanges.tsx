@@ -61,7 +61,11 @@ export default function WeightHeightChanges() {
                   {hw.weight_kg} kg
                 </h3>
                 <div className="text-start">
-                  <CalculateBmi height={hw.height_ft} weight={hw.weight_kg} />
+                  <CalculateBmi
+                    gender=""
+                    height={hw.height_ft}
+                    weight={hw.weight_kg}
+                  />
                 </div>
               </li>
             );

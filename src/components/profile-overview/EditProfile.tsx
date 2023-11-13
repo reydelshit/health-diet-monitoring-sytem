@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Label } from '@radix-ui/react-label';
@@ -13,8 +13,8 @@ export default function EditProfile() {
   const [user, setUser] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
+  // const [height, setHeight] = useState('');
+  // const [weight, setWeight] = useState('');
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
 
@@ -35,8 +35,8 @@ export default function EditProfile() {
         setUser(res.data);
         setName(res.data.name);
         setEmail(res.data.email);
-        setHeight(res.data.height);
-        setWeight(res.data.weight);
+        // setHeight(res.data.height);
+        // setWeight(res.data.weight);
         setBirthday(res.data.birthday);
         setGender(res.data.gender);
 
@@ -95,7 +95,7 @@ export default function EditProfile() {
     const data = new FileReader();
     data.readAsDataURL(e.target.files![0]);
 
-    data.onloadend = (e) => {
+    data.onloadend = () => {
       const base64 = data.result;
       if (base64) {
         setImage(base64.toString());

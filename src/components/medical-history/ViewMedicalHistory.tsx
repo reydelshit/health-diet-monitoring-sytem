@@ -75,6 +75,7 @@ export default function ViewMedicalHistory() {
       })
       .then((res) => {
         location.reload();
+        console.log(res.data, 'update');
       });
   };
 
