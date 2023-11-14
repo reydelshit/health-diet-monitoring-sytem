@@ -45,7 +45,7 @@ export default function ViewMedicalHistory() {
 
   const fetchMedicalHistory = () => {
     axios
-      .get(`http://localhost/hd_monitoring/medical.php/`, {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/medical.php/`, {
         params: {
           medical_id: id,
         },
@@ -67,12 +67,15 @@ export default function ViewMedicalHistory() {
     // console.log(formData);
     e.preventDefault();
     axios
-      .put(`http://localhost/hd_monitoring/medical.php/${id}`, {
-        medical_title: title,
-        medical_desc: description,
-        medical_id: id,
-        indicator: 'update_medical',
-      })
+      .put(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/medical.php/${id}`,
+        {
+          medical_title: title,
+          medical_desc: description,
+          medical_id: id,
+          indicator: 'update_medical',
+        },
+      )
       .then((res) => {
         location.reload();
         console.log(res.data, 'update');
@@ -82,7 +85,9 @@ export default function ViewMedicalHistory() {
   const deleteWorkoutPlans = (id: number) => {
     console.log(id);
     axios
-      .delete(`http://localhost/hd_monitoring/medical.php/${id}`)
+      .delete(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/medical.php/${id}`,
+      )
       .then((res) => {
         fetchMedicalHistory();
 

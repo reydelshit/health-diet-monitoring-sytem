@@ -63,7 +63,7 @@ export function SleepGoal() {
 
   const fetchSleepTotal = () => {
     axios
-      .get('http://localhost/hd_monitoring/sleep.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/sleep.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },

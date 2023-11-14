@@ -47,7 +47,7 @@ export default function Goal() {
 
   const fetchUserGoal = () => {
     axios
-      .get('http://localhost/hd_monitoring/goal.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/goal.php`, {
         params: {
           user_id: user_id,
         },
@@ -119,7 +119,7 @@ export default function Goal() {
 
     if (readyForUpdate) {
       axios
-        .put('http://localhost/hd_monitoring/goal.php', {
+        .put(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/goal.php`, {
           goal_id: getId,
           goal_target: target,
         })
@@ -129,7 +129,7 @@ export default function Goal() {
         });
     } else {
       axios
-        .post('http://localhost/hd_monitoring/goal.php', {
+        .post(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/goal.php`, {
           goal_target: target,
           goal_type: type,
           user_id: user_id,

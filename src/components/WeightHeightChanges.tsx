@@ -22,11 +22,16 @@ export default function WeightHeightChanges() {
 
   const fetchHeightWeight = () => {
     axios
-      .get('http://localhost/hd_monitoring/physical-measurements.php', {
-        params: {
-          user_id: localStorage.getItem('token'),
+      .get(
+        `${
+          import.meta.env.VITE_HDMONITORING_LOCAL_HOST
+        }/physical-measurements.php`,
+        {
+          params: {
+            user_id: localStorage.getItem('token'),
+          },
         },
-      })
+      )
       .then((res) => {
         setHeightWeight(res.data);
         console.log(res.data, 'physical');

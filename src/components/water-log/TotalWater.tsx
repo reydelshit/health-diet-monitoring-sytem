@@ -56,12 +56,12 @@ const data = [
 ];
 
 export function TotalWater() {
-  const [totalCalorie, setTotalCalorie] = useState(0);
+  const [totalWater, setTotalWater] = useState(0);
   const [dateSince, setDateSince] = useState('');
 
-  const fetchCalorieIntake = () => {
+  const fetTotalWater = () => {
     axios
-      .get('http://localhost/hd_monitoring/water.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/water.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },
@@ -71,13 +71,13 @@ export function TotalWater() {
 
         const entries = res.data;
 
-        const totalSumCalorie = entries.reduce(
+        const totalWater = entries.reduce(
           (accumulator: number, currentValue: any) =>
             accumulator + parseInt(currentValue.water_glasses),
           0,
         );
 
-        setTotalCalorie(totalSumCalorie);
+        setTotalWater(totalWater);
 
         if (entries && entries.length > 0) {
           const oldestEntry = entries.reduce((oldest: any, current: any) => {
@@ -97,7 +97,7 @@ export function TotalWater() {
   };
 
   useEffect(() => {
-    fetchCalorieIntake();
+    fetTotalWater();
   }, []);
 
   return (
@@ -110,7 +110,7 @@ export function TotalWater() {
         <div className="flex items-center justify-center space-x-2">
           <div className="flex-1 text-center">
             <div className="text-5xl font-bold tracking-tighter">
-              {totalCalorie}
+              {totalWater}
             </div>
             <div className="text-[0.70rem] uppercase text-muted-foreground">
               since {moment(dateSince).format('MMM DD, YYYY')}

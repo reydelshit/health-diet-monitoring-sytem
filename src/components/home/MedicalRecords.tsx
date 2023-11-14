@@ -21,7 +21,7 @@ export default function MedicalRecords() {
 
   const fetchMedicalRecords = () => {
     axios
-      .get(`http://localhost/hd_monitoring/medical.php`, {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/medical.php`, {
         params: {
           user_id: user_id,
         },

@@ -20,7 +20,10 @@ export default function Register() {
     e.preventDefault();
 
     axios
-      .post('http://localhost/hd_monitoring/register.php', user)
+      .post(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/register.php`,
+        user,
+      )
       .then((res) => {
         console.log(res.data);
 

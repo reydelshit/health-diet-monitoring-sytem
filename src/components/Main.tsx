@@ -8,11 +8,14 @@ export default function Main() {
 
   const handleFetchUserData = () => {
     axios
-      .get('http://localhost/hd_monitoring/get-user-data.php', {
-        params: {
-          id: localStorage.getItem('token'),
+      .get(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/get-user-data.php`,
+        {
+          params: {
+            id: localStorage.getItem('token'),
+          },
         },
-      })
+      )
       .then((res) => {
         if (res.status === 200) {
           setUserDetails(res.data);

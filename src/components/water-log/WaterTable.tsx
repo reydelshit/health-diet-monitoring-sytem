@@ -22,7 +22,7 @@ export default function WaterTable() {
   const [table, setTable] = useState<Water[]>([]);
   const fetchWater = () => {
     axios
-      .get('http://localhost/hd_monitoring/water.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/water.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },

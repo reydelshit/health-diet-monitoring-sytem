@@ -32,7 +32,7 @@ export default function FoodLogTable() {
 
   const fetchFoodLog = () => {
     axios
-      .get('http://localhost/hd_monitoring/meal-diary.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/meal-diary.php`, {
         params: {
           user_id: id,
         },

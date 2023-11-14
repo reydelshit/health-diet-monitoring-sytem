@@ -35,7 +35,7 @@ export default function MedicalHistory() {
 
   const fetchMedicalHistory = () => {
     axios
-      .get('http://localhost/hd_monitoring/medical.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/medical.php`, {
         params: {
           user_id: localStorage.getItem('token') as unknown as number,
         },

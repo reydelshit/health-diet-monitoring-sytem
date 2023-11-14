@@ -36,7 +36,7 @@ export default function WorkoutPlans() {
 
   const fetchWorkoutPlans = () => {
     axios
-      .get('http://localhost/hd_monitoring/workout.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/workout.php`, {
         params: {
           user_id: user_id,
         },

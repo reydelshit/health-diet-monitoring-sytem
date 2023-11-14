@@ -52,7 +52,7 @@ export default function ViewWorkout() {
 
   const fetchWorkoutPlans = () => {
     axios
-      .get(`http://localhost/hd_monitoring/workout.php`, {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/workout.php`, {
         params: {
           workout_id: id,
         },
@@ -76,13 +76,16 @@ export default function ViewWorkout() {
     e.preventDefault();
 
     axios
-      .put(`http://localhost/hd_monitoring/workout.php/${id}`, {
-        workout_plans_name: title,
-        workout_mins: mins,
-        workout_description: description,
-        id: id,
-        indicator: 'update_workout',
-      })
+      .put(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/workout.php/${id}`,
+        {
+          workout_plans_name: title,
+          workout_mins: mins,
+          workout_description: description,
+          id: id,
+          indicator: 'update_workout',
+        },
+      )
       .then((res) => {
         // console.log(res.data);
         fetchWorkoutPlans();
@@ -95,7 +98,9 @@ export default function ViewWorkout() {
   const deleteWorkoutPlans = (id: number) => {
     console.log(id);
     axios
-      .delete(`http://localhost/hd_monitoring/workout.php/${id}`)
+      .delete(
+        `${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/workout.php/${id}`,
+      )
       .then((res) => {
         // console.log(res.data);
         fetchWorkoutPlans();
@@ -109,11 +114,16 @@ export default function ViewWorkout() {
   const markFinish = (id: number, status: string) => {
     // console.log(id);
     axios
-      .put(`http://localhost/hd_monitoring/workout.php/finish/${id}`, {
-        workout_status: status === 'Ongoing' ? 'Finished' : 'Ongoing',
-        workout_id: id,
-        indicator: 'update_workout_status',
-      })
+      .put(
+        `${
+          import.meta.env.VITE_HDMONITORING_LOCAL_HOST
+        }/workout.php/finish/${id}`,
+        {
+          workout_status: status === 'Ongoing' ? 'Finished' : 'Ongoing',
+          workout_id: id,
+          indicator: 'update_workout_status',
+        },
+      )
       .then((res) => {
         location.reload();
       })

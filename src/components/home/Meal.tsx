@@ -41,7 +41,7 @@ export default function Meal() {
 
   const getGoals = () => {
     axios
-      .get('http://localhost/hd_monitoring/goal.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/goal.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },
@@ -53,7 +53,7 @@ export default function Meal() {
 
   const fetchFoodLog = () => {
     axios
-      .get('http://localhost/hd_monitoring/meal-diary.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/meal-diary.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },
@@ -66,7 +66,7 @@ export default function Meal() {
 
   const fetchWaterLog = () => {
     axios
-      .get('http://localhost/hd_monitoring/water.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/water.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },
@@ -78,7 +78,7 @@ export default function Meal() {
 
   const fetchSleepLog = () => {
     axios
-      .get('http://localhost/hd_monitoring/sleep.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/sleep.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },

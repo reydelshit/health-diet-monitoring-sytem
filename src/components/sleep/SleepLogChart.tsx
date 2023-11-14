@@ -13,7 +13,7 @@ export default function SleepLogChart() {
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd_monitoring/sleep.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/sleep.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },

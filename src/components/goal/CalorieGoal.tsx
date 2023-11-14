@@ -63,7 +63,7 @@ export function CalorieGoal() {
 
   const fetchCalorieIntake = () => {
     axios
-      .get('http://localhost/hd_monitoring/meal-diary.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/meal-diary.php`, {
         params: {
           user_id: localStorage.getItem('token'),
         },

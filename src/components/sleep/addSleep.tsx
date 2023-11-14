@@ -32,7 +32,7 @@ export default function AddSleepLog({
     const token = localStorage.getItem('token') as unknown as number;
 
     axios
-      .post('http://localhost/hd_monitoring/sleep.php', {
+      .post(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/sleep.php`, {
         ...formData,
         user_id: token,
       })

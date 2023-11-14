@@ -25,7 +25,7 @@ export default function Login({
     e.preventDefault();
 
     axios
-      .get('http://localhost/hd_monitoring/login.php', {
+      .get(`${import.meta.env.VITE_HDMONITORING_LOCAL_HOST}/login.php`, {
         params: loginDetails,
       })
       .then((res) => {
