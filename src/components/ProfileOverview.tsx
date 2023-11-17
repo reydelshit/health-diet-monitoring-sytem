@@ -32,11 +32,16 @@ export default function ProfileOverview({
 
   const fetchWater = () => {
     axios
-      .get('http://localhost/hd_monitoring/physical-measurements.php', {
-        params: {
-          user_id_latest: localStorage.getItem('token'),
+      .get(
+        `${
+          import.meta.env.VITE_HDMONITORING_LOCAL_HOST
+        }/physical-measurements.php`,
+        {
+          params: {
+            user_id_latest: localStorage.getItem('token'),
+          },
         },
-      })
+      )
       .then((res) => {
         console.log(res.data, 'provile overview');
 
@@ -53,11 +58,16 @@ export default function ProfileOverview({
   const handleSubmitPhysicalMeasurements = (e: React.FormEvent) => {
     e.preventDefault();
     axios
-      .post('http://localhost/hd_monitoring/physical-measurements.php', {
-        user_id: localStorage.getItem('token'),
-        weight_kg: weight,
-        height_ft: height,
-      })
+      .post(
+        `${
+          import.meta.env.VITE_HDMONITORING_LOCAL_HOST
+        }/physical-measurements.php`,
+        {
+          user_id: localStorage.getItem('token'),
+          weight_kg: weight,
+          height_ft: height,
+        },
+      )
       .then((res) => {
         console.log(res.data, 'res');
         setAddPhysicalDecider(false);

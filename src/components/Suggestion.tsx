@@ -230,7 +230,7 @@ export default function Suggestion() {
             </div>
           </div>
 
-          <div className="bg-white p-2 rounded-md h-fit px-8 py-4">
+          <div className="bg-white p-2 rounded-md h-fit px-8 py-4 border-2">
             <h1 className="p-2 mb-2 rounded-md font-bold text-2xl">Workout</h1>
             {healthPlans
               .find(
