@@ -5,6 +5,7 @@ import { FaGreaterThan } from 'react-icons/fa';
 import { Label } from '../ui/label';
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
+import { CiMedicalCross } from 'react-icons/ci';
 
 type MedicalRecords = {
   medical_id: number;
@@ -60,11 +61,8 @@ export default function MedicalRecords() {
                 key={index}
                 className="flex gap-4 items-center justify-between border-2 mb-2 p-2 rounded-md"
               >
-                <div className="flex gap-4">
-                  <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+                <div className="flex gap-4 items-center">
+                  <CiMedicalCross className="w-[2rem] h-[2rem]" />
 
                   <div>
                     <Link

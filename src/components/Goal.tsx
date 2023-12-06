@@ -172,10 +172,10 @@ export default function Goal() {
         <p className="text-sm">{metadata.description} </p>
       </span>
       <Separator />
-      <div className="flex flex-col gap-10 mt-[5rem] justify-center items-center">
+      <div className="flex flex-col gap-10 mt-[5rem] justify-center items-center ">
         <div className="flex gap-10">
           {calories.length === 0 ? (
-            <div className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
+            <div className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
               <div className="flex justify-between">
                 <h1 className="font-bold">Calories</h1>
               </div>
@@ -207,7 +207,7 @@ export default function Goal() {
               return (
                 <div
                   key={index}
-                  className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
+                  className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
                 >
                   <div className="flex justify-between">
                     <h1 className="font-bold">Calories</h1>
@@ -252,7 +252,7 @@ export default function Goal() {
           )}
 
           {sleep.length === 0 ? (
-            <div className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
+            <div className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
               <div className="flex justify-between">
                 <h1 className="font-bold">Sleep</h1>
               </div>
@@ -279,7 +279,7 @@ export default function Goal() {
             sleep.map((goal: Goal, index) => (
               <div
                 key={index}
-                className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
+                className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
               >
                 <div className="flex justify-between">
                   <h1 className="font-bold">Sleep</h1>
@@ -318,7 +318,7 @@ export default function Goal() {
             ))
           )}
           {water.length === 0 ? (
-            <div className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
+            <div className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white">
               <div className="flex justify-between">
                 <h1 className="font-bold">Water</h1>
               </div>
@@ -348,7 +348,7 @@ export default function Goal() {
               return (
                 <div
                   key={index}
-                  className="w-[20rem] h-[15rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
+                  className="w-full h-[20rem]  border-2 p-4 flex flex-col justify-around rounded-sm bg-white"
                 >
                   <div className="flex justify-between">
                     <h1 className="font-bold">Water</h1>
@@ -390,15 +390,15 @@ export default function Goal() {
             })
           )}
         </div>
-        <div className="flex gap-10 justify-around w-[80%]">
+        <div className="flex gap-10 justify-around w-full">
           {/* <ChartMetric /> */}
-          <div className="w-[20rem]">
+          <div className="w-full">
             <CalorieGoal />
           </div>
-          <div className="w-[20rem]">
+          <div className="w-full">
             <SleepGoal />
           </div>
-          <div className="w-[20rem]">
+          <div className="w-full">
             <WaterGoal />
           </div>
         </div>

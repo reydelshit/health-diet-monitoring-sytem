@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import defaultProfile from '@/assets/default.jpg';
+import { Label } from './ui/label';
 type User = {
   id: number;
   name: string;
@@ -148,7 +149,11 @@ export default function ProfileOverview({
                   <span className="px-2 text-center w-full block text-sm mt-5">
                     {addPhysicalDecider && (
                       <div className="h-[8rem] mt-5">
-                        <form onSubmit={handleSubmitPhysicalMeasurements}>
+                        <form
+                          className="text-start"
+                          onSubmit={handleSubmitPhysicalMeasurements}
+                        >
+                          <Label className="text-start">Weight:</Label>
                           <Input
                             type="number"
                             defaultValue={weight}
@@ -156,6 +161,9 @@ export default function ProfileOverview({
                             className="mt-2"
                             onChange={(e) => setWeight(e.target.value)}
                           />
+
+                          <Label className="text-start">Height:</Label>
+
                           <Input
                             type="text"
                             defaultValue={height}

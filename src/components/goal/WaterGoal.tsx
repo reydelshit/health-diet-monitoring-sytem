@@ -131,8 +131,8 @@ export function WaterGoal() {
         </div>
       </CardContent>
       <CardFooter className="grid place-content-center">
-        <Link to="/food-diary">
-          <Button className="w-full">Log Calorie now!</Button>
+        <Link to="/water-log">
+          <Button className="w-full">Log Water now!</Button>
         </Link>
       </CardFooter>
     </Card>

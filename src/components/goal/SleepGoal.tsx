@@ -133,8 +133,8 @@ export function SleepGoal() {
         </div>
       </CardContent>
       <CardFooter className="grid place-content-center">
-        <Link to="/food-diary">
-          <Button className="w-full">Log Calorie now!</Button>
+        <Link to="/sleep-log">
+          <Button className="w-full">Log Sleep now!</Button>
         </Link>
       </CardFooter>
     </Card>
